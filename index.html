@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ReviseAI — Smart Exam Notes Compressor</title>
-  <meta name="description" content="Upload PDFs & notes. ReviseAI compresses them into exam notes, flashcards, quizzes and a last-night revision sheet." />
+  <title>PgluAI — Smart Exam Notes Compressor</title>
+  <meta name="description" content="Upload PDFs & notes. PgluAI compresses them into exam notes, flashcards, quizzes, mindmaps and a last-night revision sheet. For Nursery to Class 12." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -13,13 +13,15 @@
     <div class="brand">
       <span class="logo">📚</span>
       <div>
-        <h1>Revise<span>AI</span></h1>
+        <h1>Pglu<span>AI</span></h1>
         <p class="tag" data-i18n="tagline">Smart exam notes compressor</p>
       </div>
     </div>
     <nav class="actions">
       <button id="navHome" class="navbtn active" data-i18n="nav.dashboard">Dashboard</button>
       <button id="navStudy" class="navbtn" data-i18n="nav.study">Study</button>
+      <button id="navLibrary" class="navbtn" data-i18n="nav.library">Library</button>
+      <button id="navGuide" class="navbtn" data-i18n="nav.guide">Guide</button>
       <select id="langSelect" class="langsel" title="Language">
         <option value="en">English</option>
         <option value="hi">हिन्दी</option>
@@ -36,7 +38,7 @@
     <section id="dashboard" class="view active">
       <div class="hero">
         <h2 data-i18n="hero.title">Turn 100 pages into a 1-page revision sheet.</h2>
-        <p data-i18n="hero.sub">Upload your notes, and ReviseAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.</p>
+        <p data-i18n="hero.sub">Upload your notes, and PgluAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.</p>
       </div>
 
       <div id="dueSection" class="due-section"></div>
@@ -47,6 +49,17 @@
           <div class="field">
             <label for="subjectName" data-i18n="upload.subject">Subject</label>
             <input id="subjectName" type="text" data-i18n-ph="upload.subjectPh" placeholder="e.g. Physics — Chapter 4" />
+          </div>
+          <div class="field">
+            <label for="gradeLevel" data-i18n="upload.grade">Class / Grade</label>
+            <select id="gradeLevel">
+              <option value="">—</option>
+              <option>Nursery</option><option>LKG</option><option>UKG</option>
+              <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+              <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+              <option>Class 7</option><option>Class 8</option><option>Class 9</option>
+              <option>Class 10</option><option>Class 11</option><option>Class 12</option>
+            </select>
           </div>
           <div class="field">
             <label for="examDate" data-i18n="upload.examDate">Exam date (optional)</label>
@@ -97,13 +110,94 @@
         <p class="muted center" data-i18n="study.pickTool">Pick a tool above to generate your study materials.</p>
       </div>
     </section>
+
+    <!-- LIBRARY -->
+    <section id="library" class="view">
+      <div class="hero">
+        <h2 data-i18n="lib.title">📚 Free Study Library — Nursery to Class 12</h2>
+        <p data-i18n="lib.sub">Hand-picked free &amp; official learning resources. Open any book, then bring it back to PgluAI to make notes, flashcards and quizzes.</p>
+      </div>
+      <div class="note-banner" data-i18n="lib.note">ℹ️ PgluAI does not host copyrighted books. These are links to official free sources (NCERT, Government of India, Khan Academy, OpenStax, CK-12).</div>
+
+      <div class="lib-grid">
+        <div class="card lib-band">
+          <h3>🧸 Foundation · Nursery–UKG</h3>
+          <a class="reslink" href="https://learn.khanacademy.org/khan-academy-kids/" target="_blank" rel="noopener">Khan Academy Kids — games &amp; early reading</a>
+          <a class="reslink" href="https://storyweaver.org.in/" target="_blank" rel="noopener">StoryWeaver — free picture story books</a>
+          <a class="reslink" href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">NCERT Balvatika — official foundation books</a>
+        </div>
+        <div class="card lib-band">
+          <h3>✏️ Primary · Class 1–5</h3>
+          <a class="reslink" href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">NCERT Textbooks (free PDF)</a>
+          <a class="reslink" href="https://www.khanacademy.org/" target="_blank" rel="noopener">Khan Academy — Maths &amp; Science</a>
+          <a class="reslink" href="https://diksha.gov.in/" target="_blank" rel="noopener">DIKSHA — Government of India</a>
+          <a class="reslink" href="https://www.ck12.org/" target="_blank" rel="noopener">CK-12 — interactive lessons</a>
+        </div>
+        <div class="card lib-band">
+          <h3>📐 Middle · Class 6–8</h3>
+          <a class="reslink" href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">NCERT Textbooks (free PDF)</a>
+          <a class="reslink" href="https://www.khanacademy.org/" target="_blank" rel="noopener">Khan Academy</a>
+          <a class="reslink" href="https://diksha.gov.in/" target="_blank" rel="noopener">DIKSHA — Government of India</a>
+          <a class="reslink" href="https://www.ck12.org/" target="_blank" rel="noopener">CK-12 — FlexBooks</a>
+        </div>
+        <div class="card lib-band">
+          <h3>🔬 Secondary · Class 9–10</h3>
+          <a class="reslink" href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">NCERT Textbooks (free PDF)</a>
+          <a class="reslink" href="https://www.khanacademy.org/" target="_blank" rel="noopener">Khan Academy</a>
+          <a class="reslink" href="https://diksha.gov.in/" target="_blank" rel="noopener">DIKSHA — Government of India</a>
+          <a class="reslink" href="https://www.ck12.org/" target="_blank" rel="noopener">CK-12</a>
+        </div>
+        <div class="card lib-band">
+          <h3>🎓 Senior · Class 11–12</h3>
+          <a class="reslink" href="https://ncert.nic.in/textbook.php" target="_blank" rel="noopener">NCERT Textbooks (free PDF)</a>
+          <a class="reslink" href="https://openstax.org/" target="_blank" rel="noopener">OpenStax — free college-level books</a>
+          <a class="reslink" href="https://www.khanacademy.org/" target="_blank" rel="noopener">Khan Academy</a>
+          <a class="reslink" href="https://diksha.gov.in/" target="_blank" rel="noopener">DIKSHA — Government of India</a>
+        </div>
+        <div class="card lib-band">
+          <h3>🗂️ My uploaded notes</h3>
+          <div id="libRecent" class="recent"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUIDE -->
+    <section id="guide" class="view">
+      <div class="hero">
+        <h2 data-i18n="guide.title">📖 How to use PgluAI</h2>
+        <p data-i18n="guide.sub">Five simple steps to turn any notes into smart, exam-ready study material.</p>
+      </div>
+
+      <div class="steps">
+        <div class="card step"><span class="step-no">1</span><div><h3>Pick class &amp; subject</h3><p>On the Dashboard, choose your Class/Grade, type the subject, and (optional) set your exam date for a countdown.</p></div></div>
+        <div class="card step"><span class="step-no">2</span><div><h3>Upload your material</h3><p>Drag &amp; drop a <strong>PDF</strong>, photos of handwritten notes (auto <strong>OCR</strong>), or a <strong>.txt</strong> file. You can add several at once.</p></div></div>
+        <div class="card step"><span class="step-no">3</span><div><h3>Process</h3><p>Click <strong>Process notes</strong>. PgluAI reads everything in your browser — your files never leave your device.</p></div></div>
+        <div class="card step"><span class="step-no">4</span><div><h3>Study with the tools</h3><p>Open the Study page and use any tool below.</p></div></div>
+        <div class="card step"><span class="step-no">5</span><div><h3>Revise &amp; share</h3><p>Download a visual PDF, listen with Voice Revision, post a Share Card, and come back when a subject is <strong>due for revision</strong>.</p></div></div>
+      </div>
+
+      <h3 class="guide-h">🛠️ What each tool does</h3>
+      <div class="tool-guide">
+        <div class="card tg"><h4>📝 Compress Notes</h4><p>Key points, definitions, formulas and important terms from long notes.</p></div>
+        <div class="card tg"><h4>🃏 Flashcards</h4><p>Auto question/answer cards — tap to flip and test recall.</p></div>
+        <div class="card tg"><h4>❓ Quiz</h4><p>Fill-in-the-blank questions with live scoring. Wrong answers become your weak topics.</p></div>
+        <div class="card tg"><h4>🧠 Mindmap</h4><p>A visual tree of the most important topics so you see the big picture.</p></div>
+        <div class="card tg"><h4>✨ Explain Simply</h4><p>Beginner, Kid or Teacher style — in English, Hindi, Urdu or Punjabi.</p></div>
+        <div class="card tg"><h4>🔊 Voice Revision</h4><p>Listens your notes aloud in your chosen language while you walk or travel.</p></div>
+        <div class="card tg"><h4>🌙 Last-Night Mode</h4><p>Emergency cheat sheet: must-know concepts, formulas only, top probable questions.</p></div>
+        <div class="card tg"><h4>📸 Share Card</h4><p>Instagram-style revision cards you can download and post.</p></div>
+        <div class="card tg"><h4>⬇️ Download PDF</h4><p>A clean revision sheet with a mindmap diagram and a top-topics chart.</p></div>
+      </div>
+
+      <div class="note-banner">💡 Tip: open ⚙️ Settings and add a free Google Gemini key for higher-quality, rewritten AI summaries and explanations in your language.</div>
+    </section>
   </main>
 
   <!-- SETTINGS MODAL -->
   <div id="settingsModal" class="modal hidden">
     <div class="modal-box">
       <h3 data-i18n="settings.title">⚙️ AI Settings</h3>
-      <p class="muted" data-i18n="settings.desc">ReviseAI works fully free &amp; offline. For higher-quality, rewritten AI summaries you can optionally add your own API key. It is stored only in your browser and never uploaded anywhere except the provider you choose.</p>
+      <p class="muted" data-i18n="settings.desc">PgluAI works fully free &amp; offline. For higher-quality, rewritten AI summaries you can optionally add your own API key. It is stored only in your browser and never uploaded anywhere except the provider you choose.</p>
       <div class="field">
         <label for="aiProvider" data-i18n="settings.provider">Provider</label>
         <select id="aiProvider">
@@ -126,7 +220,22 @@
   <div id="loader" class="loader hidden"><div class="spinner"></div><p id="loaderText">Working…</p></div>
 
   <footer class="footer">
-    <p><span data-i18n="footer.text">Built with ReviseAI · Runs 100% in your browser</span> · <a href="https://github.com/aashishbharti04/ReviseAI" id="repoLink" target="_blank" rel="noopener" data-i18n="footer.source">Source on GitHub</a></p>
+    <div class="social">
+      <a href="https://github.com/aashishbharti04" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.8 1.7 2.6 1.7.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.5a11.5 11.5 0 0 0 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@CodeWithAsur" target="_blank" rel="noopener" title="YouTube — CodeWithAsur" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.4-1.9.5-3.8.5-5.8s-.1-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/asurwave1012?igsh=ZDBlY2NtczJ5cmMw" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .3-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1C2.6 9.7 2.6 10 2.6 12s0 2.3.1 3.4c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-3.4s0-2.3-.1-3.4c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.2a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg>
+      </a>
+      <a href="mailto:aashish@marketdoctorsonline.com" title="Email" aria-label="Email">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 7.2L3.6 6H20.4L12 11.2zM3 7.9V18h18V7.9l-9 5.6-9-5.6z"/></svg>
+      </a>
+    </div>
+    <p><span data-i18n="footer.text">Built with PgluAI · Runs 100% in your browser</span> · <a href="https://github.com/aashishbharti04/PgluAI" id="repoLink" target="_blank" rel="noopener" data-i18n="footer.source">Source on GitHub</a></p>
+    <p class="copyright">© 2026 PgluAI · Built by Asur (CodeWithAsur) · All rights reserved.</p>
   </footer>
 
   <!-- Libraries via CDN -->

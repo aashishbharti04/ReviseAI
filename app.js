@@ -1,4 +1,4 @@
-/* ReviseAI — client-side study compressor.
+/* PgluAI — client-side study compressor.
    Runs entirely in the browser so it can be hosted on GitHub Pages. */
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -19,8 +19,13 @@ const LANG_META = {
 const I18N = {
   en: {
     "tagline": "Smart exam notes compressor", "nav.dashboard": "Dashboard", "nav.study": "Study",
+    "nav.library": "Library", "nav.guide": "Guide", "upload.grade": "Class / Grade", "voice.lang": "Voice language",
+    "lib.title": "📚 Free Study Library — Nursery to Class 12",
+    "lib.sub": "Hand-picked free & official learning resources. Open any book, then bring it back to PgluAI to make notes, flashcards and quizzes.",
+    "lib.note": "ℹ️ PgluAI does not host copyrighted books. These are links to official free sources (NCERT, Government of India, Khan Academy, OpenStax, CK-12).",
+    "guide.title": "📖 How to use PgluAI", "guide.sub": "Five simple steps to turn any notes into smart, exam-ready study material.",
     "hero.title": "Turn 100 pages into a 1-page revision sheet.",
-    "hero.sub": "Upload your notes, and ReviseAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.",
+    "hero.sub": "Upload your notes, and PgluAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.",
     "upload.title": "📤 Upload notes", "upload.subject": "Subject", "upload.subjectPh": "e.g. Physics — Chapter 4",
     "upload.examDate": "Exam date (optional)", "upload.drop": "📎 Drag & drop PDF / images / .txt here",
     "upload.browse": "Browse files", "upload.hint": "PDFs & text read instantly. Images are OCR-scanned.",
@@ -31,11 +36,11 @@ const I18N = {
     "tool.lastnight": "🌙 Last-Night Mode", "tool.share": "📸 Share Card", "tool.source": "📄 Source Text",
     "tool.download": "⬇️ Download PDF",
     "settings.title": "⚙️ AI Settings",
-    "settings.desc": "ReviseAI works fully free & offline. For higher-quality, rewritten AI summaries you can optionally add your own API key. It is stored only in your browser and never uploaded anywhere except the provider you choose.",
+    "settings.desc": "PgluAI works fully free & offline. For higher-quality, rewritten AI summaries you can optionally add your own API key. It is stored only in your browser and never uploaded anywhere except the provider you choose.",
     "settings.provider": "Provider", "settings.providerOffline": "Offline (free, no key)",
     "settings.key": "API key", "settings.keyPh": "Paste key (only needed for Gemini/OpenAI)",
     "settings.save": "Save", "settings.close": "Close",
-    "footer.text": "Built with ReviseAI · Runs 100% in your browser", "footer.source": "Source on GitHub",
+    "footer.text": "Built with PgluAI · Runs 100% in your browser", "footer.source": "Source on GitHub",
     "study.empty": "No notes loaded", "study.pickTool": "Pick a tool above to generate your study materials.",
     "study.uploadFirst": "Upload and process notes first.", "study.words": "words", "study.saved": "saved",
     "countdown.days": "days to exam", "countdown.passed": "exam passed",
@@ -66,8 +71,13 @@ const I18N = {
   },
   hi: {
     "tagline": "स्मार्ट परीक्षा नोट्स कंप्रेसर", "nav.dashboard": "डैशबोर्ड", "nav.study": "अध्ययन",
+    "nav.library": "लाइब्रेरी", "nav.guide": "गाइड", "upload.grade": "कक्षा / ग्रेड", "voice.lang": "वॉइस भाषा",
+    "lib.title": "📚 मुफ़्त अध्ययन लाइब्रेरी — नर्सरी से कक्षा 12",
+    "lib.sub": "चुनिंदा मुफ़्त और आधिकारिक संसाधन। कोई भी किताब खोलें, फिर PgluAI में लाकर नोट्स, फ्लैशकार्ड और क्विज़ बनाएँ।",
+    "lib.note": "ℹ️ PgluAI कॉपीराइट किताबें होस्ट नहीं करता। ये आधिकारिक मुफ़्त स्रोतों (NCERT, भारत सरकार, Khan Academy, OpenStax, CK-12) के लिंक हैं।",
+    "guide.title": "📖 PgluAI कैसे इस्तेमाल करें", "guide.sub": "किसी भी नोट्स को स्मार्ट, परीक्षा-तैयार सामग्री में बदलने के पाँच आसान चरण।",
     "hero.title": "100 पन्नों को 1-पेज रिवीजन शीट में बदलें।",
-    "hero.sub": "अपने नोट्स अपलोड करें, और ReviseAI आपके ब्राउज़र में ही कॉम्प्रेस्ड नोट्स, फ्लैशकार्ड, क्विज़ और लास्ट-नाइट चीट शीट बनाता है।",
+    "hero.sub": "अपने नोट्स अपलोड करें, और PgluAI आपके ब्राउज़र में ही कॉम्प्रेस्ड नोट्स, फ्लैशकार्ड, क्विज़ और लास्ट-नाइट चीट शीट बनाता है।",
     "upload.title": "📤 नोट्स अपलोड करें", "upload.subject": "विषय", "upload.subjectPh": "जैसे भौतिकी — अध्याय 4",
     "upload.examDate": "परीक्षा तिथि (वैकल्पिक)", "upload.drop": "📎 PDF / इमेज / .txt यहाँ खींचें और छोड़ें",
     "upload.browse": "फ़ाइल चुनें", "upload.hint": "PDF और टेक्स्ट तुरंत पढ़े जाते हैं। इमेज OCR से स्कैन होती हैं।",
@@ -78,11 +88,11 @@ const I18N = {
     "tool.lastnight": "🌙 लास्ट-नाइट मोड", "tool.share": "📸 शेयर कार्ड", "tool.source": "📄 मूल टेक्स्ट",
     "tool.download": "⬇️ PDF डाउनलोड",
     "settings.title": "⚙️ AI सेटिंग्स",
-    "settings.desc": "ReviseAI पूरी तरह मुफ़्त और ऑफ़लाइन काम करता है। बेहतर AI सारांश के लिए आप अपनी API key जोड़ सकते हैं। यह केवल आपके ब्राउज़र में सहेजी जाती है।",
+    "settings.desc": "PgluAI पूरी तरह मुफ़्त और ऑफ़लाइन काम करता है। बेहतर AI सारांश के लिए आप अपनी API key जोड़ सकते हैं। यह केवल आपके ब्राउज़र में सहेजी जाती है।",
     "settings.provider": "प्रोवाइडर", "settings.providerOffline": "ऑफ़लाइन (मुफ़्त, बिना key)",
     "settings.key": "API key", "settings.keyPh": "key पेस्ट करें (केवल Gemini/OpenAI के लिए)",
     "settings.save": "सहेजें", "settings.close": "बंद करें",
-    "footer.text": "ReviseAI से बना · पूरी तरह आपके ब्राउज़र में चलता है", "footer.source": "GitHub पर सोर्स",
+    "footer.text": "PgluAI से बना · पूरी तरह आपके ब्राउज़र में चलता है", "footer.source": "GitHub पर सोर्स",
     "study.empty": "कोई नोट्स लोड नहीं", "study.pickTool": "अपनी अध्ययन सामग्री बनाने के लिए ऊपर कोई टूल चुनें।",
     "study.uploadFirst": "पहले नोट्स अपलोड और प्रोसेस करें।", "study.words": "शब्द", "study.saved": "सहेजा गया",
     "countdown.days": "दिन शेष", "countdown.passed": "परीक्षा हो गई",
@@ -113,8 +123,13 @@ const I18N = {
   },
   ur: {
     "tagline": "اسمارٹ امتحان نوٹس کمپریسر", "nav.dashboard": "ڈیش بورڈ", "nav.study": "مطالعہ",
+    "nav.library": "لائبریری", "nav.guide": "گائیڈ", "upload.grade": "کلاس / گریڈ", "voice.lang": "صوتی زبان",
+    "lib.title": "📚 مفت مطالعہ لائبریری — نرسری سے کلاس 12",
+    "lib.sub": "منتخب مفت اور سرکاری وسائل۔ کوئی بھی کتاب کھولیں، پھر PgluAI میں لا کر نوٹس، فلیش کارڈز اور کوئز بنائیں۔",
+    "lib.note": "ℹ️ PgluAI کاپی رائٹ کتابیں ہوسٹ نہیں کرتا۔ یہ سرکاری مفت ذرائع (NCERT، حکومت ہند، Khan Academy، OpenStax، CK-12) کے لنکس ہیں۔",
+    "guide.title": "📖 PgluAI کیسے استعمال کریں", "guide.sub": "کسی بھی نوٹس کو اسمارٹ، امتحان کے لیے تیار مواد میں بدلنے کے پانچ آسان مراحل۔",
     "hero.title": "100 صفحات کو 1 صفحے کی ریویژن شیٹ میں بدلیں۔",
-    "hero.sub": "اپنے نوٹس اپلوڈ کریں، اور ReviseAI آپ کے براؤزر میں ہی کمپریسڈ نوٹس، فلیش کارڈز، کوئز اور لاسٹ نائٹ چیٹ شیٹ بناتا ہے۔",
+    "hero.sub": "اپنے نوٹس اپلوڈ کریں، اور PgluAI آپ کے براؤزر میں ہی کمپریسڈ نوٹس، فلیش کارڈز، کوئز اور لاسٹ نائٹ چیٹ شیٹ بناتا ہے۔",
     "upload.title": "📤 نوٹس اپلوڈ کریں", "upload.subject": "مضمون", "upload.subjectPh": "مثلاً فزکس — باب 4",
     "upload.examDate": "امتحان کی تاریخ (اختیاری)", "upload.drop": "📎 PDF / تصاویر / .txt یہاں ڈراپ کریں",
     "upload.browse": "فائل منتخب کریں", "upload.hint": "PDF اور ٹیکسٹ فوراً پڑھے جاتے ہیں۔ تصاویر OCR سے اسکین ہوتی ہیں۔",
@@ -125,11 +140,11 @@ const I18N = {
     "tool.lastnight": "🌙 لاسٹ نائٹ موڈ", "tool.share": "📸 شیئر کارڈ", "tool.source": "📄 اصل متن",
     "tool.download": "⬇️ PDF ڈاؤن لوڈ",
     "settings.title": "⚙️ AI ترتیبات",
-    "settings.desc": "ReviseAI مکمل طور پر مفت اور آف لائن کام کرتا ہے۔ بہتر AI خلاصے کے لیے آپ اپنی API key شامل کر سکتے ہیں۔ یہ صرف آپ کے براؤزر میں محفوظ ہوتی ہے۔",
+    "settings.desc": "PgluAI مکمل طور پر مفت اور آف لائن کام کرتا ہے۔ بہتر AI خلاصے کے لیے آپ اپنی API key شامل کر سکتے ہیں۔ یہ صرف آپ کے براؤزر میں محفوظ ہوتی ہے۔",
     "settings.provider": "پرووائیڈر", "settings.providerOffline": "آف لائن (مفت، بغیر key)",
     "settings.key": "API key", "settings.keyPh": "key پیسٹ کریں (صرف Gemini/OpenAI کے لیے)",
     "settings.save": "محفوظ کریں", "settings.close": "بند کریں",
-    "footer.text": "ReviseAI سے بنایا گیا · مکمل طور پر آپ کے براؤزر میں چلتا ہے", "footer.source": "GitHub پر سورس",
+    "footer.text": "PgluAI سے بنایا گیا · مکمل طور پر آپ کے براؤزر میں چلتا ہے", "footer.source": "GitHub پر سورس",
     "study.empty": "کوئی نوٹس لوڈ نہیں", "study.pickTool": "اپنا مطالعاتی مواد بنانے کے لیے اوپر کوئی ٹول منتخب کریں۔",
     "study.uploadFirst": "پہلے نوٹس اپلوڈ اور پروسیس کریں۔", "study.words": "الفاظ", "study.saved": "محفوظ شدہ",
     "countdown.days": "دن باقی", "countdown.passed": "امتحان ہو گیا",
@@ -160,8 +175,13 @@ const I18N = {
   },
   pa: {
     "tagline": "ਸਮਾਰਟ ਪ੍ਰੀਖਿਆ ਨੋਟਸ ਕੰਪ੍ਰੈਸਰ", "nav.dashboard": "ਡੈਸ਼ਬੋਰਡ", "nav.study": "ਅਧਿਐਨ",
+    "nav.library": "ਲਾਇਬ੍ਰੇਰੀ", "nav.guide": "ਗਾਈਡ", "upload.grade": "ਕਲਾਸ / ਗ੍ਰੇਡ", "voice.lang": "ਵੌਇਸ ਭਾਸ਼ਾ",
+    "lib.title": "📚 ਮੁਫ਼ਤ ਅਧਿਐਨ ਲਾਇਬ੍ਰੇਰੀ — ਨਰਸਰੀ ਤੋਂ ਕਲਾਸ 12",
+    "lib.sub": "ਚੁਣੇ ਹੋਏ ਮੁਫ਼ਤ ਅਤੇ ਸਰਕਾਰੀ ਸਰੋਤ। ਕੋਈ ਵੀ ਕਿਤਾਬ ਖੋਲ੍ਹੋ, ਫਿਰ PgluAI ਵਿੱਚ ਲਿਆ ਕੇ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ ਅਤੇ ਕਵਿਜ਼ ਬਣਾਓ।",
+    "lib.note": "ℹ️ PgluAI ਕਾਪੀਰਾਈਟ ਕਿਤਾਬਾਂ ਹੋਸਟ ਨਹੀਂ ਕਰਦਾ। ਇਹ ਸਰਕਾਰੀ ਮੁਫ਼ਤ ਸਰੋਤਾਂ (NCERT, ਭਾਰਤ ਸਰਕਾਰ, Khan Academy, OpenStax, CK-12) ਦੇ ਲਿੰਕ ਹਨ।",
+    "guide.title": "📖 PgluAI ਕਿਵੇਂ ਵਰਤੀਏ", "guide.sub": "ਕਿਸੇ ਵੀ ਨੋਟਸ ਨੂੰ ਸਮਾਰਟ, ਪ੍ਰੀਖਿਆ-ਤਿਆਰ ਸਮੱਗਰੀ ਵਿੱਚ ਬਦਲਣ ਦੇ ਪੰਜ ਸੌਖੇ ਕਦਮ।",
     "hero.title": "100 ਸਫ਼ਿਆਂ ਨੂੰ 1-ਸਫ਼ੇ ਦੀ ਰਿਵੀਜ਼ਨ ਸ਼ੀਟ ਵਿੱਚ ਬਦਲੋ।",
-    "hero.sub": "ਆਪਣੇ ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ, ਅਤੇ ReviseAI ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਹੀ ਕੰਪ੍ਰੈਸਡ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ, ਕਵਿਜ਼ ਅਤੇ ਲਾਸਟ-ਨਾਈਟ ਚੀਟ ਸ਼ੀਟ ਬਣਾਉਂਦਾ ਹੈ।",
+    "hero.sub": "ਆਪਣੇ ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ, ਅਤੇ PgluAI ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਹੀ ਕੰਪ੍ਰੈਸਡ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ, ਕਵਿਜ਼ ਅਤੇ ਲਾਸਟ-ਨਾਈਟ ਚੀਟ ਸ਼ੀਟ ਬਣਾਉਂਦਾ ਹੈ।",
     "upload.title": "📤 ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ", "upload.subject": "ਵਿਸ਼ਾ", "upload.subjectPh": "ਜਿਵੇਂ ਭੌਤਿਕ ਵਿਗਿਆਨ — ਅਧਿਆਇ 4",
     "upload.examDate": "ਪ੍ਰੀਖਿਆ ਤਾਰੀਖ਼ (ਚੋਣਵੀਂ)", "upload.drop": "📎 PDF / ਤਸਵੀਰਾਂ / .txt ਇੱਥੇ ਖਿੱਚੋ ਤੇ ਛੱਡੋ",
     "upload.browse": "ਫ਼ਾਈਲ ਚੁਣੋ", "upload.hint": "PDF ਅਤੇ ਟੈਕਸਟ ਤੁਰੰਤ ਪੜ੍ਹੇ ਜਾਂਦੇ ਹਨ। ਤਸਵੀਰਾਂ OCR ਨਾਲ ਸਕੈਨ ਹੁੰਦੀਆਂ ਹਨ।",
@@ -172,11 +192,11 @@ const I18N = {
     "tool.lastnight": "🌙 ਲਾਸਟ-ਨਾਈਟ ਮੋਡ", "tool.share": "📸 ਸ਼ੇਅਰ ਕਾਰਡ", "tool.source": "📄 ਮੂਲ ਟੈਕਸਟ",
     "tool.download": "⬇️ PDF ਡਾਊਨਲੋਡ",
     "settings.title": "⚙️ AI ਸੈਟਿੰਗਾਂ",
-    "settings.desc": "ReviseAI ਪੂਰੀ ਤਰ੍ਹਾਂ ਮੁਫ਼ਤ ਅਤੇ ਆਫ਼ਲਾਈਨ ਕੰਮ ਕਰਦਾ ਹੈ। ਬਿਹਤਰ AI ਸਾਰ ਲਈ ਤੁਸੀਂ ਆਪਣੀ API key ਜੋੜ ਸਕਦੇ ਹੋ। ਇਹ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਸੰਭਾਲੀ ਜਾਂਦੀ ਹੈ।",
+    "settings.desc": "PgluAI ਪੂਰੀ ਤਰ੍ਹਾਂ ਮੁਫ਼ਤ ਅਤੇ ਆਫ਼ਲਾਈਨ ਕੰਮ ਕਰਦਾ ਹੈ। ਬਿਹਤਰ AI ਸਾਰ ਲਈ ਤੁਸੀਂ ਆਪਣੀ API key ਜੋੜ ਸਕਦੇ ਹੋ। ਇਹ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਸੰਭਾਲੀ ਜਾਂਦੀ ਹੈ।",
     "settings.provider": "ਪ੍ਰੋਵਾਈਡਰ", "settings.providerOffline": "ਆਫ਼ਲਾਈਨ (ਮੁਫ਼ਤ, ਬਿਨਾਂ key)",
     "settings.key": "API key", "settings.keyPh": "key ਪੇਸਟ ਕਰੋ (ਸਿਰਫ਼ Gemini/OpenAI ਲਈ)",
     "settings.save": "ਸੰਭਾਲੋ", "settings.close": "ਬੰਦ ਕਰੋ",
-    "footer.text": "ReviseAI ਨਾਲ ਬਣਾਇਆ · ਪੂਰੀ ਤਰ੍ਹਾਂ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਚੱਲਦਾ ਹੈ", "footer.source": "GitHub ਉੱਤੇ ਸੋਰਸ",
+    "footer.text": "PgluAI ਨਾਲ ਬਣਾਇਆ · ਪੂਰੀ ਤਰ੍ਹਾਂ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਚੱਲਦਾ ਹੈ", "footer.source": "GitHub ਉੱਤੇ ਸੋਰਸ",
     "study.empty": "ਕੋਈ ਨੋਟਸ ਲੋਡ ਨਹੀਂ", "study.pickTool": "ਆਪਣੀ ਅਧਿਐਨ ਸਮੱਗਰੀ ਬਣਾਉਣ ਲਈ ਉੱਪਰ ਕੋਈ ਟੂਲ ਚੁਣੋ।",
     "study.uploadFirst": "ਪਹਿਲਾਂ ਨੋਟਸ ਅਪਲੋਡ ਅਤੇ ਪ੍ਰੋਸੈਸ ਕਰੋ।", "study.words": "ਸ਼ਬਦ", "study.saved": "ਸੰਭਾਲਿਆ",
     "countdown.days": "ਦਿਨ ਬਾਕੀ", "countdown.passed": "ਪ੍ਰੀਖਿਆ ਹੋ ਗਈ",
@@ -225,7 +245,7 @@ function applyLang(code) {
   renderRecent();
   renderDue();
   if (state.current) {
-    $("studyMeta").textContent = `${state.current.text.split(/\s+/).length} ${t("study.words")} · ${t("study.saved")} ${new Date(state.current.created).toLocaleString()}`;
+    $("studyMeta").textContent = `${state.current.grade ? state.current.grade + " · " : ""}${state.current.text.split(/\s+/).length} ${t("study.words")} · ${t("study.saved")} ${new Date(state.current.created).toLocaleString()}`;
     renderCountdown();
   }
 }
@@ -239,14 +259,17 @@ const state = {
 };
 
 /* ---------------- Navigation ---------------- */
+const NAV_MAP = { dashboard: "navHome", study: "navStudy", library: "navLibrary", guide: "navGuide" };
 function show(view) {
   document.querySelectorAll(".view").forEach((v) => v.classList.remove("active"));
   $(view).classList.add("active");
-  $("navHome").classList.toggle("active", view === "dashboard");
-  $("navStudy").classList.toggle("active", view === "study");
+  Object.entries(NAV_MAP).forEach(([v, id]) => $(id).classList.toggle("active", v === view));
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 $("navHome").onclick = () => show("dashboard");
 $("navStudy").onclick = () => show("study");
+$("navLibrary").onclick = () => { renderRecent(); show("library"); };
+$("navGuide").onclick = () => show("guide");
 
 /* ---------------- Settings ---------------- */
 function getSettings() {
@@ -341,6 +364,7 @@ function extractText(file) { return file.text(); }
 $("processBtn").onclick = async () => {
   state.subject = $("subjectName").value.trim() || "Untitled subject";
   state.examDate = $("examDate").value;
+  state.grade = $("gradeLevel").value;
   $("processStatus").textContent = "Starting…";
   let text = "";
   try {
@@ -386,6 +410,7 @@ function saveSubject() {
   const record = {
     id: Date.now().toString(36),
     subject: state.subject,
+    grade: state.grade || "",
     examDate: state.examDate,
     text: state.text,
     created: new Date().toISOString(),
@@ -441,19 +466,22 @@ function renderDue() {
 }
 
 function renderRecent() {
-  const el = $("recentList");
   const list = getSubjects();
-  if (!list.length) { el.innerHTML = `<p class="recent-empty">${t("upload.recentEmpty")}</p>`; return; }
-  el.innerHTML = "";
-  list.forEach((r) => {
-    const days = daysLeft(r.examDate);
-    const div = document.createElement("div");
-    div.className = "recent-item";
-    div.innerHTML = `<h4>${escapeHtml(r.subject)}</h4>
-      <div class="sub"><span>${new Date(r.created).toLocaleDateString()}</span>
-      <span>${days != null ? days + " " + t("recent.days") : t("recent.noExam")}</span></div>`;
-    div.onclick = () => { loadSubject(r); show("study"); };
-    el.appendChild(div);
+  ["recentList", "libRecent"].forEach((id) => {
+    const el = $(id);
+    if (!el) return;
+    if (!list.length) { el.innerHTML = `<p class="recent-empty">${t("upload.recentEmpty")}</p>`; return; }
+    el.innerHTML = "";
+    list.forEach((r) => {
+      const days = daysLeft(r.examDate);
+      const meta = `${r.grade ? escapeHtml(r.grade) + " · " : ""}${days != null ? days + " " + t("recent.days") : t("recent.noExam")}`;
+      const div = document.createElement("div");
+      div.className = "recent-item";
+      div.innerHTML = `<h4>${escapeHtml(r.subject)}</h4>
+        <div class="sub"><span>${new Date(r.created).toLocaleDateString()}</span><span>${meta}</span></div>`;
+      div.onclick = () => { loadSubject(r); show("study"); };
+      el.appendChild(div);
+    });
   });
 }
 
@@ -463,7 +491,7 @@ function loadSubject(record) {
   state.subject = record.subject;
   state.examDate = record.examDate;
   $("studyTitle").textContent = record.subject;
-  $("studyMeta").textContent = `${record.text.split(/\s+/).length} ${t("study.words")} · ${t("study.saved")} ${new Date(record.created).toLocaleString()}`;
+  $("studyMeta").textContent = `${record.grade ? record.grade + " · " : ""}${record.text.split(/\s+/).length} ${t("study.words")} · ${t("study.saved")} ${new Date(record.created).toLocaleString()}`;
   renderCountdown();
   document.querySelectorAll(".tool[data-tool]").forEach((b) => b.classList.remove("active"));
   $("output").innerHTML = `<p class="muted center">${t("study.pickTool")}</p>`;
@@ -816,6 +844,14 @@ function stopVoice() {
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   voiceState.playing = false;
 }
+function pickVoice(langCode) {
+  if (!window.speechSynthesis) return null;
+  const voices = window.speechSynthesis.getVoices() || [];
+  const code = langCode.toLowerCase();
+  const two = code.slice(0, 2);
+  return voices.find((v) => v.lang && v.lang.toLowerCase() === code)
+    || voices.find((v) => v.lang && v.lang.toLowerCase().startsWith(two)) || null;
+}
 function buildRevisionText() {
   const pts = rankSentences(state.text, 14);
   const defs = findDefinitions(state.text).map((d) => d.def);
@@ -827,16 +863,27 @@ function renderVoice() {
   }
   voiceState.sentences = buildRevisionText();
   voiceState.idx = 0;
+  voiceState.voiceLang = LANG_META[LANG].voice;
   out.innerHTML = `<h3>${t("voice.title")}</h3>
     <div class="voice-panel">
       <button class="btn primary" id="vPlay">${t("voice.play")}</button>
       <button class="btn ghost" id="vPause">${t("voice.pause")}</button>
       <button class="btn ghost" id="vResume">${t("voice.resume")}</button>
       <button class="btn ghost" id="vStop">${t("voice.stop")}</button>
+      <label>${t("voice.lang")}
+        <select id="vLang" class="langsel">
+          <option value="en-US">English</option>
+          <option value="hi-IN">हिन्दी</option>
+          <option value="ur-PK">اردو</option>
+          <option value="pa-IN">ਪੰਜਾਬੀ</option>
+        </select>
+      </label>
       <label>${t("voice.speed")} <input type="range" id="vRate" min="0.6" max="1.6" step="0.1" value="1"></label>
     </div>
     <div class="voice-text">${voiceState.sentences.map((s, i) => `<span id="v-s-${i}">${escapeHtml(s)} </span>`).join("")}</div>
     <p class="muted">${t("voice.note")}</p>`;
+  $("vLang").value = voiceState.voiceLang;
+  $("vLang").onchange = (e) => { voiceState.voiceLang = e.target.value; if (voiceState.playing) speakFrom(voiceState.idx); };
   $("vRate").oninput = (e) => { voiceState.rate = parseFloat(e.target.value); };
   $("vPlay").onclick = () => speakFrom(0);
   $("vPause").onclick = () => window.speechSynthesis.pause();
@@ -854,7 +901,9 @@ function speakNext() {
   }
   const u = new SpeechSynthesisUtterance(voiceState.sentences[voiceState.idx]);
   u.rate = voiceState.rate;
-  u.lang = LANG_META[LANG].voice;
+  u.lang = voiceState.voiceLang || LANG_META[LANG].voice;
+  const match = pickVoice(u.lang);
+  if (match) u.voice = match;
   u.onstart = () => highlightVoice(voiceState.idx);
   u.onend = () => { if (voiceState.playing) { voiceState.idx++; speakNext(); } };
   window.speechSynthesis.speak(u);
@@ -886,7 +935,7 @@ function renderShare() {
   $("nextCard").onclick = () => { idx = (idx + 1) % points.length; draw(); };
   $("dlCard").onclick = () => {
     const a = document.createElement("a");
-    a.download = `ReviseAI_card_${idx + 1}.png`;
+    a.download = `PgluAI_card_${idx + 1}.png`;
     a.href = $("shareCanvas").toDataURL("image/png");
     a.click();
   };
@@ -900,7 +949,7 @@ function drawCard(point) {
   ctx.fillStyle = "rgba(255,255,255,0.10)"; roundRect(ctx, 70, 70, 940, 940, 40); ctx.fill();
   ctx.fillStyle = "#fff";
   ctx.font = "bold 46px Segoe UI, sans-serif";
-  ctx.fillText("📚 ReviseAI", 110, 170);
+  ctx.fillText("📚 PgluAI", 110, 170);
   ctx.font = "600 34px Segoe UI, sans-serif";
   ctx.fillStyle = "rgba(255,255,255,0.85)";
   ctx.fillText(wrapTrim(state.subject || "Revision", 32), 110, 240);
@@ -910,7 +959,7 @@ function drawCard(point) {
   const startY = 540 - (lines.length - 1) * 35;
   lines.forEach((ln, i) => ctx.fillText(ln, 110, startY + i * 70));
   ctx.font = "500 28px Segoe UI, sans-serif"; ctx.fillStyle = "rgba(255,255,255,0.75)";
-  ctx.fillText("Made with ReviseAI · revise smarter", 110, 960);
+  ctx.fillText("Made with PgluAI · revise smarter", 110, 960);
 }
 function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath(); ctx.moveTo(x + r, y);
@@ -948,8 +997,20 @@ $("downloadBtn").onclick = () => {
       doc.text(l, margin, y); y += size + 5;
     }
   };
-  line("ReviseAI — Revision Sheet", 18, true, [108, 92, 231]); y += 4;
-  line(state.subject, 13, true); y += 6;
+  const imageBlock = (canvas, label, ratioH) => {
+    const h = width * ratioH;
+    if (y + h + 26 > doc.internal.pageSize.getHeight() - margin) { doc.addPage(); y = margin; }
+    line(label, 14, true, [108, 92, 231]);
+    doc.addImage(canvas, "PNG", margin, y, width, h);
+    y += h + 16;
+  };
+
+  line("PgluAI — Revision Sheet", 18, true, [108, 92, 231]); y += 4;
+  line(`${state.grade ? state.grade + " · " : ""}${state.subject}`, 13, true); y += 6;
+
+  // Visual diagram + chart so concepts are easy to grasp
+  imageBlock(buildMindmapCanvas(), "Mindmap", 0.58);
+  imageBlock(buildChartCanvas(), "Most important topics", 0.46);
 
   line("Key Points", 14, true, [108, 92, 231]);
   rankSentences(state.text, 10).forEach((p) => line("• " + p));
@@ -961,8 +1022,64 @@ $("downloadBtn").onclick = () => {
   line("Probable Questions", 14, true, [108, 92, 231]);
   buildProbableQuestions().forEach((q, i) => line(`${i + 1}. ${q}`));
 
-  doc.save(`${state.subject.replace(/[^\w]+/g, "_")}_ReviseAI.pdf`);
+  doc.save(`${state.subject.replace(/[^\w]+/g, "_")}_PgluAI.pdf`);
 };
+
+// Offscreen canvas helpers for the PDF visuals.
+function buildMindmapCanvas() {
+  const W = 900, H = Math.round(W * 0.58), c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, W, H);
+  const cx = W / 2, cy = H / 2, R = H * 0.32, R2 = H * 0.46;
+  const keys = topKeywords(state.text, 7);
+  const sents = sentences(state.text);
+  const node = (x, y, text, w, h, fill, stroke, txtColor, bold) => {
+    ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = 2;
+    roundRect(ctx, x - w / 2, y - h / 2, w, h, 10); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = txtColor; ctx.font = `${bold ? "bold " : ""}15px Segoe UI, sans-serif`;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(text.length > 22 ? text.slice(0, 21) + "…" : text, x, y);
+  };
+  keys.forEach((k, i) => {
+    const a = (i / keys.length) * Math.PI * 2 - Math.PI / 2;
+    const bx = cx + R * Math.cos(a), by = cy + R * Math.sin(a);
+    ctx.strokeStyle = "#c9cdf0"; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(bx, by); ctx.stroke();
+    const snip = sents.find((s) => new RegExp(`\\b${k}\\b`, "i").test(s));
+    if (snip) {
+      const lx = cx + R2 * Math.cos(a), ly = cy + R2 * Math.sin(a);
+      ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(lx, ly); ctx.stroke();
+      node(lx, ly, snip.split(/\s+/).slice(0, 4).join(" "), 170, 40, "#f3f4fc", "#d9ddf0", "#333");
+    }
+    node(bx, by, k, 130, 38, "#eef0fb", "#8f7bff", "#1c1f3a", true);
+  });
+  node(cx, cy, state.subject || "Notes", 170, 48, "#6c5ce7", "#6c5ce7", "#ffffff", true);
+  return c;
+}
+function buildChartCanvas() {
+  const W = 900, H = Math.round(W * 0.46), c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, W, H);
+  const fm = freqMap(state.text);
+  const top = Object.entries(fm).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const max = top.length ? top[0][1] : 1;
+  const padL = 170, padR = 40, padT = 24, rowH = (H - padT - 24) / Math.max(top.length, 1);
+  ctx.textBaseline = "middle";
+  top.forEach(([word, n], i) => {
+    const y = padT + i * rowH + rowH / 2;
+    const barW = ((W - padL - padR) * n) / max;
+    ctx.fillStyle = "#1c1f3a"; ctx.font = "15px Segoe UI, sans-serif"; ctx.textAlign = "right";
+    ctx.fillText(word.length > 18 ? word.slice(0, 17) + "…" : word, padL - 12, y);
+    const g = ctx.createLinearGradient(padL, 0, padL + barW, 0);
+    g.addColorStop(0, "#6c5ce7"); g.addColorStop(1, "#00d2a8");
+    ctx.fillStyle = g; roundRect(ctx, padL, y - rowH * 0.3, Math.max(barW, 2), rowH * 0.6, 6); ctx.fill();
+    ctx.fillStyle = "#5b6190"; ctx.font = "13px Segoe UI, sans-serif"; ctx.textAlign = "left";
+    ctx.fillText(String(n), padL + Math.max(barW, 2) + 8, y);
+  });
+  return c;
+}
 
 /* ---------------- Helpers ---------------- */
 function escapeHtml(s) {

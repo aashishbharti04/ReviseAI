@@ -1,4 +1,4 @@
-# 📚 ReviseAI — Smart Exam Notes Compressor
+# 📚 PgluAI — Smart Exam Notes Compressor
 
 Turn 100-page PDFs and messy notes into **compressed exam notes, flashcards, quizzes, and a last-night cheat sheet** — all in your browser.
 
@@ -23,7 +23,7 @@ Turn 100-page PDFs and messy notes into **compressed exam notes, flashcards, qui
 
 ## 🧠 How the "AI" works
 
-ReviseAI is **free and works offline** using on-device text analysis (frequency-based extractive summarization, definition/formula detection, keyword extraction). No signup, no key.
+PgluAI is **free and works offline** using on-device text analysis (frequency-based extractive summarization, definition/formula detection, keyword extraction). No signup, no key.
 
 For higher-quality *rewritten* summaries, open **⚙️ Settings** and optionally add your own API key:
 - **Google Gemini** (free tier) or **OpenAI**
