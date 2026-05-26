@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReviseAI — Smart Exam Notes Compressor</title>
+  <meta name="description" content="Upload PDFs & notes. ReviseAI compresses them into exam notes, flashcards, quizzes and a last-night revision sheet." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">📚</span>
+      <div>
+        <h1>Revise<span>AI</span></h1>
+        <p class="tag">Smart exam notes compressor</p>
+      </div>
+    </div>
+    <nav class="actions">
+      <button id="navHome" class="navbtn active">Dashboard</button>
+      <button id="navStudy" class="navbtn">Study</button>
+      <button id="settingsBtn" class="iconbtn" title="API key settings">⚙️</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="view active">
+      <div class="hero">
+        <h2>Turn 100 pages into a 1-page revision sheet.</h2>
+        <p>Upload your notes, and ReviseAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card upload-card">
+          <h3>📤 Upload notes</h3>
+          <div class="field">
+            <label for="subjectName">Subject</label>
+            <input id="subjectName" type="text" placeholder="e.g. Physics — Chapter 4" />
+          </div>
+          <div class="field">
+            <label for="examDate">Exam date (optional)</label>
+            <input id="examDate" type="date" />
+          </div>
+          <div id="dropzone" class="dropzone">
+            <input id="fileInput" type="file" accept="application/pdf,image/*,text/plain" multiple hidden />
+            <p>📎 Drag & drop <strong>PDF / images / .txt</strong> here</p>
+            <button id="browseBtn" class="btn ghost">Browse files</button>
+            <p class="hint">PDFs &amp; text read instantly. Images are OCR-scanned.</p>
+          </div>
+          <div id="fileList" class="filelist"></div>
+          <button id="processBtn" class="btn primary block" disabled>Process notes →</button>
+          <div id="processStatus" class="status"></div>
+        </div>
+
+        <div class="card">
+          <h3>📈 Recent subjects</h3>
+          <div id="recentList" class="recent"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDY -->
+    <section id="study" class="view">
+      <div class="study-head">
+        <div>
+          <h2 id="studyTitle">No notes loaded</h2>
+          <p id="studyMeta" class="muted"></p>
+        </div>
+        <div id="countdown" class="countdown"></div>
+      </div>
+
+      <div class="toolbar">
+        <button class="tool" data-tool="summary">📝 Compress Notes</button>
+        <button class="tool" data-tool="flashcards">🃏 Flashcards</button>
+        <button class="tool" data-tool="quiz">❓ Quiz</button>
+        <button class="tool" data-tool="lastnight">🌙 Last-Night Mode</button>
+        <button class="tool" data-tool="source">📄 Source Text</button>
+        <button id="downloadBtn" class="tool accent">⬇️ Download PDF</button>
+      </div>
+
+      <div id="output" class="output">
+        <p class="muted center">Pick a tool above to generate your study materials.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- SETTINGS MODAL -->
+  <div id="settingsModal" class="modal hidden">
+    <div class="modal-box">
+      <h3>⚙️ AI Settings</h3>
+      <p class="muted">ReviseAI works fully <strong>free &amp; offline</strong>. For higher-quality, rewritten AI summaries you can optionally add your own API key. It is stored only in <strong>your browser</strong> and never uploaded anywhere except the provider you choose.</p>
+      <div class="field">
+        <label for="aiProvider">Provider</label>
+        <select id="aiProvider">
+          <option value="offline">Offline (free, no key)</option>
+          <option value="gemini">Google Gemini (free tier)</option>
+          <option value="openai">OpenAI</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="apiKey">API key</label>
+        <input id="apiKey" type="password" placeholder="Paste key (only needed for Gemini/OpenAI)" />
+      </div>
+      <div class="modal-actions">
+        <button id="saveSettings" class="btn primary">Save</button>
+        <button id="closeSettings" class="btn ghost">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="loader" class="loader hidden"><div class="spinner"></div><p id="loaderText">Working…</p></div>
+
+  <footer class="footer">
+    <p>Built with ReviseAI · Runs 100% in your browser · <a href="https://github.com" id="repoLink" target="_blank" rel="noopener">Source on GitHub</a></p>
+  </footer>
+
+  <!-- Libraries via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
