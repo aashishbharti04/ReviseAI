@@ -256,3 +256,40 @@ body[dir="rtl"] .reslink:hover { transform: translateX(-3px); }
 .share-wrap { text-align: center; }
 .share-wrap canvas { max-width: 100%; width: 360px; border-radius: 16px; box-shadow: var(--shadow); margin: 0 auto 16px; }
 .share-controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------------- Responsive / mobile ---------------- */
+.mindmap-wrap svg { height: auto; }
+img, svg, canvas { max-width: 100%; }
+
+@media (max-width: 760px) {
+  .topbar { flex-wrap: wrap; gap: 10px; padding: 12px 14px; }
+  .brand .logo { font-size: 26px; }
+  .brand h1 { font-size: 19px; }
+  .tag { font-size: 11px; }
+  .actions { width: 100%; flex-wrap: wrap; gap: 6px; }
+  .navbtn { padding: 7px 11px; font-size: 13px; white-space: nowrap; }
+  .iconbtn, .langsel { padding: 7px 9px; font-size: 13px; flex: 0 0 auto; }
+  main { padding: 20px 14px 56px; }
+  .hero { margin: 6px 0 20px; }
+  .hero h2 { font-size: 22px; }
+  .hero p { font-size: 14px; }
+  .card { padding: 16px; }
+  .output { padding: 18px; }
+  .study-head h2 { font-size: 21px; }
+  .toolbar { gap: 8px; }
+  .tool { padding: 9px 12px; font-size: 13px; }
+  /* 16px inputs stop iOS from auto-zooming on focus */
+  .field input, .field select, .langsel, #trTarget, #testBand, #testSubject { font-size: 16px; }
+}
+
+@media (max-width: 460px) {
+  .brand .tag { display: none; }
+  .hero h2 { font-size: 19px; }
+  .countdown { min-width: 92px; padding: 8px 12px; }
+  .countdown .num { font-size: 22px; }
+  .step { gap: 12px; }
+  .step-no { width: 32px; height: 32px; font-size: 16px; }
+  .modal-box { padding: 18px; }
+  .voice-panel, .test-controls { gap: 8px; }
+  .voice-panel label, .test-controls .langsel { width: 100%; min-width: 0; }
+}
