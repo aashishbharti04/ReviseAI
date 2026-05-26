@@ -66,6 +66,7 @@ const I18N = {
     "ex.glossary": "Glossary",
     "voice.title": "🔊 Voice Revision", "voice.play": "▶️ Play", "voice.pause": "⏸ Pause", "voice.resume": "⏵ Resume", "voice.stop": "⏹ Stop", "voice.speed": "Speed",
     "voice.note": "Great for revising while walking, in the gym, or travelling. 🎧", "voice.unsupported": "Your browser doesn't support speech synthesis.",
+    "voice.ready": "✓ {lang} voice is ready.", "voice.missing": "⚠️ No {lang} voice on this device — audio will play in English. Install a {lang} voice in your device's speech settings to hear it.",
     "ln.title": "🌙 Last-Night Revision Mode", "ln.sub": "Everything essential, nothing else.",
     "ln.must": "🔑 Must-know concepts", "ln.formulas": "🧮 Formulas only", "ln.probable": "🎯 Top probable questions",
     "ln.define": "Define / explain: {t}.", "ln.shortNotes": "Write short notes on \"{t}\".",
@@ -122,6 +123,7 @@ const I18N = {
     "ex.glossary": "शब्दावली",
     "voice.title": "🔊 वॉइस रिवीजन", "voice.play": "▶️ चलाएँ", "voice.pause": "⏸ रोकें", "voice.resume": "⏵ जारी रखें", "voice.stop": "⏹ बंद करें", "voice.speed": "गति",
     "voice.note": "चलते-फिरते, जिम में या यात्रा के दौरान रिवीजन के लिए बढ़िया। 🎧", "voice.unsupported": "आपका ब्राउज़र वॉइस सिंथेसिस का समर्थन नहीं करता।",
+    "voice.ready": "✓ {lang} वॉइस तैयार है।", "voice.missing": "⚠️ इस डिवाइस पर {lang} वॉइस नहीं है — ऑडियो अंग्रेज़ी में चलेगा। {lang} सुनने के लिए डिवाइस की स्पीच सेटिंग्स में {lang} वॉइस इंस्टॉल करें।",
     "ln.title": "🌙 लास्ट-नाइट रिवीजन मोड", "ln.sub": "केवल ज़रूरी, और कुछ नहीं।",
     "ln.must": "🔑 ज़रूरी अवधारणाएँ", "ln.formulas": "🧮 केवल सूत्र", "ln.probable": "🎯 सबसे संभावित प्रश्न",
     "ln.define": "परिभाषित/समझाएँ: {t}।", "ln.shortNotes": "\"{t}\" पर संक्षिप्त नोट्स लिखें।",
@@ -178,6 +180,7 @@ const I18N = {
     "ex.glossary": "لغت",
     "voice.title": "🔊 صوتی ریویژن", "voice.play": "▶️ چلائیں", "voice.pause": "⏸ روکیں", "voice.resume": "⏵ جاری رکھیں", "voice.stop": "⏹ بند کریں", "voice.speed": "رفتار",
     "voice.note": "چلتے پھرتے، جم میں یا سفر کے دوران ریویژن کے لیے بہترین۔ 🎧", "voice.unsupported": "آپ کا براؤزر صوتی ترکیب کی حمایت نہیں کرتا۔",
+    "voice.ready": "✓ {lang} آواز تیار ہے۔", "voice.missing": "⚠️ اس ڈیوائس پر {lang} آواز نہیں ہے — آڈیو انگریزی میں چلے گا۔ {lang} سننے کے لیے ڈیوائس کی اسپیچ سیٹنگز میں {lang} آواز انسٹال کریں۔",
     "ln.title": "🌙 لاسٹ نائٹ ریویژن موڈ", "ln.sub": "صرف ضروری، اور کچھ نہیں۔",
     "ln.must": "🔑 ضروری تصورات", "ln.formulas": "🧮 صرف فارمولے", "ln.probable": "🎯 سب سے ممکنہ سوالات",
     "ln.define": "تعریف/وضاحت کریں: {t}۔", "ln.shortNotes": "\"{t}\" پر مختصر نوٹس لکھیں۔",
@@ -234,6 +237,7 @@ const I18N = {
     "ex.glossary": "ਸ਼ਬਦਾਵਲੀ",
     "voice.title": "🔊 ਵੌਇਸ ਰਿਵੀਜ਼ਨ", "voice.play": "▶️ ਚਲਾਓ", "voice.pause": "⏸ ਰੋਕੋ", "voice.resume": "⏵ ਜਾਰੀ ਰੱਖੋ", "voice.stop": "⏹ ਬੰਦ ਕਰੋ", "voice.speed": "ਗਤੀ",
     "voice.note": "ਚੱਲਦੇ-ਫਿਰਦੇ, ਜਿਮ ਵਿੱਚ ਜਾਂ ਸਫ਼ਰ ਦੌਰਾਨ ਰਿਵੀਜ਼ਨ ਲਈ ਵਧੀਆ। 🎧", "voice.unsupported": "ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਸਪੀਚ ਸਿੰਥੇਸਿਸ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ।",
+    "voice.ready": "✓ {lang} ਵੌਇਸ ਤਿਆਰ ਹੈ।", "voice.missing": "⚠️ ਇਸ ਡੀਵਾਈਸ ਉੱਤੇ {lang} ਵੌਇਸ ਨਹੀਂ ਹੈ — ਆਡੀਓ ਅੰਗਰੇਜ਼ੀ ਵਿੱਚ ਚੱਲੇਗਾ। {lang} ਸੁਣਨ ਲਈ ਡੀਵਾਈਸ ਦੀ ਸਪੀਚ ਸੈਟਿੰਗ ਵਿੱਚ {lang} ਵੌਇਸ ਇੰਸਟਾਲ ਕਰੋ।",
     "ln.title": "🌙 ਲਾਸਟ-ਨਾਈਟ ਰਿਵੀਜ਼ਨ ਮੋਡ", "ln.sub": "ਸਿਰਫ਼ ਜ਼ਰੂਰੀ, ਹੋਰ ਕੁਝ ਨਹੀਂ।",
     "ln.must": "🔑 ਜ਼ਰੂਰੀ ਸੰਕਲਪ", "ln.formulas": "🧮 ਸਿਰਫ਼ ਫਾਰਮੂਲੇ", "ln.probable": "🎯 ਸਭ ਤੋਂ ਸੰਭਾਵੀ ਸਵਾਲ",
     "ln.define": "ਪਰਿਭਾਸ਼ਿਤ/ਸਮਝਾਓ: {t}।", "ln.shortNotes": "\"{t}\" ਉੱਤੇ ਸੰਖੇਪ ਨੋਟਸ ਲਿਖੋ।",
@@ -245,7 +249,7 @@ const I18N = {
 let LANG = localStorage.getItem(LANG_KEY) || "en";
 function t(key, vars) {
   let s = (I18N[LANG] && I18N[LANG][key]) || I18N.en[key] || key;
-  if (vars) for (const k in vars) s = s.replace(`{${k}}`, vars[k]);
+  if (vars) for (const k in vars) s = s.split(`{${k}}`).join(vars[k]);
   return s;
 }
 function applyLang(code) {
@@ -907,6 +911,7 @@ function renderVoice() {
       </label>
       <label>${t("voice.speed")} <input type="range" id="vRate" min="0.6" max="1.6" step="0.1" value="1"></label>
     </div>
+    <div id="vStatus" class="muted" style="margin:0 0 12px;font-size:13px"></div>
     <div class="voice-text">${voiceState.sentences.map((s, i) => `<span id="v-s-${i}">${escapeHtml(s)} </span>`).join("")}</div>
     <p class="muted">${t("voice.note")}</p>`;
   $("vLang").value = voiceState.voiceLang;
@@ -916,6 +921,7 @@ function renderVoice() {
     stopVoice(); clearVoiceHighlight();
     voiceState.voiceLang = e.target.value;
     await ensureVoiceLanguage();
+    updateVoiceStatus();
   };
   $("vRate").oninput = (e) => { voiceState.rate = parseFloat(e.target.value); };
   $("vPlay").onclick = () => {
@@ -927,9 +933,22 @@ function renderVoice() {
   $("vPause").onclick = () => window.speechSynthesis.pause();
   $("vResume").onclick = () => window.speechSynthesis.resume();
   $("vStop").onclick = () => { stopVoice(); clearVoiceHighlight(); };
-  // Warm up the voice list, and pre-translate if the default language isn't English.
-  if (window.speechSynthesis.getVoices().length === 0) window.speechSynthesis.onvoiceschanged = () => {};
+  // Voice list loads asynchronously in some browsers; refresh status when it does.
+  window.speechSynthesis.onvoiceschanged = updateVoiceStatus;
+  updateVoiceStatus();
   if ((voiceState.voiceLang || "en-US").slice(0, 2) !== "en") ensureVoiceLanguage();
+}
+const VOICE_NAMES = { en: "English", hi: "हिन्दी", ur: "اردو", pa: "ਪੰਜਾਬੀ" };
+function updateVoiceStatus() {
+  const el = $("vStatus");
+  if (!el) return;
+  const code = (voiceState.voiceLang || "en-US").slice(0, 2);
+  const name = VOICE_NAMES[code] || code;
+  if (code === "en" || pickVoice(voiceState.voiceLang)) {
+    el.innerHTML = `<span style="color:var(--accent)">${t("voice.ready", { lang: name })}</span>`;
+  } else {
+    el.innerHTML = `<span style="color:var(--danger)">${t("voice.missing", { lang: name })}</span>`;
+  }
 }
 // Translate the revision text into the chosen voice language so it is actually
 // SPOKEN in that language (not just pronounced by a different engine).
@@ -966,11 +985,18 @@ function speakNext() {
   if (!voiceState.playing || voiceState.idx >= voiceState.sentences.length) {
     voiceState.playing = false; clearVoiceHighlight(); return;
   }
-  const u = new SpeechSynthesisUtterance(voiceState.sentences[voiceState.idx]);
+  const code = (voiceState.voiceLang || "en-US").slice(0, 2);
+  const match = pickVoice(voiceState.voiceLang);
+  // If no voice exists for the chosen language, read the English original
+  // (intelligible) instead of the translated script (which the English engine
+  // would mangle, reading only numbers/Latin).
+  const useNative = code === "en" || !!match;
+  const text = useNative ? voiceState.sentences[voiceState.idx]
+    : (voiceState.baseSentences[voiceState.idx] || voiceState.sentences[voiceState.idx]);
+  const u = new SpeechSynthesisUtterance(text);
   u.rate = voiceState.rate;
-  u.lang = voiceState.voiceLang || LANG_META[LANG].voice;
-  const match = pickVoice(u.lang);
-  if (match) u.voice = match;
+  if (match) { u.voice = match; u.lang = match.lang; }
+  else u.lang = useNative ? (voiceState.voiceLang || "en-US") : "en-US";
   u.onstart = () => highlightVoice(voiceState.idx);
   u.onend = () => { if (voiceState.playing) { voiceState.idx++; speakNext(); } };
   window.speechSynthesis.speak(u);
