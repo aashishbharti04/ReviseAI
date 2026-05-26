@@ -17,6 +17,7 @@ Turn 100-page PDFs and messy notes into **compressed exam notes, flashcards, qui
 - **📸 Shareable Cards** — Instagram-style revision cards exported as PNG
 - **🔁 Spaced Repetition** — "due for revision" reminders that schedule themselves
 - **⚠️ Weakness Detection** — topics you miss in quizzes are saved per subject
+- **🌐 Multilanguage UI** — English, हिन्दी, اردو (right-to-left), ਪੰਜਾਬੀ; AI explanations & voice follow the chosen language
 - **⬇️ Download PDF** — export a clean revision sheet
 - **⏰ Exam countdown**, recent subjects & **🌗 light/dark theme** (saved in your browser)
 
