@@ -4,15 +4,21 @@ Turn 100-page PDFs and messy notes into **compressed exam notes, flashcards, qui
 
 > Runs 100% client-side, so it can be hosted for free on **GitHub Pages** with no backend.
 
-## ✨ Features (MVP)
+## ✨ Features
 
 - **📤 Upload** PDFs, images (OCR), and `.txt` files
 - **📝 Compress Notes** — key points, definitions, formulas, important terms
 - **🃏 Flashcards** — auto-generated, flip to reveal answers
 - **❓ Quiz** — fill-in-the-blank MCQs with live scoring
+- **🧠 Mindmap** — visual topic tree built from your notes
+- **✨ Explain Simply** — Beginner / Kid / Hindi / Teacher modes
+- **🔊 Voice Revision** — reads notes aloud with speed control & live highlighting (great for the gym/commute)
 - **🌙 Last-Night Mode** — must-know concepts, formulas only, top probable questions
+- **📸 Shareable Cards** — Instagram-style revision cards exported as PNG
+- **🔁 Spaced Repetition** — "due for revision" reminders that schedule themselves
+- **⚠️ Weakness Detection** — topics you miss in quizzes are saved per subject
 - **⬇️ Download PDF** — export a clean revision sheet
-- **⏰ Exam countdown** + recent subjects (saved in your browser)
+- **⏰ Exam countdown**, recent subjects & **🌗 light/dark theme** (saved in your browser)
 
 ## 🧠 How the "AI" works
 
@@ -48,7 +54,7 @@ python -m http.server
 
 ## 🗺 Roadmap
 
-Mindmaps (React Flow), voice revision (Web Speech API), spaced-repetition scheduling, weakness detection, shareable Instagram-style revision cards, group study & quiz battles.
+YouTube lecture summaries, group study & quiz battles with rankings, AI tutor chat, handwritten-math support, teacher dashboard & student analytics, and a mobile app.
 
 ---
 
