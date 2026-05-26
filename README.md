@@ -6,7 +6,8 @@ Turn 100-page PDFs and messy notes into **compressed exam notes, flashcards, qui
 
 ## ✨ Features
 
-- **📤 Upload** PDFs, images (OCR), and `.txt` files
+- **📤 Upload** PDFs, **Word (.docx)**, images (OCR), and `.txt` files
+- **🌍 Translate** a whole document into 18 languages (text & paragraphs preserved); download as `.txt` or Save as PDF
 - **📝 Compress Notes** — key points, definitions, formulas, important terms
 - **🃏 Flashcards** — auto-generated, flip to reveal answers
 - **❓ Quiz** — fill-in-the-blank MCQs with live scoring
