@@ -26,6 +26,7 @@ const I18N = {
     "lib.title": "📚 Free Study Library — Nursery to Class 12",
     "lib.sub": "Hand-picked free & official learning resources. Open any book, then bring it back to PgluAI to make notes, flashcards and quizzes.",
     "lib.note": "ℹ️ PgluAI does not host copyrighted books. These are links to official free sources (NCERT, Government of India, Khan Academy, OpenStax, CK-12).",
+    "lib.testTitle": "🧪 Test Yourself", "lib.testSub": "Pick your class and subject, then attempt a 10-question quiz made by PgluAI.", "lib.testStart": "Start test",
     "guide.title": "📖 How to use PgluAI", "guide.sub": "Five simple steps to turn any notes into smart, exam-ready study material.",
     "hero.title": "Turn 100 pages into a 1-page revision sheet.",
     "hero.sub": "Upload your notes, and PgluAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.",
@@ -81,6 +82,7 @@ const I18N = {
     "lib.title": "📚 मुफ़्त अध्ययन लाइब्रेरी — नर्सरी से कक्षा 12",
     "lib.sub": "चुनिंदा मुफ़्त और आधिकारिक संसाधन। कोई भी किताब खोलें, फिर PgluAI में लाकर नोट्स, फ्लैशकार्ड और क्विज़ बनाएँ।",
     "lib.note": "ℹ️ PgluAI कॉपीराइट किताबें होस्ट नहीं करता। ये आधिकारिक मुफ़्त स्रोतों (NCERT, भारत सरकार, Khan Academy, OpenStax, CK-12) के लिंक हैं।",
+    "lib.testTitle": "🧪 खुद को परखें", "lib.testSub": "अपनी कक्षा और विषय चुनें, फिर PgluAI द्वारा बनाई 10-प्रश्नों की क्विज़ हल करें।", "lib.testStart": "टेस्ट शुरू करें",
     "guide.title": "📖 PgluAI कैसे इस्तेमाल करें", "guide.sub": "किसी भी नोट्स को स्मार्ट, परीक्षा-तैयार सामग्री में बदलने के पाँच आसान चरण।",
     "hero.title": "100 पन्नों को 1-पेज रिवीजन शीट में बदलें।",
     "hero.sub": "अपने नोट्स अपलोड करें, और PgluAI आपके ब्राउज़र में ही कॉम्प्रेस्ड नोट्स, फ्लैशकार्ड, क्विज़ और लास्ट-नाइट चीट शीट बनाता है।",
@@ -136,6 +138,7 @@ const I18N = {
     "lib.title": "📚 مفت مطالعہ لائبریری — نرسری سے کلاس 12",
     "lib.sub": "منتخب مفت اور سرکاری وسائل۔ کوئی بھی کتاب کھولیں، پھر PgluAI میں لا کر نوٹس، فلیش کارڈز اور کوئز بنائیں۔",
     "lib.note": "ℹ️ PgluAI کاپی رائٹ کتابیں ہوسٹ نہیں کرتا۔ یہ سرکاری مفت ذرائع (NCERT، حکومت ہند، Khan Academy، OpenStax، CK-12) کے لنکس ہیں۔",
+    "lib.testTitle": "🧪 خود کو آزمائیں", "lib.testSub": "اپنی کلاس اور مضمون منتخب کریں، پھر PgluAI کی بنائی 10 سوالات کی کوئز حل کریں۔", "lib.testStart": "ٹیسٹ شروع کریں",
     "guide.title": "📖 PgluAI کیسے استعمال کریں", "guide.sub": "کسی بھی نوٹس کو اسمارٹ، امتحان کے لیے تیار مواد میں بدلنے کے پانچ آسان مراحل۔",
     "hero.title": "100 صفحات کو 1 صفحے کی ریویژن شیٹ میں بدلیں۔",
     "hero.sub": "اپنے نوٹس اپلوڈ کریں، اور PgluAI آپ کے براؤزر میں ہی کمپریسڈ نوٹس، فلیش کارڈز، کوئز اور لاسٹ نائٹ چیٹ شیٹ بناتا ہے۔",
@@ -191,6 +194,7 @@ const I18N = {
     "lib.title": "📚 ਮੁਫ਼ਤ ਅਧਿਐਨ ਲਾਇਬ੍ਰੇਰੀ — ਨਰਸਰੀ ਤੋਂ ਕਲਾਸ 12",
     "lib.sub": "ਚੁਣੇ ਹੋਏ ਮੁਫ਼ਤ ਅਤੇ ਸਰਕਾਰੀ ਸਰੋਤ। ਕੋਈ ਵੀ ਕਿਤਾਬ ਖੋਲ੍ਹੋ, ਫਿਰ PgluAI ਵਿੱਚ ਲਿਆ ਕੇ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ ਅਤੇ ਕਵਿਜ਼ ਬਣਾਓ।",
     "lib.note": "ℹ️ PgluAI ਕਾਪੀਰਾਈਟ ਕਿਤਾਬਾਂ ਹੋਸਟ ਨਹੀਂ ਕਰਦਾ। ਇਹ ਸਰਕਾਰੀ ਮੁਫ਼ਤ ਸਰੋਤਾਂ (NCERT, ਭਾਰਤ ਸਰਕਾਰ, Khan Academy, OpenStax, CK-12) ਦੇ ਲਿੰਕ ਹਨ।",
+    "lib.testTitle": "🧪 ਆਪਣੇ ਆਪ ਨੂੰ ਪਰਖੋ", "lib.testSub": "ਆਪਣੀ ਕਲਾਸ ਅਤੇ ਵਿਸ਼ਾ ਚੁਣੋ, ਫਿਰ PgluAI ਵੱਲੋਂ ਬਣਾਈ 10-ਸਵਾਲਾਂ ਦੀ ਕਵਿਜ਼ ਹੱਲ ਕਰੋ।", "lib.testStart": "ਟੈਸਟ ਸ਼ੁਰੂ ਕਰੋ",
     "guide.title": "📖 PgluAI ਕਿਵੇਂ ਵਰਤੀਏ", "guide.sub": "ਕਿਸੇ ਵੀ ਨੋਟਸ ਨੂੰ ਸਮਾਰਟ, ਪ੍ਰੀਖਿਆ-ਤਿਆਰ ਸਮੱਗਰੀ ਵਿੱਚ ਬਦਲਣ ਦੇ ਪੰਜ ਸੌਖੇ ਕਦਮ।",
     "hero.title": "100 ਸਫ਼ਿਆਂ ਨੂੰ 1-ਸਫ਼ੇ ਦੀ ਰਿਵੀਜ਼ਨ ਸ਼ੀਟ ਵਿੱਚ ਬਦਲੋ।",
     "hero.sub": "ਆਪਣੇ ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ, ਅਤੇ PgluAI ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਹੀ ਕੰਪ੍ਰੈਸਡ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ, ਕਵਿਜ਼ ਅਤੇ ਲਾਸਟ-ਨਾਈਟ ਚੀਟ ਸ਼ੀਟ ਬਣਾਉਂਦਾ ਹੈ।",
@@ -1226,7 +1230,55 @@ function mdLite(md) {
     .replace(/\n{2,}/g, "<br><br>");
 }
 
+/* ---------------- Library: Test Yourself ---------------- */
+function initLibraryTest() {
+  const bandSel = $("testBand");
+  if (!bandSel || typeof QUIZ_BANK === "undefined") return;
+  bandSel.innerHTML = Object.keys(QUIZ_BANK).map((b) => `<option>${b}</option>`).join("");
+  const fillSubjects = () => {
+    $("testSubject").innerHTML = Object.keys(QUIZ_BANK[bandSel.value] || {}).map((s) => `<option>${s}</option>`).join("");
+  };
+  bandSel.onchange = () => { fillSubjects(); $("testArea").innerHTML = ""; };
+  fillSubjects();
+  $("testStart").onclick = () => {
+    const qs = (QUIZ_BANK[bandSel.value] || {})[$("testSubject").value];
+    if (qs && qs.length) renderTestQuiz(qs, $("testArea"));
+  };
+}
+function renderTestQuiz(qs, container) {
+  // Shuffle the options of each question so the answer position varies.
+  const items = qs.map((item) => {
+    const opts = item.options.map((text, i) => ({ text, correct: i === item.answer }));
+    for (let i = opts.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [opts[i], opts[j]] = [opts[j], opts[i]]; }
+    return { q: item.q, opts };
+  });
+  let html = `<div id="testScore" class="quiz-score"></div>`;
+  items.forEach((item, qi) => {
+    html += `<div class="quiz-q"><div class="qtext">${qi + 1}. ${escapeHtml(item.q)}</div>`;
+    item.opts.forEach((o) => { html += `<button class="quiz-opt" data-q="${qi}" data-correct="${o.correct}">${escapeHtml(o.text)}</button>`; });
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+  let answered = 0, correct = 0;
+  container.querySelectorAll(".quiz-opt").forEach((b) => {
+    b.onclick = () => {
+      const qi = b.dataset.q;
+      const group = container.querySelectorAll(`.quiz-opt[data-q="${qi}"]`);
+      if ([...group].some((x) => x.classList.contains("correct") || x.classList.contains("wrong"))) return;
+      const isCorrect = b.dataset.correct === "true";
+      group.forEach((x) => { if (x.dataset.correct === "true") x.classList.add("correct"); });
+      if (!isCorrect) b.classList.add("wrong");
+      answered++; if (isCorrect) correct++;
+      const scoreEl = container.querySelector("#testScore");
+      scoreEl.textContent = `${t("quiz.score")} ${correct} / ${answered}`;
+      if (answered === items.length) scoreEl.textContent += ` · ${Math.round((correct / answered) * 100)}%`;
+    };
+  });
+  container.querySelector("#testScore").scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+
 /* ---------------- Init ---------------- */
 applyTheme(localStorage.getItem("reviseai.theme") || "dark");
 applyLang(LANG);
+initLibraryTest();
 renderFiles();

@@ -230,6 +230,10 @@ body[data-theme="light"] .weak-box h4 { color: #b00027; }
 body[dir="rtl"] .note-banner { border-left: 1px solid var(--line); border-right: 4px solid var(--primary2); }
 
 /* ---- Library ---- */
+.test-card { margin-bottom: 22px; border-left: 4px solid var(--accent); }
+.test-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 12px 0; }
+.test-controls .langsel { min-width: 150px; }
+#testArea:not(:empty) { margin-top: 14px; }
 .lib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
 .lib-band h3 { margin-bottom: 12px; }
 .reslink { display: block; background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 14px; margin-bottom: 8px; color: var(--text); text-decoration: none; font-size: 14px; transition: .15s; }

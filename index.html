@@ -120,6 +120,17 @@
       </div>
       <div class="note-banner" data-i18n="lib.note">ℹ️ PgluAI does not host copyrighted books. These are links to official free sources (NCERT, Government of India, Khan Academy, OpenStax, CK-12).</div>
 
+      <div class="card test-card">
+        <h3 data-i18n="lib.testTitle">🧪 Test Yourself</h3>
+        <p class="muted" data-i18n="lib.testSub">Pick your class and subject, then attempt a 10-question quiz made by PgluAI.</p>
+        <div class="test-controls">
+          <select id="testBand" class="langsel"></select>
+          <select id="testSubject" class="langsel"></select>
+          <button class="btn primary" id="testStart" data-i18n="lib.testStart">Start test</button>
+        </div>
+        <div id="testArea"></div>
+      </div>
+
       <div class="lib-grid">
         <div class="card lib-band">
           <h3>🧸 Foundation · Nursery–UKG</h3>
@@ -244,6 +255,7 @@
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="quizbank.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
