@@ -18,8 +18,11 @@ const LANG_META = {
 };
 const I18N = {
   en: {
-    "tagline": "Smart exam notes compressor", "nav.dashboard": "Dashboard", "nav.study": "Study",
+    "tagline": "AI study companion · notes · quiz · mindmap · voice · translate", "nav.dashboard": "Dashboard", "nav.study": "Study",
     "nav.library": "Library", "nav.guide": "Guide", "upload.grade": "Class / Grade", "voice.lang": "Voice language",
+    "tool.translate": "🌍 Translate", "translate.target": "Translate to", "translate.btn": "Translate",
+    "translate.downloadTxt": "⬇️ Download .txt", "translate.savePdf": "🖨️ Save as PDF", "translate.working": "Translating…",
+    "translate.note": "Your text and paragraphs are kept. For Hindi/Urdu/Tamil and other scripts, use 'Save as PDF' so your browser renders them correctly.",
     "lib.title": "📚 Free Study Library — Nursery to Class 12",
     "lib.sub": "Hand-picked free & official learning resources. Open any book, then bring it back to PgluAI to make notes, flashcards and quizzes.",
     "lib.note": "ℹ️ PgluAI does not host copyrighted books. These are links to official free sources (NCERT, Government of India, Khan Academy, OpenStax, CK-12).",
@@ -27,7 +30,7 @@ const I18N = {
     "hero.title": "Turn 100 pages into a 1-page revision sheet.",
     "hero.sub": "Upload your notes, and PgluAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.",
     "upload.title": "📤 Upload notes", "upload.subject": "Subject", "upload.subjectPh": "e.g. Physics — Chapter 4",
-    "upload.examDate": "Exam date (optional)", "upload.drop": "📎 Drag & drop PDF / images / .txt here",
+    "upload.examDate": "Exam date (optional)", "upload.drop": "📎 Drag & drop PDF / Word / images / .txt here",
     "upload.browse": "Browse files", "upload.hint": "PDFs & text read instantly. Images are OCR-scanned.",
     "upload.process": "Process notes →", "upload.recent": "📈 Recent subjects",
     "upload.recentEmpty": "No subjects yet — upload your first notes!",
@@ -70,8 +73,11 @@ const I18N = {
     "src.title": "📄 Extracted Source Text",
   },
   hi: {
-    "tagline": "स्मार्ट परीक्षा नोट्स कंप्रेसर", "nav.dashboard": "डैशबोर्ड", "nav.study": "अध्ययन",
+    "tagline": "AI अध्ययन साथी · नोट्स · क्विज़ · माइंडमैप · वॉइस · अनुवाद", "nav.dashboard": "डैशबोर्ड", "nav.study": "अध्ययन",
     "nav.library": "लाइब्रेरी", "nav.guide": "गाइड", "upload.grade": "कक्षा / ग्रेड", "voice.lang": "वॉइस भाषा",
+    "tool.translate": "🌍 अनुवाद", "translate.target": "इसमें अनुवाद करें", "translate.btn": "अनुवाद करें",
+    "translate.downloadTxt": "⬇️ .txt डाउनलोड", "translate.savePdf": "🖨️ PDF के रूप में सेव करें", "translate.working": "अनुवाद हो रहा है…",
+    "translate.note": "आपका टेक्स्ट और पैराग्राफ बने रहते हैं। हिंदी/उर्दू/तमिल आदि लिपियों के लिए 'PDF के रूप में सेव करें' का उपयोग करें ताकि ब्राउज़र उन्हें सही दिखाए।",
     "lib.title": "📚 मुफ़्त अध्ययन लाइब्रेरी — नर्सरी से कक्षा 12",
     "lib.sub": "चुनिंदा मुफ़्त और आधिकारिक संसाधन। कोई भी किताब खोलें, फिर PgluAI में लाकर नोट्स, फ्लैशकार्ड और क्विज़ बनाएँ।",
     "lib.note": "ℹ️ PgluAI कॉपीराइट किताबें होस्ट नहीं करता। ये आधिकारिक मुफ़्त स्रोतों (NCERT, भारत सरकार, Khan Academy, OpenStax, CK-12) के लिंक हैं।",
@@ -79,7 +85,7 @@ const I18N = {
     "hero.title": "100 पन्नों को 1-पेज रिवीजन शीट में बदलें।",
     "hero.sub": "अपने नोट्स अपलोड करें, और PgluAI आपके ब्राउज़र में ही कॉम्प्रेस्ड नोट्स, फ्लैशकार्ड, क्विज़ और लास्ट-नाइट चीट शीट बनाता है।",
     "upload.title": "📤 नोट्स अपलोड करें", "upload.subject": "विषय", "upload.subjectPh": "जैसे भौतिकी — अध्याय 4",
-    "upload.examDate": "परीक्षा तिथि (वैकल्पिक)", "upload.drop": "📎 PDF / इमेज / .txt यहाँ खींचें और छोड़ें",
+    "upload.examDate": "परीक्षा तिथि (वैकल्पिक)", "upload.drop": "📎 PDF / Word / इमेज / .txt यहाँ खींचें और छोड़ें",
     "upload.browse": "फ़ाइल चुनें", "upload.hint": "PDF और टेक्स्ट तुरंत पढ़े जाते हैं। इमेज OCR से स्कैन होती हैं।",
     "upload.process": "नोट्स प्रोसेस करें →", "upload.recent": "📈 हाल के विषय",
     "upload.recentEmpty": "अभी कोई विषय नहीं — अपने पहले नोट्स अपलोड करें!",
@@ -122,8 +128,11 @@ const I18N = {
     "src.title": "📄 निकाला गया मूल टेक्स्ट",
   },
   ur: {
-    "tagline": "اسمارٹ امتحان نوٹس کمپریسر", "nav.dashboard": "ڈیش بورڈ", "nav.study": "مطالعہ",
+    "tagline": "AI مطالعہ ساتھی · نوٹس · کوئز · مائنڈ میپ · آواز · ترجمہ", "nav.dashboard": "ڈیش بورڈ", "nav.study": "مطالعہ",
     "nav.library": "لائبریری", "nav.guide": "گائیڈ", "upload.grade": "کلاس / گریڈ", "voice.lang": "صوتی زبان",
+    "tool.translate": "🌍 ترجمہ", "translate.target": "اس میں ترجمہ کریں", "translate.btn": "ترجمہ کریں",
+    "translate.downloadTxt": "⬇️ .txt ڈاؤن لوڈ", "translate.savePdf": "🖨️ PDF کے طور پر محفوظ کریں", "translate.working": "ترجمہ ہو رہا ہے…",
+    "translate.note": "آپ کا متن اور پیراگراف برقرار رہتے ہیں۔ ہندی/اردو/تامل وغیرہ رسم الخط کے لیے 'PDF کے طور پر محفوظ کریں' استعمال کریں تاکہ براؤزر انہیں درست دکھائے۔",
     "lib.title": "📚 مفت مطالعہ لائبریری — نرسری سے کلاس 12",
     "lib.sub": "منتخب مفت اور سرکاری وسائل۔ کوئی بھی کتاب کھولیں، پھر PgluAI میں لا کر نوٹس، فلیش کارڈز اور کوئز بنائیں۔",
     "lib.note": "ℹ️ PgluAI کاپی رائٹ کتابیں ہوسٹ نہیں کرتا۔ یہ سرکاری مفت ذرائع (NCERT، حکومت ہند، Khan Academy، OpenStax، CK-12) کے لنکس ہیں۔",
@@ -131,7 +140,7 @@ const I18N = {
     "hero.title": "100 صفحات کو 1 صفحے کی ریویژن شیٹ میں بدلیں۔",
     "hero.sub": "اپنے نوٹس اپلوڈ کریں، اور PgluAI آپ کے براؤزر میں ہی کمپریسڈ نوٹس، فلیش کارڈز، کوئز اور لاسٹ نائٹ چیٹ شیٹ بناتا ہے۔",
     "upload.title": "📤 نوٹس اپلوڈ کریں", "upload.subject": "مضمون", "upload.subjectPh": "مثلاً فزکس — باب 4",
-    "upload.examDate": "امتحان کی تاریخ (اختیاری)", "upload.drop": "📎 PDF / تصاویر / .txt یہاں ڈراپ کریں",
+    "upload.examDate": "امتحان کی تاریخ (اختیاری)", "upload.drop": "📎 PDF / Word / تصاویر / .txt یہاں ڈراپ کریں",
     "upload.browse": "فائل منتخب کریں", "upload.hint": "PDF اور ٹیکسٹ فوراً پڑھے جاتے ہیں۔ تصاویر OCR سے اسکین ہوتی ہیں۔",
     "upload.process": "نوٹس پروسیس کریں →", "upload.recent": "📈 حالیہ مضامین",
     "upload.recentEmpty": "ابھی کوئی مضمون نہیں — اپنے پہلے نوٹس اپلوڈ کریں!",
@@ -174,8 +183,11 @@ const I18N = {
     "src.title": "📄 نکالا گیا اصل متن",
   },
   pa: {
-    "tagline": "ਸਮਾਰਟ ਪ੍ਰੀਖਿਆ ਨੋਟਸ ਕੰਪ੍ਰੈਸਰ", "nav.dashboard": "ਡੈਸ਼ਬੋਰਡ", "nav.study": "ਅਧਿਐਨ",
+    "tagline": "AI ਅਧਿਐਨ ਸਾਥੀ · ਨੋਟਸ · ਕਵਿਜ਼ · ਮਾਈਂਡਮੈਪ · ਵੌਇਸ · ਅਨੁਵਾਦ", "nav.dashboard": "ਡੈਸ਼ਬੋਰਡ", "nav.study": "ਅਧਿਐਨ",
     "nav.library": "ਲਾਇਬ੍ਰੇਰੀ", "nav.guide": "ਗਾਈਡ", "upload.grade": "ਕਲਾਸ / ਗ੍ਰੇਡ", "voice.lang": "ਵੌਇਸ ਭਾਸ਼ਾ",
+    "tool.translate": "🌍 ਅਨੁਵਾਦ", "translate.target": "ਇਸ ਵਿੱਚ ਅਨੁਵਾਦ ਕਰੋ", "translate.btn": "ਅਨੁਵਾਦ ਕਰੋ",
+    "translate.downloadTxt": "⬇️ .txt ਡਾਊਨਲੋਡ", "translate.savePdf": "🖨️ PDF ਵਜੋਂ ਸੰਭਾਲੋ", "translate.working": "ਅਨੁਵਾਦ ਹੋ ਰਿਹਾ ਹੈ…",
+    "translate.note": "ਤੁਹਾਡਾ ਟੈਕਸਟ ਅਤੇ ਪੈਰੇ ਬਰਕਰਾਰ ਰਹਿੰਦੇ ਹਨ। ਹਿੰਦੀ/ਉਰਦੂ/ਤਮਿਲ ਆਦਿ ਲਿਪੀਆਂ ਲਈ 'PDF ਵਜੋਂ ਸੰਭਾਲੋ' ਵਰਤੋ ਤਾਂ ਜੋ ਬ੍ਰਾਊਜ਼ਰ ਉਨ੍ਹਾਂ ਨੂੰ ਸਹੀ ਦਿਖਾਏ।",
     "lib.title": "📚 ਮੁਫ਼ਤ ਅਧਿਐਨ ਲਾਇਬ੍ਰੇਰੀ — ਨਰਸਰੀ ਤੋਂ ਕਲਾਸ 12",
     "lib.sub": "ਚੁਣੇ ਹੋਏ ਮੁਫ਼ਤ ਅਤੇ ਸਰਕਾਰੀ ਸਰੋਤ। ਕੋਈ ਵੀ ਕਿਤਾਬ ਖੋਲ੍ਹੋ, ਫਿਰ PgluAI ਵਿੱਚ ਲਿਆ ਕੇ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ ਅਤੇ ਕਵਿਜ਼ ਬਣਾਓ।",
     "lib.note": "ℹ️ PgluAI ਕਾਪੀਰਾਈਟ ਕਿਤਾਬਾਂ ਹੋਸਟ ਨਹੀਂ ਕਰਦਾ। ਇਹ ਸਰਕਾਰੀ ਮੁਫ਼ਤ ਸਰੋਤਾਂ (NCERT, ਭਾਰਤ ਸਰਕਾਰ, Khan Academy, OpenStax, CK-12) ਦੇ ਲਿੰਕ ਹਨ।",
@@ -183,7 +195,7 @@ const I18N = {
     "hero.title": "100 ਸਫ਼ਿਆਂ ਨੂੰ 1-ਸਫ਼ੇ ਦੀ ਰਿਵੀਜ਼ਨ ਸ਼ੀਟ ਵਿੱਚ ਬਦਲੋ।",
     "hero.sub": "ਆਪਣੇ ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ, ਅਤੇ PgluAI ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਹੀ ਕੰਪ੍ਰੈਸਡ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ, ਕਵਿਜ਼ ਅਤੇ ਲਾਸਟ-ਨਾਈਟ ਚੀਟ ਸ਼ੀਟ ਬਣਾਉਂਦਾ ਹੈ।",
     "upload.title": "📤 ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ", "upload.subject": "ਵਿਸ਼ਾ", "upload.subjectPh": "ਜਿਵੇਂ ਭੌਤਿਕ ਵਿਗਿਆਨ — ਅਧਿਆਇ 4",
-    "upload.examDate": "ਪ੍ਰੀਖਿਆ ਤਾਰੀਖ਼ (ਚੋਣਵੀਂ)", "upload.drop": "📎 PDF / ਤਸਵੀਰਾਂ / .txt ਇੱਥੇ ਖਿੱਚੋ ਤੇ ਛੱਡੋ",
+    "upload.examDate": "ਪ੍ਰੀਖਿਆ ਤਾਰੀਖ਼ (ਚੋਣਵੀਂ)", "upload.drop": "📎 PDF / Word / ਤਸਵੀਰਾਂ / .txt ਇੱਥੇ ਖਿੱਚੋ ਤੇ ਛੱਡੋ",
     "upload.browse": "ਫ਼ਾਈਲ ਚੁਣੋ", "upload.hint": "PDF ਅਤੇ ਟੈਕਸਟ ਤੁਰੰਤ ਪੜ੍ਹੇ ਜਾਂਦੇ ਹਨ। ਤਸਵੀਰਾਂ OCR ਨਾਲ ਸਕੈਨ ਹੁੰਦੀਆਂ ਹਨ।",
     "upload.process": "ਨੋਟਸ ਪ੍ਰੋਸੈਸ ਕਰੋ →", "upload.recent": "📈 ਹਾਲੀਆ ਵਿਸ਼ੇ",
     "upload.recentEmpty": "ਹਾਲੇ ਕੋਈ ਵਿਸ਼ਾ ਨਹੀਂ — ਆਪਣੇ ਪਹਿਲੇ ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ!",
@@ -316,6 +328,7 @@ dropzone.addEventListener("drop", (e) => addFiles(e.dataTransfer.files));
 function kindOf(file) {
   if (file.type === "application/pdf") return "pdf";
   if (file.type.startsWith("image/")) return "image";
+  if (/\.docx?$/i.test(file.name) || file.type.includes("wordprocessingml")) return "docx";
   return "text";
 }
 function addFiles(fileList) {
@@ -326,7 +339,7 @@ function renderFiles() {
   const el = $("fileList");
   el.innerHTML = "";
   state.files.forEach((f, i) => {
-    const icon = f.kind === "pdf" ? "📕" : f.kind === "image" ? "🖼️" : "📄";
+    const icon = f.kind === "pdf" ? "📕" : f.kind === "image" ? "🖼️" : f.kind === "docx" ? "📘" : "📄";
     const row = document.createElement("div");
     row.className = "fileitem";
     row.innerHTML = `<span>${icon} ${f.name}</span><button title="Remove">✕</button>`;
@@ -359,6 +372,12 @@ async function extractImage(file) {
   const { data } = await Tesseract.recognize(file, "eng");
   return data.text;
 }
+async function extractDocx(file) {
+  loader(true, `Reading Word document ${file.name}…`);
+  const arrayBuffer = await file.arrayBuffer();
+  const result = await mammoth.extractRawText({ arrayBuffer });
+  return result.value;
+}
 function extractText(file) { return file.text(); }
 
 $("processBtn").onclick = async () => {
@@ -371,6 +390,7 @@ $("processBtn").onclick = async () => {
     for (const f of state.files) {
       if (f.kind === "pdf") text += await extractPdf(f.file) + "\n";
       else if (f.kind === "image") text += await extractImage(f.file) + "\n";
+      else if (f.kind === "docx") text += await extractDocx(f.file) + "\n";
       else text += await extractText(f.file) + "\n";
     }
   } catch (err) {
@@ -608,6 +628,7 @@ document.querySelectorAll(".tool[data-tool]").forEach((btn) => {
       else if (tool === "mindmap") renderMindmap();
       else if (tool === "explain") await renderExplain();
       else if (tool === "voice") renderVoice();
+      else if (tool === "translate") renderTranslate();
       else if (tool === "lastnight") await renderLastNight();
       else if (tool === "share") renderShare();
       else if (tool === "source") renderSource();
@@ -915,6 +936,114 @@ function highlightVoice(i) {
 }
 function clearVoiceHighlight() {
   document.querySelectorAll(".voice-text .speaking").forEach((e) => e.classList.remove("speaking"));
+}
+
+/* ---------------- Translate whole document ---------------- */
+const TRANSLATE_LANGS = [
+  { code: "en", name: "English" }, { code: "hi", name: "हिन्दी (Hindi)" }, { code: "ur", name: "اردو (Urdu)" },
+  { code: "pa", name: "ਪੰਜਾਬੀ (Punjabi)" }, { code: "bn", name: "বাংলা (Bengali)" }, { code: "ta", name: "தமிழ் (Tamil)" },
+  { code: "te", name: "తెలుగు (Telugu)" }, { code: "mr", name: "मराठी (Marathi)" }, { code: "gu", name: "ગુજરાતી (Gujarati)" },
+  { code: "kn", name: "ಕನ್ನಡ (Kannada)" }, { code: "ml", name: "മലയാളം (Malayalam)" }, { code: "ar", name: "العربية (Arabic)" },
+  { code: "es", name: "Español (Spanish)" }, { code: "fr", name: "Français (French)" }, { code: "de", name: "Deutsch (German)" },
+  { code: "ru", name: "Русский (Russian)" }, { code: "zh-CN", name: "中文 (Chinese)" }, { code: "ja", name: "日本語 (Japanese)" },
+];
+function renderTranslate() {
+  const opts = TRANSLATE_LANGS.map((l) => `<option value="${l.code}">${l.name}</option>`).join("");
+  out.innerHTML = `<h3>${t("tool.translate")}</h3>
+    <div class="voice-panel">
+      <label>${t("translate.target")}
+        <select id="trTarget" class="langsel">${opts}</select>
+      </label>
+      <button class="btn primary" id="trGo">${t("translate.btn")}</button>
+    </div>
+    <div id="trOut"></div>`;
+  $("trGo").onclick = doTranslate;
+}
+async function doTranslate() {
+  const target = $("trTarget").value;
+  const langName = (TRANSLATE_LANGS.find((l) => l.code === target) || {}).name || target;
+  loader(true, t("translate.working"));
+  let translated;
+  try {
+    translated = await translateText(state.text, target, langName);
+  } catch (e) {
+    loader(false);
+    $("trOut").innerHTML = `<p class="muted">⚠️ ${escapeHtml(e.message)}. Tip: add a Gemini/OpenAI key in ⚙️ Settings as a fallback translator.</p>`;
+    return;
+  }
+  loader(false);
+  const rtl = target === "ur" || target === "ar";
+  $("trOut").innerHTML = `
+    <div class="share-controls" style="justify-content:flex-start;margin-bottom:12px">
+      <button class="btn ghost" id="trTxt">${t("translate.downloadTxt")}</button>
+      <button class="btn primary" id="trPdf">${t("translate.savePdf")}</button>
+    </div>
+    <div class="voice-text" dir="${rtl ? "rtl" : "auto"}" style="white-space:pre-wrap">${escapeHtml(translated)}</div>
+    <p class="muted">${t("translate.note")}</p>`;
+  $("trTxt").onclick = () => downloadText(translated, `${state.subject}_${target}.txt`);
+  $("trPdf").onclick = () => printAsPdf(translated, target);
+}
+async function translateText(text, target, langName) {
+  try {
+    return await googleTranslate(text, target);
+  } catch (e) {
+    const s = getSettings();
+    if ((s.provider === "gemini" || s.provider === "openai") && s.key) {
+      const r = await aiGenerate(`Translate the following text into ${langName}. Keep the same paragraphs and line breaks. Output only the translation, nothing else:\n\n${truncForAI(text)}`);
+      if (r) return r;
+    }
+    throw e;
+  }
+}
+async function googleTranslate(text, target) {
+  // Translate paragraph-by-paragraph so structure is preserved.
+  const paras = text.split(/\n{2,}/);
+  const outParas = [];
+  for (const para of paras) {
+    if (!para.trim()) { outParas.push(""); continue; }
+    const pieces = para.length > 1500 ? chunkBySentence(para, 1500) : [para];
+    let translatedPara = "";
+    for (const piece of pieces) {
+      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${encodeURIComponent(target)}&dt=t&q=${encodeURIComponent(piece)}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("Translation service error " + res.status);
+      const data = await res.json();
+      translatedPara += (data[0] || []).map((seg) => seg[0]).join("");
+    }
+    outParas.push(translatedPara);
+  }
+  return outParas.join("\n\n");
+}
+function chunkBySentence(text, max) {
+  const sents = text.match(/[^.!?]+[.!?]+|\S[^.!?]*$/g) || [text];
+  const chunks = []; let cur = "";
+  for (const s of sents) {
+    if ((cur + s).length > max && cur) { chunks.push(cur); cur = ""; }
+    cur += s;
+  }
+  if (cur) chunks.push(cur);
+  return chunks;
+}
+function downloadText(text, filename) {
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename.replace(/[^\w.]+/g, "_");
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function printAsPdf(text, code) {
+  const rtl = code === "ur" || code === "ar";
+  const w = window.open("", "_blank");
+  if (!w) { alert("Please allow pop-ups to save as PDF."); return; }
+  const body = text.split(/\n{2,}/).map((p) => `<p>${escapeHtml(p)}</p>`).join("");
+  w.document.write(`<!DOCTYPE html><html dir="${rtl ? "rtl" : "ltr"}"><head><meta charset="utf-8">
+    <title>${escapeHtml(state.subject || "PgluAI")}</title>
+    <style>body{font-family:'Segoe UI',system-ui,'Noto Sans','Nirmala UI',sans-serif;line-height:1.7;padding:48px;max-width:820px;margin:auto;color:#111}
+    h1{color:#6c5ce7;font-size:22px}p{margin:0 0 12px;white-space:pre-wrap}</style></head>
+    <body><h1>${escapeHtml(state.subject || "PgluAI")}</h1>${body}
+    <script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>`);
+  w.document.close();
 }
 
 /* ---------------- Shareable revision card (PNG) ---------------- */

@@ -66,7 +66,7 @@
             <input id="examDate" type="date" />
           </div>
           <div id="dropzone" class="dropzone">
-            <input id="fileInput" type="file" accept="application/pdf,image/*,text/plain" multiple hidden />
+            <input id="fileInput" type="file" accept="application/pdf,image/*,text/plain,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple hidden />
             <p data-i18n="upload.drop">📎 Drag & drop PDF / images / .txt here</p>
             <button id="browseBtn" class="btn ghost" data-i18n="upload.browse">Browse files</button>
             <p class="hint" data-i18n="upload.hint">PDFs &amp; text read instantly. Images are OCR-scanned.</p>
@@ -100,6 +100,7 @@
         <button class="tool" data-tool="mindmap" data-i18n="tool.mindmap">🧠 Mindmap</button>
         <button class="tool" data-tool="explain" data-i18n="tool.explain">✨ Explain Simply</button>
         <button class="tool" data-tool="voice" data-i18n="tool.voice">🔊 Voice Revision</button>
+        <button class="tool" data-tool="translate" data-i18n="tool.translate">🌍 Translate</button>
         <button class="tool" data-tool="lastnight" data-i18n="tool.lastnight">🌙 Last-Night Mode</button>
         <button class="tool" data-tool="share" data-i18n="tool.share">📸 Share Card</button>
         <button class="tool" data-tool="source" data-i18n="tool.source">📄 Source Text</button>
@@ -242,6 +243,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
