@@ -45,6 +45,14 @@ body {
 .navbtn:hover { color: var(--text); }
 .navbtn.active { color: #fff; background: var(--primary); }
 .iconbtn { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; cursor: pointer; font-size: 16px; }
+.langsel { background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; cursor: pointer; font-size: 14px; }
+
+/* Right-to-left (Urdu) */
+body[dir="rtl"] { direction: rtl; }
+body[dir="rtl"] .study-head, body[dir="rtl"] .voice-panel, body[dir="rtl"] .toolbar, body[dir="rtl"] .actions { direction: rtl; }
+body[dir="rtl"] .formula { border-left: none; border-right: 3px solid var(--accent); }
+body[dir="rtl"] .output ul { margin: 0 20px 14px 0; }
+body[dir="rtl"] .recent-item:hover { transform: translateX(-3px); }
 
 main { max-width: 1080px; margin: 0 auto; padding: 28px 20px 60px; }
 .view { display: none; animation: fade .3s ease; }

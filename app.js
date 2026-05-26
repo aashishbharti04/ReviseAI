@@ -7,6 +7,228 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 const $ = (id) => document.getElementById(id);
 const STORE_KEY = "reviseai.subjects";
 const SETTINGS_KEY = "reviseai.settings";
+const LANG_KEY = "reviseai.lang";
+
+/* ---------------- i18n ---------------- */
+const LANG_META = {
+  en: { name: "English", voice: "en-US", rtl: false },
+  hi: { name: "Hindi", voice: "hi-IN", rtl: false },
+  ur: { name: "Urdu", voice: "ur-PK", rtl: true },
+  pa: { name: "Punjabi", voice: "pa-IN", rtl: false },
+};
+const I18N = {
+  en: {
+    "tagline": "Smart exam notes compressor", "nav.dashboard": "Dashboard", "nav.study": "Study",
+    "hero.title": "Turn 100 pages into a 1-page revision sheet.",
+    "hero.sub": "Upload your notes, and ReviseAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.",
+    "upload.title": "📤 Upload notes", "upload.subject": "Subject", "upload.subjectPh": "e.g. Physics — Chapter 4",
+    "upload.examDate": "Exam date (optional)", "upload.drop": "📎 Drag & drop PDF / images / .txt here",
+    "upload.browse": "Browse files", "upload.hint": "PDFs & text read instantly. Images are OCR-scanned.",
+    "upload.process": "Process notes →", "upload.recent": "📈 Recent subjects",
+    "upload.recentEmpty": "No subjects yet — upload your first notes!",
+    "tool.summary": "📝 Compress Notes", "tool.flashcards": "🃏 Flashcards", "tool.quiz": "❓ Quiz",
+    "tool.mindmap": "🧠 Mindmap", "tool.explain": "✨ Explain Simply", "tool.voice": "🔊 Voice Revision",
+    "tool.lastnight": "🌙 Last-Night Mode", "tool.share": "📸 Share Card", "tool.source": "📄 Source Text",
+    "tool.download": "⬇️ Download PDF",
+    "settings.title": "⚙️ AI Settings",
+    "settings.desc": "ReviseAI works fully free & offline. For higher-quality, rewritten AI summaries you can optionally add your own API key. It is stored only in your browser and never uploaded anywhere except the provider you choose.",
+    "settings.provider": "Provider", "settings.providerOffline": "Offline (free, no key)",
+    "settings.key": "API key", "settings.keyPh": "Paste key (only needed for Gemini/OpenAI)",
+    "settings.save": "Save", "settings.close": "Close",
+    "footer.text": "Built with ReviseAI · Runs 100% in your browser", "footer.source": "Source on GitHub",
+    "study.empty": "No notes loaded", "study.pickTool": "Pick a tool above to generate your study materials.",
+    "study.uploadFirst": "Upload and process notes first.", "study.words": "words", "study.saved": "saved",
+    "countdown.days": "days to exam", "countdown.passed": "exam passed",
+    "recent.days": "days to exam", "recent.noExam": "no exam date",
+    "due.title": "🔁 Due for revision today", "due.study": "Study", "due.revised": "✓ Revised",
+    "due.stage": "stage", "due.weak": "weak topics", "due.onTrack": "on track",
+    "loader.working": "Working…",
+    "sum.title": "📝 Compressed Notes", "sum.titleAI": "📝 Compressed Notes (AI)",
+    "sum.keyPoints": "Key points", "sum.definitions": "Definitions", "sum.formulas": "Formulas & key lines", "sum.terms": "Important terms",
+    "fc.title": "🃏 Flashcards", "fc.hint": "(tap to flip)", "fc.none": "Not enough structured content to build flashcards. Try the Compress tool.",
+    "fc.whatIs": "What is {t}?", "fc.explain": "Explain the term \"{t}\".",
+    "quiz.title": "❓ Quiz", "quiz.none": "Not enough content to build a quiz.", "quiz.score": "Score:",
+    "quiz.questions": "questions", "quiz.fillBlank": "Fill the blank:",
+    "quiz.weakTitle": "⚠️ Your weak topics (from past quizzes)",
+    "quiz.saved": "Saved {n} weak topic(s) for revision", "quiz.noWeak": "🎉 No weak topics!",
+    "mm.title": "🧠 Mindmap", "mm.hint": "Auto-built from your most important topics. Hover a node for the full text.", "mm.none": "Not enough content to build a mindmap.",
+    "ex.title": "✨ Explain Simply", "ex.beginner": "👶 Beginner", "ex.kid": "🧒 Kid Mode", "ex.teacher": "👩‍🏫 Teacher",
+    "ex.offlineNote": "ℹ️ Offline mode can't translate. Add a free Gemini key in ⚙️ Settings for explanations in {lang}. Showing simplified key points for now:",
+    "ex.glossary": "Glossary",
+    "voice.title": "🔊 Voice Revision", "voice.play": "▶️ Play", "voice.pause": "⏸ Pause", "voice.resume": "⏵ Resume", "voice.stop": "⏹ Stop", "voice.speed": "Speed",
+    "voice.note": "Great for revising while walking, in the gym, or travelling. 🎧", "voice.unsupported": "Your browser doesn't support speech synthesis.",
+    "ln.title": "🌙 Last-Night Revision Mode", "ln.sub": "Everything essential, nothing else.",
+    "ln.must": "🔑 Must-know concepts", "ln.formulas": "🧮 Formulas only", "ln.probable": "🎯 Top probable questions",
+    "ln.define": "Define / explain: {t}.", "ln.shortNotes": "Write short notes on \"{t}\".",
+    "share.title": "📸 Shareable Revision Card", "share.prev": "‹ Prev", "share.next": "Next ›", "share.download": "⬇️ Download PNG",
+    "share.note": "Post it to your story — instant revision + free marketing. 🚀", "share.none": "Not enough content for a share card.",
+    "src.title": "📄 Extracted Source Text",
+  },
+  hi: {
+    "tagline": "स्मार्ट परीक्षा नोट्स कंप्रेसर", "nav.dashboard": "डैशबोर्ड", "nav.study": "अध्ययन",
+    "hero.title": "100 पन्नों को 1-पेज रिवीजन शीट में बदलें।",
+    "hero.sub": "अपने नोट्स अपलोड करें, और ReviseAI आपके ब्राउज़र में ही कॉम्प्रेस्ड नोट्स, फ्लैशकार्ड, क्विज़ और लास्ट-नाइट चीट शीट बनाता है।",
+    "upload.title": "📤 नोट्स अपलोड करें", "upload.subject": "विषय", "upload.subjectPh": "जैसे भौतिकी — अध्याय 4",
+    "upload.examDate": "परीक्षा तिथि (वैकल्पिक)", "upload.drop": "📎 PDF / इमेज / .txt यहाँ खींचें और छोड़ें",
+    "upload.browse": "फ़ाइल चुनें", "upload.hint": "PDF और टेक्स्ट तुरंत पढ़े जाते हैं। इमेज OCR से स्कैन होती हैं।",
+    "upload.process": "नोट्स प्रोसेस करें →", "upload.recent": "📈 हाल के विषय",
+    "upload.recentEmpty": "अभी कोई विषय नहीं — अपने पहले नोट्स अपलोड करें!",
+    "tool.summary": "📝 नोट्स कंप्रेस करें", "tool.flashcards": "🃏 फ्लैशकार्ड", "tool.quiz": "❓ क्विज़",
+    "tool.mindmap": "🧠 माइंडमैप", "tool.explain": "✨ आसान भाषा में समझाएँ", "tool.voice": "🔊 वॉइस रिवीजन",
+    "tool.lastnight": "🌙 लास्ट-नाइट मोड", "tool.share": "📸 शेयर कार्ड", "tool.source": "📄 मूल टेक्स्ट",
+    "tool.download": "⬇️ PDF डाउनलोड",
+    "settings.title": "⚙️ AI सेटिंग्स",
+    "settings.desc": "ReviseAI पूरी तरह मुफ़्त और ऑफ़लाइन काम करता है। बेहतर AI सारांश के लिए आप अपनी API key जोड़ सकते हैं। यह केवल आपके ब्राउज़र में सहेजी जाती है।",
+    "settings.provider": "प्रोवाइडर", "settings.providerOffline": "ऑफ़लाइन (मुफ़्त, बिना key)",
+    "settings.key": "API key", "settings.keyPh": "key पेस्ट करें (केवल Gemini/OpenAI के लिए)",
+    "settings.save": "सहेजें", "settings.close": "बंद करें",
+    "footer.text": "ReviseAI से बना · पूरी तरह आपके ब्राउज़र में चलता है", "footer.source": "GitHub पर सोर्स",
+    "study.empty": "कोई नोट्स लोड नहीं", "study.pickTool": "अपनी अध्ययन सामग्री बनाने के लिए ऊपर कोई टूल चुनें।",
+    "study.uploadFirst": "पहले नोट्स अपलोड और प्रोसेस करें।", "study.words": "शब्द", "study.saved": "सहेजा गया",
+    "countdown.days": "दिन शेष", "countdown.passed": "परीक्षा हो गई",
+    "recent.days": "दिन शेष", "recent.noExam": "कोई परीक्षा तिथि नहीं",
+    "due.title": "🔁 आज रिवीजन के लिए", "due.study": "अध्ययन", "due.revised": "✓ रिवाइज़ हो गया",
+    "due.stage": "चरण", "due.weak": "कमज़ोर विषय", "due.onTrack": "सही दिशा में",
+    "loader.working": "काम हो रहा है…",
+    "sum.title": "📝 कॉम्प्रेस्ड नोट्स", "sum.titleAI": "📝 कॉम्प्रेस्ड नोट्स (AI)",
+    "sum.keyPoints": "मुख्य बिंदु", "sum.definitions": "परिभाषाएँ", "sum.formulas": "सूत्र और मुख्य पंक्तियाँ", "sum.terms": "महत्वपूर्ण शब्द",
+    "fc.title": "🃏 फ्लैशकार्ड", "fc.hint": "(पलटने के लिए टैप करें)", "fc.none": "फ्लैशकार्ड बनाने के लिए पर्याप्त सामग्री नहीं। कंप्रेस टूल आज़माएँ।",
+    "fc.whatIs": "{t} क्या है?", "fc.explain": "\"{t}\" शब्द समझाएँ।",
+    "quiz.title": "❓ क्विज़", "quiz.none": "क्विज़ बनाने के लिए पर्याप्त सामग्री नहीं।", "quiz.score": "स्कोर:",
+    "quiz.questions": "प्रश्न", "quiz.fillBlank": "रिक्त स्थान भरें:",
+    "quiz.weakTitle": "⚠️ आपके कमज़ोर विषय (पिछली क्विज़ से)",
+    "quiz.saved": "रिवीजन के लिए {n} कमज़ोर विषय सहेजे गए", "quiz.noWeak": "🎉 कोई कमज़ोर विषय नहीं!",
+    "mm.title": "🧠 माइंडमैप", "mm.hint": "आपके सबसे महत्वपूर्ण विषयों से अपने-आप बना। पूरा टेक्स्ट देखने के लिए नोड पर होवर करें।", "mm.none": "माइंडमैप बनाने के लिए पर्याप्त सामग्री नहीं।",
+    "ex.title": "✨ आसान भाषा में समझाएँ", "ex.beginner": "👶 शुरुआती", "ex.kid": "🧒 बच्चों के लिए", "ex.teacher": "👩‍🏫 शिक्षक",
+    "ex.offlineNote": "ℹ️ ऑफ़लाइन मोड अनुवाद नहीं कर सकता। {lang} में व्याख्या के लिए ⚙️ सेटिंग्स में मुफ़्त Gemini key जोड़ें। अभी सरल मुख्य बिंदु दिखाए जा रहे हैं:",
+    "ex.glossary": "शब्दावली",
+    "voice.title": "🔊 वॉइस रिवीजन", "voice.play": "▶️ चलाएँ", "voice.pause": "⏸ रोकें", "voice.resume": "⏵ जारी रखें", "voice.stop": "⏹ बंद करें", "voice.speed": "गति",
+    "voice.note": "चलते-फिरते, जिम में या यात्रा के दौरान रिवीजन के लिए बढ़िया। 🎧", "voice.unsupported": "आपका ब्राउज़र वॉइस सिंथेसिस का समर्थन नहीं करता।",
+    "ln.title": "🌙 लास्ट-नाइट रिवीजन मोड", "ln.sub": "केवल ज़रूरी, और कुछ नहीं।",
+    "ln.must": "🔑 ज़रूरी अवधारणाएँ", "ln.formulas": "🧮 केवल सूत्र", "ln.probable": "🎯 सबसे संभावित प्रश्न",
+    "ln.define": "परिभाषित/समझाएँ: {t}।", "ln.shortNotes": "\"{t}\" पर संक्षिप्त नोट्स लिखें।",
+    "share.title": "📸 शेयर करने योग्य रिवीजन कार्ड", "share.prev": "‹ पिछला", "share.next": "अगला ›", "share.download": "⬇️ PNG डाउनलोड",
+    "share.note": "इसे अपनी स्टोरी पर डालें — तुरंत रिवीजन + मुफ़्त मार्केटिंग। 🚀", "share.none": "शेयर कार्ड के लिए पर्याप्त सामग्री नहीं।",
+    "src.title": "📄 निकाला गया मूल टेक्स्ट",
+  },
+  ur: {
+    "tagline": "اسمارٹ امتحان نوٹس کمپریسر", "nav.dashboard": "ڈیش بورڈ", "nav.study": "مطالعہ",
+    "hero.title": "100 صفحات کو 1 صفحے کی ریویژن شیٹ میں بدلیں۔",
+    "hero.sub": "اپنے نوٹس اپلوڈ کریں، اور ReviseAI آپ کے براؤزر میں ہی کمپریسڈ نوٹس، فلیش کارڈز، کوئز اور لاسٹ نائٹ چیٹ شیٹ بناتا ہے۔",
+    "upload.title": "📤 نوٹس اپلوڈ کریں", "upload.subject": "مضمون", "upload.subjectPh": "مثلاً فزکس — باب 4",
+    "upload.examDate": "امتحان کی تاریخ (اختیاری)", "upload.drop": "📎 PDF / تصاویر / .txt یہاں ڈراپ کریں",
+    "upload.browse": "فائل منتخب کریں", "upload.hint": "PDF اور ٹیکسٹ فوراً پڑھے جاتے ہیں۔ تصاویر OCR سے اسکین ہوتی ہیں۔",
+    "upload.process": "نوٹس پروسیس کریں →", "upload.recent": "📈 حالیہ مضامین",
+    "upload.recentEmpty": "ابھی کوئی مضمون نہیں — اپنے پہلے نوٹس اپلوڈ کریں!",
+    "tool.summary": "📝 نوٹس کمپریس کریں", "tool.flashcards": "🃏 فلیش کارڈز", "tool.quiz": "❓ کوئز",
+    "tool.mindmap": "🧠 مائنڈ میپ", "tool.explain": "✨ آسان زبان میں سمجھائیں", "tool.voice": "🔊 صوتی ریویژن",
+    "tool.lastnight": "🌙 لاسٹ نائٹ موڈ", "tool.share": "📸 شیئر کارڈ", "tool.source": "📄 اصل متن",
+    "tool.download": "⬇️ PDF ڈاؤن لوڈ",
+    "settings.title": "⚙️ AI ترتیبات",
+    "settings.desc": "ReviseAI مکمل طور پر مفت اور آف لائن کام کرتا ہے۔ بہتر AI خلاصے کے لیے آپ اپنی API key شامل کر سکتے ہیں۔ یہ صرف آپ کے براؤزر میں محفوظ ہوتی ہے۔",
+    "settings.provider": "پرووائیڈر", "settings.providerOffline": "آف لائن (مفت، بغیر key)",
+    "settings.key": "API key", "settings.keyPh": "key پیسٹ کریں (صرف Gemini/OpenAI کے لیے)",
+    "settings.save": "محفوظ کریں", "settings.close": "بند کریں",
+    "footer.text": "ReviseAI سے بنایا گیا · مکمل طور پر آپ کے براؤزر میں چلتا ہے", "footer.source": "GitHub پر سورس",
+    "study.empty": "کوئی نوٹس لوڈ نہیں", "study.pickTool": "اپنا مطالعاتی مواد بنانے کے لیے اوپر کوئی ٹول منتخب کریں۔",
+    "study.uploadFirst": "پہلے نوٹس اپلوڈ اور پروسیس کریں۔", "study.words": "الفاظ", "study.saved": "محفوظ شدہ",
+    "countdown.days": "دن باقی", "countdown.passed": "امتحان ہو گیا",
+    "recent.days": "دن باقی", "recent.noExam": "کوئی امتحان تاریخ نہیں",
+    "due.title": "🔁 آج ریویژن کے لیے", "due.study": "مطالعہ", "due.revised": "✓ ریوائز ہو گیا",
+    "due.stage": "مرحلہ", "due.weak": "کمزور موضوعات", "due.onTrack": "درست راہ پر",
+    "loader.working": "کام جاری ہے…",
+    "sum.title": "📝 کمپریسڈ نوٹس", "sum.titleAI": "📝 کمپریسڈ نوٹس (AI)",
+    "sum.keyPoints": "اہم نکات", "sum.definitions": "تعریفیں", "sum.formulas": "فارمولے اور اہم سطریں", "sum.terms": "اہم اصطلاحات",
+    "fc.title": "🃏 فلیش کارڈز", "fc.hint": "(پلٹنے کے لیے ٹیپ کریں)", "fc.none": "فلیش کارڈز بنانے کے لیے کافی مواد نہیں۔ کمپریس ٹول آزمائیں۔",
+    "fc.whatIs": "{t} کیا ہے؟", "fc.explain": "\"{t}\" کی اصطلاح سمجھائیں۔",
+    "quiz.title": "❓ کوئز", "quiz.none": "کوئز بنانے کے لیے کافی مواد نہیں۔", "quiz.score": "اسکور:",
+    "quiz.questions": "سوالات", "quiz.fillBlank": "خالی جگہ پُر کریں:",
+    "quiz.weakTitle": "⚠️ آپ کے کمزور موضوعات (پچھلے کوئز سے)",
+    "quiz.saved": "ریویژن کے لیے {n} کمزور موضوع محفوظ ہوئے", "quiz.noWeak": "🎉 کوئی کمزور موضوع نہیں!",
+    "mm.title": "🧠 مائنڈ میپ", "mm.hint": "آپ کے سب سے اہم موضوعات سے خودکار بنایا گیا۔ مکمل متن کے لیے نوڈ پر ہوور کریں۔", "mm.none": "مائنڈ میپ بنانے کے لیے کافی مواد نہیں۔",
+    "ex.title": "✨ آسان زبان میں سمجھائیں", "ex.beginner": "👶 ابتدائی", "ex.kid": "🧒 بچوں کے لیے", "ex.teacher": "👩‍🏫 استاد",
+    "ex.offlineNote": "ℹ️ آف لائن موڈ ترجمہ نہیں کر سکتا۔ {lang} میں وضاحت کے لیے ⚙️ ترتیبات میں مفت Gemini key شامل کریں۔ ابھی آسان اہم نکات دکھائے جا رہے ہیں:",
+    "ex.glossary": "لغت",
+    "voice.title": "🔊 صوتی ریویژن", "voice.play": "▶️ چلائیں", "voice.pause": "⏸ روکیں", "voice.resume": "⏵ جاری رکھیں", "voice.stop": "⏹ بند کریں", "voice.speed": "رفتار",
+    "voice.note": "چلتے پھرتے، جم میں یا سفر کے دوران ریویژن کے لیے بہترین۔ 🎧", "voice.unsupported": "آپ کا براؤزر صوتی ترکیب کی حمایت نہیں کرتا۔",
+    "ln.title": "🌙 لاسٹ نائٹ ریویژن موڈ", "ln.sub": "صرف ضروری، اور کچھ نہیں۔",
+    "ln.must": "🔑 ضروری تصورات", "ln.formulas": "🧮 صرف فارمولے", "ln.probable": "🎯 سب سے ممکنہ سوالات",
+    "ln.define": "تعریف/وضاحت کریں: {t}۔", "ln.shortNotes": "\"{t}\" پر مختصر نوٹس لکھیں۔",
+    "share.title": "📸 شیئر کرنے کے قابل ریویژن کارڈ", "share.prev": "‹ پچھلا", "share.next": "اگلا ›", "share.download": "⬇️ PNG ڈاؤن لوڈ",
+    "share.note": "اسے اپنی اسٹوری پر لگائیں — فوری ریویژن + مفت مارکیٹنگ۔ 🚀", "share.none": "شیئر کارڈ کے لیے کافی مواد نہیں۔",
+    "src.title": "📄 نکالا گیا اصل متن",
+  },
+  pa: {
+    "tagline": "ਸਮਾਰਟ ਪ੍ਰੀਖਿਆ ਨੋਟਸ ਕੰਪ੍ਰੈਸਰ", "nav.dashboard": "ਡੈਸ਼ਬੋਰਡ", "nav.study": "ਅਧਿਐਨ",
+    "hero.title": "100 ਸਫ਼ਿਆਂ ਨੂੰ 1-ਸਫ਼ੇ ਦੀ ਰਿਵੀਜ਼ਨ ਸ਼ੀਟ ਵਿੱਚ ਬਦਲੋ।",
+    "hero.sub": "ਆਪਣੇ ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ, ਅਤੇ ReviseAI ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਹੀ ਕੰਪ੍ਰੈਸਡ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ, ਕਵਿਜ਼ ਅਤੇ ਲਾਸਟ-ਨਾਈਟ ਚੀਟ ਸ਼ੀਟ ਬਣਾਉਂਦਾ ਹੈ।",
+    "upload.title": "📤 ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ", "upload.subject": "ਵਿਸ਼ਾ", "upload.subjectPh": "ਜਿਵੇਂ ਭੌਤਿਕ ਵਿਗਿਆਨ — ਅਧਿਆਇ 4",
+    "upload.examDate": "ਪ੍ਰੀਖਿਆ ਤਾਰੀਖ਼ (ਚੋਣਵੀਂ)", "upload.drop": "📎 PDF / ਤਸਵੀਰਾਂ / .txt ਇੱਥੇ ਖਿੱਚੋ ਤੇ ਛੱਡੋ",
+    "upload.browse": "ਫ਼ਾਈਲ ਚੁਣੋ", "upload.hint": "PDF ਅਤੇ ਟੈਕਸਟ ਤੁਰੰਤ ਪੜ੍ਹੇ ਜਾਂਦੇ ਹਨ। ਤਸਵੀਰਾਂ OCR ਨਾਲ ਸਕੈਨ ਹੁੰਦੀਆਂ ਹਨ।",
+    "upload.process": "ਨੋਟਸ ਪ੍ਰੋਸੈਸ ਕਰੋ →", "upload.recent": "📈 ਹਾਲੀਆ ਵਿਸ਼ੇ",
+    "upload.recentEmpty": "ਹਾਲੇ ਕੋਈ ਵਿਸ਼ਾ ਨਹੀਂ — ਆਪਣੇ ਪਹਿਲੇ ਨੋਟਸ ਅਪਲੋਡ ਕਰੋ!",
+    "tool.summary": "📝 ਨੋਟਸ ਕੰਪ੍ਰੈਸ ਕਰੋ", "tool.flashcards": "🃏 ਫਲੈਸ਼ਕਾਰਡ", "tool.quiz": "❓ ਕਵਿਜ਼",
+    "tool.mindmap": "🧠 ਮਾਈਂਡਮੈਪ", "tool.explain": "✨ ਸੌਖੀ ਭਾਸ਼ਾ ਵਿੱਚ ਸਮਝਾਓ", "tool.voice": "🔊 ਵੌਇਸ ਰਿਵੀਜ਼ਨ",
+    "tool.lastnight": "🌙 ਲਾਸਟ-ਨਾਈਟ ਮੋਡ", "tool.share": "📸 ਸ਼ੇਅਰ ਕਾਰਡ", "tool.source": "📄 ਮੂਲ ਟੈਕਸਟ",
+    "tool.download": "⬇️ PDF ਡਾਊਨਲੋਡ",
+    "settings.title": "⚙️ AI ਸੈਟਿੰਗਾਂ",
+    "settings.desc": "ReviseAI ਪੂਰੀ ਤਰ੍ਹਾਂ ਮੁਫ਼ਤ ਅਤੇ ਆਫ਼ਲਾਈਨ ਕੰਮ ਕਰਦਾ ਹੈ। ਬਿਹਤਰ AI ਸਾਰ ਲਈ ਤੁਸੀਂ ਆਪਣੀ API key ਜੋੜ ਸਕਦੇ ਹੋ। ਇਹ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਸੰਭਾਲੀ ਜਾਂਦੀ ਹੈ।",
+    "settings.provider": "ਪ੍ਰੋਵਾਈਡਰ", "settings.providerOffline": "ਆਫ਼ਲਾਈਨ (ਮੁਫ਼ਤ, ਬਿਨਾਂ key)",
+    "settings.key": "API key", "settings.keyPh": "key ਪੇਸਟ ਕਰੋ (ਸਿਰਫ਼ Gemini/OpenAI ਲਈ)",
+    "settings.save": "ਸੰਭਾਲੋ", "settings.close": "ਬੰਦ ਕਰੋ",
+    "footer.text": "ReviseAI ਨਾਲ ਬਣਾਇਆ · ਪੂਰੀ ਤਰ੍ਹਾਂ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਚੱਲਦਾ ਹੈ", "footer.source": "GitHub ਉੱਤੇ ਸੋਰਸ",
+    "study.empty": "ਕੋਈ ਨੋਟਸ ਲੋਡ ਨਹੀਂ", "study.pickTool": "ਆਪਣੀ ਅਧਿਐਨ ਸਮੱਗਰੀ ਬਣਾਉਣ ਲਈ ਉੱਪਰ ਕੋਈ ਟੂਲ ਚੁਣੋ।",
+    "study.uploadFirst": "ਪਹਿਲਾਂ ਨੋਟਸ ਅਪਲੋਡ ਅਤੇ ਪ੍ਰੋਸੈਸ ਕਰੋ।", "study.words": "ਸ਼ਬਦ", "study.saved": "ਸੰਭਾਲਿਆ",
+    "countdown.days": "ਦਿਨ ਬਾਕੀ", "countdown.passed": "ਪ੍ਰੀਖਿਆ ਹੋ ਗਈ",
+    "recent.days": "ਦਿਨ ਬਾਕੀ", "recent.noExam": "ਕੋਈ ਪ੍ਰੀਖਿਆ ਤਾਰੀਖ਼ ਨਹੀਂ",
+    "due.title": "🔁 ਅੱਜ ਰਿਵੀਜ਼ਨ ਲਈ", "due.study": "ਅਧਿਐਨ", "due.revised": "✓ ਰਿਵਾਈਜ਼ ਹੋ ਗਿਆ",
+    "due.stage": "ਪੜਾਅ", "due.weak": "ਕਮਜ਼ੋਰ ਵਿਸ਼ੇ", "due.onTrack": "ਸਹੀ ਰਾਹ ਉੱਤੇ",
+    "loader.working": "ਕੰਮ ਚੱਲ ਰਿਹਾ ਹੈ…",
+    "sum.title": "📝 ਕੰਪ੍ਰੈਸਡ ਨੋਟਸ", "sum.titleAI": "📝 ਕੰਪ੍ਰੈਸਡ ਨੋਟਸ (AI)",
+    "sum.keyPoints": "ਮੁੱਖ ਨੁਕਤੇ", "sum.definitions": "ਪਰਿਭਾਸ਼ਾਵਾਂ", "sum.formulas": "ਫਾਰਮੂਲੇ ਤੇ ਮੁੱਖ ਲਾਈਨਾਂ", "sum.terms": "ਮਹੱਤਵਪੂਰਨ ਸ਼ਬਦ",
+    "fc.title": "🃏 ਫਲੈਸ਼ਕਾਰਡ", "fc.hint": "(ਪਲਟਣ ਲਈ ਟੈਪ ਕਰੋ)", "fc.none": "ਫਲੈਸ਼ਕਾਰਡ ਬਣਾਉਣ ਲਈ ਕਾਫ਼ੀ ਸਮੱਗਰੀ ਨਹੀਂ। ਕੰਪ੍ਰੈਸ ਟੂਲ ਅਜ਼ਮਾਓ।",
+    "fc.whatIs": "{t} ਕੀ ਹੈ?", "fc.explain": "\"{t}\" ਸ਼ਬਦ ਸਮਝਾਓ।",
+    "quiz.title": "❓ ਕਵਿਜ਼", "quiz.none": "ਕਵਿਜ਼ ਬਣਾਉਣ ਲਈ ਕਾਫ਼ੀ ਸਮੱਗਰੀ ਨਹੀਂ।", "quiz.score": "ਸਕੋਰ:",
+    "quiz.questions": "ਸਵਾਲ", "quiz.fillBlank": "ਖਾਲੀ ਥਾਂ ਭਰੋ:",
+    "quiz.weakTitle": "⚠️ ਤੁਹਾਡੇ ਕਮਜ਼ੋਰ ਵਿਸ਼ੇ (ਪਿਛਲੇ ਕਵਿਜ਼ ਤੋਂ)",
+    "quiz.saved": "ਰਿਵੀਜ਼ਨ ਲਈ {n} ਕਮਜ਼ੋਰ ਵਿਸ਼ੇ ਸੰਭਾਲੇ ਗਏ", "quiz.noWeak": "🎉 ਕੋਈ ਕਮਜ਼ੋਰ ਵਿਸ਼ਾ ਨਹੀਂ!",
+    "mm.title": "🧠 ਮਾਈਂਡਮੈਪ", "mm.hint": "ਤੁਹਾਡੇ ਸਭ ਤੋਂ ਮਹੱਤਵਪੂਰਨ ਵਿਸ਼ਿਆਂ ਤੋਂ ਆਪਣੇ-ਆਪ ਬਣਿਆ। ਪੂਰਾ ਟੈਕਸਟ ਵੇਖਣ ਲਈ ਨੋਡ ਉੱਤੇ ਹੋਵਰ ਕਰੋ।", "mm.none": "ਮਾਈਂਡਮੈਪ ਬਣਾਉਣ ਲਈ ਕਾਫ਼ੀ ਸਮੱਗਰੀ ਨਹੀਂ।",
+    "ex.title": "✨ ਸੌਖੀ ਭਾਸ਼ਾ ਵਿੱਚ ਸਮਝਾਓ", "ex.beginner": "👶 ਸ਼ੁਰੂਆਤੀ", "ex.kid": "🧒 ਬੱਚਿਆਂ ਲਈ", "ex.teacher": "👩‍🏫 ਅਧਿਆਪਕ",
+    "ex.offlineNote": "ℹ️ ਆਫ਼ਲਾਈਨ ਮੋਡ ਅਨੁਵਾਦ ਨਹੀਂ ਕਰ ਸਕਦਾ। {lang} ਵਿੱਚ ਵਿਆਖਿਆ ਲਈ ⚙️ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਮੁਫ਼ਤ Gemini key ਜੋੜੋ। ਹੁਣੇ ਸਰਲ ਮੁੱਖ ਨੁਕਤੇ ਦਿਖਾਏ ਜਾ ਰਹੇ ਹਨ:",
+    "ex.glossary": "ਸ਼ਬਦਾਵਲੀ",
+    "voice.title": "🔊 ਵੌਇਸ ਰਿਵੀਜ਼ਨ", "voice.play": "▶️ ਚਲਾਓ", "voice.pause": "⏸ ਰੋਕੋ", "voice.resume": "⏵ ਜਾਰੀ ਰੱਖੋ", "voice.stop": "⏹ ਬੰਦ ਕਰੋ", "voice.speed": "ਗਤੀ",
+    "voice.note": "ਚੱਲਦੇ-ਫਿਰਦੇ, ਜਿਮ ਵਿੱਚ ਜਾਂ ਸਫ਼ਰ ਦੌਰਾਨ ਰਿਵੀਜ਼ਨ ਲਈ ਵਧੀਆ। 🎧", "voice.unsupported": "ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਸਪੀਚ ਸਿੰਥੇਸਿਸ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ।",
+    "ln.title": "🌙 ਲਾਸਟ-ਨਾਈਟ ਰਿਵੀਜ਼ਨ ਮੋਡ", "ln.sub": "ਸਿਰਫ਼ ਜ਼ਰੂਰੀ, ਹੋਰ ਕੁਝ ਨਹੀਂ।",
+    "ln.must": "🔑 ਜ਼ਰੂਰੀ ਸੰਕਲਪ", "ln.formulas": "🧮 ਸਿਰਫ਼ ਫਾਰਮੂਲੇ", "ln.probable": "🎯 ਸਭ ਤੋਂ ਸੰਭਾਵੀ ਸਵਾਲ",
+    "ln.define": "ਪਰਿਭਾਸ਼ਿਤ/ਸਮਝਾਓ: {t}।", "ln.shortNotes": "\"{t}\" ਉੱਤੇ ਸੰਖੇਪ ਨੋਟਸ ਲਿਖੋ।",
+    "share.title": "📸 ਸ਼ੇਅਰ ਕਰਨ ਯੋਗ ਰਿਵੀਜ਼ਨ ਕਾਰਡ", "share.prev": "‹ ਪਿਛਲਾ", "share.next": "ਅਗਲਾ ›", "share.download": "⬇️ PNG ਡਾਊਨਲੋਡ",
+    "share.note": "ਇਸਨੂੰ ਆਪਣੀ ਸਟੋਰੀ ਉੱਤੇ ਪਾਓ — ਤੁਰੰਤ ਰਿਵੀਜ਼ਨ + ਮੁਫ਼ਤ ਮਾਰਕੀਟਿੰਗ। 🚀", "share.none": "ਸ਼ੇਅਰ ਕਾਰਡ ਲਈ ਕਾਫ਼ੀ ਸਮੱਗਰੀ ਨਹੀਂ।",
+    "src.title": "📄 ਕੱਢਿਆ ਗਿਆ ਮੂਲ ਟੈਕਸਟ",
+  },
+};
+let LANG = localStorage.getItem(LANG_KEY) || "en";
+function t(key, vars) {
+  let s = (I18N[LANG] && I18N[LANG][key]) || I18N.en[key] || key;
+  if (vars) for (const k in vars) s = s.replace(`{${k}}`, vars[k]);
+  return s;
+}
+function applyLang(code) {
+  LANG = I18N[code] ? code : "en";
+  localStorage.setItem(LANG_KEY, LANG);
+  const meta = LANG_META[LANG];
+  document.documentElement.lang = LANG;
+  document.body.dir = meta.rtl ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
+  $("langSelect").value = LANG;
+  $("loaderText").textContent = t("loader.working");
+  renderRecent();
+  renderDue();
+  if (state.current) {
+    $("studyMeta").textContent = `${state.current.text.split(/\s+/).length} ${t("study.words")} · ${t("study.saved")} ${new Date(state.current.created).toLocaleString()}`;
+    renderCountdown();
+  }
+}
 
 const state = {
   files: [],        // {name, kind, file}
@@ -55,6 +277,7 @@ function applyTheme(t) {
 }
 $("themeBtn").onclick = () =>
   applyTheme(document.body.dataset.theme === "light" ? "dark" : "light");
+$("langSelect").onchange = (e) => applyLang(e.target.value);
 
 /* ---------------- File handling ---------------- */
 const dropzone = $("dropzone");
@@ -196,14 +419,14 @@ function renderDue() {
   const now = new Date();
   const due = getSubjects().filter((r) => r.nextReview && new Date(r.nextReview) <= now);
   if (!due.length) { el.innerHTML = ""; return; }
-  el.innerHTML = `<div class="due-banner"><h3>🔁 Due for revision today (${due.length})</h3>
+  el.innerHTML = `<div class="due-banner"><h3>${t("due.title")} (${due.length})</h3>
     <div class="due-list">${due.map((r) => `
       <div class="due-chip" data-id="${r.id}">
         <span class="dc-title">${escapeHtml(r.subject)}</span>
-        <span style="font-size:12px">stage ${r.srStage + 1} · ${r.weakTerms?.length ? r.weakTerms.length + " weak topics" : "on track"}</span>
+        <span style="font-size:12px">${t("due.stage")} ${r.srStage + 1} · ${r.weakTerms?.length ? r.weakTerms.length + " " + t("due.weak") : t("due.onTrack")}</span>
         <div style="display:flex;gap:6px">
-          <button class="open">Study</button>
-          <button class="revised">✓ Revised</button>
+          <button class="open">${t("due.study")}</button>
+          <button class="revised">${t("due.revised")}</button>
         </div>
       </div>`).join("")}</div></div>`;
   el.querySelectorAll(".due-chip").forEach((chip) => {
@@ -220,7 +443,7 @@ function renderDue() {
 function renderRecent() {
   const el = $("recentList");
   const list = getSubjects();
-  if (!list.length) { el.innerHTML = `<p class="recent-empty">No subjects yet — upload your first notes!</p>`; return; }
+  if (!list.length) { el.innerHTML = `<p class="recent-empty">${t("upload.recentEmpty")}</p>`; return; }
   el.innerHTML = "";
   list.forEach((r) => {
     const days = daysLeft(r.examDate);
@@ -228,7 +451,7 @@ function renderRecent() {
     div.className = "recent-item";
     div.innerHTML = `<h4>${escapeHtml(r.subject)}</h4>
       <div class="sub"><span>${new Date(r.created).toLocaleDateString()}</span>
-      <span>${days != null ? days + " days to exam" : "no exam date"}</span></div>`;
+      <span>${days != null ? days + " " + t("recent.days") : t("recent.noExam")}</span></div>`;
     div.onclick = () => { loadSubject(r); show("study"); };
     el.appendChild(div);
   });
@@ -240,10 +463,10 @@ function loadSubject(record) {
   state.subject = record.subject;
   state.examDate = record.examDate;
   $("studyTitle").textContent = record.subject;
-  $("studyMeta").textContent = `${record.text.split(/\s+/).length} words · saved ${new Date(record.created).toLocaleString()}`;
+  $("studyMeta").textContent = `${record.text.split(/\s+/).length} ${t("study.words")} · ${t("study.saved")} ${new Date(record.created).toLocaleString()}`;
   renderCountdown();
   document.querySelectorAll(".tool[data-tool]").forEach((b) => b.classList.remove("active"));
-  $("output").innerHTML = `<p class="muted center">Pick a tool above to generate your study materials.</p>`;
+  $("output").innerHTML = `<p class="muted center">${t("study.pickTool")}</p>`;
 }
 
 function daysLeft(date) {
@@ -257,8 +480,8 @@ function renderCountdown() {
   if (d == null) { el.innerHTML = ""; return; }
   el.classList.toggle("soon", d <= 3);
   el.innerHTML = d < 0
-    ? `<span class="num">✓</span><span class="lbl">exam passed</span>`
-    : `<span class="num">${d}</span><span class="lbl">days to exam</span>`;
+    ? `<span class="num">✓</span><span class="lbl">${t("countdown.passed")}</span>`
+    : `<span class="num">${d}</span><span class="lbl">${t("countdown.days")}</span>`;
 }
 
 /* ---------------- Text analysis engine (offline) ---------------- */
@@ -337,12 +560,15 @@ async function openaiCall(prompt, key) {
 function truncForAI(text, max = 12000) {
   return text.length > max ? text.slice(0, max) + "\n...[truncated]" : text;
 }
+function aiLangSuffix() {
+  return LANG === "en" ? "" : ` Write your entire response in ${LANG_META[LANG].name}.`;
+}
 
 /* ---------------- Tools ---------------- */
 const out = $("output");
 document.querySelectorAll(".tool[data-tool]").forEach((btn) => {
   btn.onclick = async () => {
-    if (!state.text) { out.innerHTML = `<p class="muted center">Upload and process notes first.</p>`; return; }
+    if (!state.text) { out.innerHTML = `<p class="muted center">${t("study.uploadFirst")}</p>`; return; }
     stopVoice();
     document.querySelectorAll(".tool[data-tool]").forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
@@ -370,28 +596,28 @@ async function renderSummary() {
     loader(true, "Asking AI to compress your notes…");
     const prompt = `You are an exam coach. Compress the following study notes into concise revision notes.
 Return: (1) 8-12 key bullet points, (2) important definitions, (3) any formulas.
-Use clear short lines. Notes:\n\n${truncForAI(state.text)}`;
+Use clear short lines.${aiLangSuffix()} Notes:\n\n${truncForAI(state.text)}`;
     const res = await aiGenerate(prompt);
     loader(false);
-    if (res) { out.innerHTML = `<h3>📝 Compressed Notes (AI)</h3><div>${mdLite(res)}</div>`; return; }
+    if (res) { out.innerHTML = `<h3>${t("sum.titleAI")}</h3><div>${mdLite(res)}</div>`; return; }
   }
   // offline
   const points = rankSentences(state.text, 10);
   const defs = findDefinitions(state.text);
   const formulas = findFormulas(state.text);
   const keys = topKeywords(state.text, 16);
-  let html = `<h3>📝 Compressed Notes</h3>`;
-  html += `<div class="section-block"><h4>Key points</h4><ul>${points.map((p) => `<li>${escapeHtml(p)}</li>`).join("")}</ul></div>`;
-  if (defs.length) html += `<div class="section-block"><h4>Definitions</h4><ul>${defs.map((d) => `<li><strong>${escapeHtml(d.term)}</strong> — ${escapeHtml(d.def)}</li>`).join("")}</ul></div>`;
-  if (formulas.length) html += `<div class="section-block"><h4>Formulas & key lines</h4>${formulas.map((f) => `<div class="formula">${escapeHtml(f)}</div>`).join("")}</div>`;
-  html += `<div class="section-block"><h4>Important terms</h4>${keys.map((k) => `<span class="pill">${escapeHtml(k)}</span>`).join("")}</div>`;
+  let html = `<h3>${t("sum.title")}</h3>`;
+  html += `<div class="section-block"><h4>${t("sum.keyPoints")}</h4><ul>${points.map((p) => `<li>${escapeHtml(p)}</li>`).join("")}</ul></div>`;
+  if (defs.length) html += `<div class="section-block"><h4>${t("sum.definitions")}</h4><ul>${defs.map((d) => `<li><strong>${escapeHtml(d.term)}</strong> — ${escapeHtml(d.def)}</li>`).join("")}</ul></div>`;
+  if (formulas.length) html += `<div class="section-block"><h4>${t("sum.formulas")}</h4>${formulas.map((f) => `<div class="formula">${escapeHtml(f)}</div>`).join("")}</div>`;
+  html += `<div class="section-block"><h4>${t("sum.terms")}</h4>${keys.map((k) => `<span class="pill">${escapeHtml(k)}</span>`).join("")}</div>`;
   out.innerHTML = html;
 }
 
 async function renderFlashcards() {
   const cards = buildFlashcards();
-  if (!cards.length) { out.innerHTML = `<p class="muted center">Not enough structured content to build flashcards. Try the Compress tool.</p>`; return; }
-  out.innerHTML = `<h3>🃏 Flashcards <span class="muted">(tap to flip)</span></h3>
+  if (!cards.length) { out.innerHTML = `<p class="muted center">${t("fc.none")}</p>`; return; }
+  out.innerHTML = `<h3>${t("fc.title")} <span class="muted">${t("fc.hint")}</span></h3>
     <div class="flash-grid">${cards.map((c, i) => `
       <div class="flashcard" data-i="${i}">
         <div class="flash-inner">
@@ -403,22 +629,22 @@ async function renderFlashcards() {
 }
 function buildFlashcards() {
   const cards = [];
-  for (const d of findDefinitions(state.text)) cards.push({ q: `What is ${d.term}?`, a: d.def });
+  for (const d of findDefinitions(state.text)) cards.push({ q: t("fc.whatIs", { t: d.term }), a: d.def });
   const keys = topKeywords(state.text, 14);
   const sents = sentences(state.text);
   for (const k of keys) {
     if (cards.length >= 16) break;
     const s = sents.find((x) => new RegExp(`\\b${k}\\b`, "i").test(x));
-    if (s && !cards.some((c) => c.a === s)) cards.push({ q: `Explain the term "${k}".`, a: s });
+    if (s && !cards.some((c) => c.a === s)) cards.push({ q: t("fc.explain", { t: k }), a: s });
   }
   return cards.slice(0, 16);
 }
 
 function renderQuiz() {
   const qs = buildQuiz();
-  if (!qs.length) { out.innerHTML = `<p class="muted center">Not enough content to build a quiz.</p>`; return; }
+  if (!qs.length) { out.innerHTML = `<p class="muted center">${t("quiz.none")}</p>`; return; }
   let html = weaknessBanner();
-  html += `<h3>❓ Quiz <span class="muted">(${qs.length} questions)</span></h3><div id="quizScore" class="quiz-score"></div>`;
+  html += `<h3>${t("quiz.title")} <span class="muted">(${qs.length} ${t("quiz.questions")})</span></h3><div id="quizScore" class="quiz-score"></div>`;
   qs.forEach((q, qi) => {
     html += `<div class="quiz-q"><div class="qtext">${qi + 1}. ${escapeHtml(q.question)}</div>`;
     q.options.forEach((opt, oi) => {
@@ -438,15 +664,15 @@ function renderQuiz() {
       group.forEach((x) => { if (x.dataset.correct === "true") x.classList.add("correct"); });
       if (!isCorrect) { b.classList.add("wrong"); if (qs[qi].term) wrongTerms.add(qs[qi].term); }
       answered++; if (isCorrect) correct++;
-      $("quizScore").textContent = `Score: ${correct} / ${answered}`;
+      $("quizScore").textContent = `${t("quiz.score")} ${correct} / ${answered}`;
       // Persist weak topics once the whole quiz is answered.
       if (answered === qs.length && state.current) {
         const prev = new Set(state.current.weakTerms || []);
-        wrongTerms.forEach((t) => prev.add(t));
+        wrongTerms.forEach((term) => prev.add(term));
         updateSubject(state.current.id, { weakTerms: [...prev].slice(0, 20) });
         $("quizScore").textContent += wrongTerms.size
-          ? ` · Saved ${wrongTerms.size} weak topic(s) for revision`
-          : " · 🎉 No weak topics!";
+          ? " · " + t("quiz.saved", { n: wrongTerms.size })
+          : " · " + t("quiz.noWeak");
       }
     };
   });
@@ -462,25 +688,25 @@ function buildQuiz() {
     if (distractors.length < 3) continue;
     const question = s.replace(new RegExp(`\\b${target}\\b`, "i"), "_____");
     const options = [target, ...distractors].sort(() => Math.random() - 0.5);
-    quiz.push({ question: "Fill the blank: " + question, options, answer: options.indexOf(target), term: target });
+    quiz.push({ question: t("quiz.fillBlank") + " " + question, options, answer: options.indexOf(target), term: target });
   }
   return quiz;
 }
 function weaknessBanner() {
   const weak = state.current?.weakTerms || [];
   if (!weak.length) return "";
-  return `<div class="weak-box"><h4>⚠️ Your weak topics (from past quizzes)</h4>
-    <div>${weak.map((t) => `<span class="pill">${escapeHtml(t)}</span>`).join("")}</div></div>`;
+  return `<div class="weak-box"><h4>${t("quiz.weakTitle")}</h4>
+    <div>${weak.map((w) => `<span class="pill">${escapeHtml(w)}</span>`).join("")}</div></div>`;
 }
 
 async function renderLastNight() {
   const ai = getSettings().provider !== "offline";
   let body = "";
   if (ai) {
-    loader(true, "Building your last-night cheat sheet…");
+    loader(true, t("loader.working"));
     const prompt = `Create an emergency "night before the exam" cheat sheet from these notes.
 Include: the 8 most important concepts (one line each), all key formulas, and the top 10 most probable exam questions.
-Be extremely concise. Notes:\n\n${truncForAI(state.text)}`;
+Be extremely concise.${aiLangSuffix()} Notes:\n\n${truncForAI(state.text)}`;
     const res = await aiGenerate(prompt);
     loader(false);
     if (res) body = mdLite(res);
@@ -489,18 +715,18 @@ Be extremely concise. Notes:\n\n${truncForAI(state.text)}`;
     const must = rankSentences(state.text, 8);
     const formulas = findFormulas(state.text);
     const probable = buildProbableQuestions();
-    body = `<div class="section-block"><h4>🔑 Must-know concepts</h4><ul>${must.map((m) => `<li>${escapeHtml(m)}</li>`).join("")}</ul></div>`;
-    if (formulas.length) body += `<div class="section-block"><h4>🧮 Formulas only</h4>${formulas.map((f) => `<div class="formula">${escapeHtml(f)}</div>`).join("")}</div>`;
-    body += `<div class="section-block"><h4>🎯 Top probable questions</h4><ul>${probable.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}</ul></div>`;
+    body = `<div class="section-block"><h4>${t("ln.must")}</h4><ul>${must.map((m) => `<li>${escapeHtml(m)}</li>`).join("")}</ul></div>`;
+    if (formulas.length) body += `<div class="section-block"><h4>${t("ln.formulas")}</h4>${formulas.map((f) => `<div class="formula">${escapeHtml(f)}</div>`).join("")}</div>`;
+    body += `<div class="section-block"><h4>${t("ln.probable")}</h4><ul>${probable.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}</ul></div>`;
   }
-  out.innerHTML = `<div class="ln-banner"><h3>🌙 Last-Night Revision Mode</h3><p class="muted">Everything essential, nothing else.</p></div>${body}`;
+  out.innerHTML = `<div class="ln-banner"><h3>${t("ln.title")}</h3><p class="muted">${t("ln.sub")}</p></div>${body}`;
 }
 function buildProbableQuestions() {
   const defs = findDefinitions(state.text);
   const keys = topKeywords(state.text, 12);
   const qs = [];
-  defs.slice(0, 6).forEach((d) => qs.push(`Define / explain: ${d.term}.`));
-  keys.forEach((k) => { if (qs.length < 10) qs.push(`Write short notes on "${k}".`); });
+  defs.slice(0, 6).forEach((d) => qs.push(t("ln.define", { t: d.term })));
+  keys.forEach((k) => { if (qs.length < 10) qs.push(t("ln.shortNotes", { t: k })); });
   return qs.slice(0, 10);
 }
 
@@ -509,7 +735,7 @@ function renderMindmap() {
   const subject = state.subject || "Notes";
   const keys = topKeywords(state.text, 7);
   const sents = sentences(state.text);
-  if (!keys.length) { out.innerHTML = `<p class="muted center">Not enough content to build a mindmap.</p>`; return; }
+  if (!keys.length) { out.innerHTML = `<p class="muted center">${t("mm.none")}</p>`; return; }
   const W = 820, H = 600, cx = W / 2, cy = H / 2, R = 160, R2 = 270;
   const trunc = (s, n) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
   let lines = "", nodes = "";
@@ -526,9 +752,9 @@ function renderMindmap() {
     nodes += mmNode(bx, by, trunc(k, 16), "mm-branch", 120, 38);
   });
   nodes += mmNode(cx, cy, trunc(subject, 18), "mm-center", 150, 46);
-  out.innerHTML = `<h3>🧠 Mindmap</h3><div class="mindmap-wrap">
+  out.innerHTML = `<h3>${t("mm.title")}</h3><div class="mindmap-wrap">
     <svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${lines}${nodes}</svg></div>
-    <p class="muted center">Auto-built from your most important topics. Hover a node for the full text.</p>`;
+    <p class="muted center">${t("mm.hint")}</p>`;
 }
 function mmNode(x, y, label, cls, w, h, title) {
   return `<g class="mm-node ${cls}" transform="translate(${x},${y})">
@@ -540,15 +766,14 @@ function mmNode(x, y, label, cls, w, h, title) {
 /* ---------------- Explain Simply ---------------- */
 let explainMode = "beginner";
 const EXPLAIN_MODES = {
-  beginner: "Explain like I'm a beginner, in plain simple English with short sentences",
+  beginner: "Explain like I'm a beginner, in plain simple words with short sentences",
   kid: "Explain like I'm 10 years old, using fun simple analogies",
-  hindi: "Explain in simple Hindi (Devanagari script)",
   teacher: "Explain like an exam teacher giving clear, structured points students can write in an exam",
 };
 async function renderExplain() {
-  out.innerHTML = `<h3>✨ Explain Simply</h3>
+  out.innerHTML = `<h3>${t("ex.title")}</h3>
     <div class="mode-row">
-      ${Object.keys(EXPLAIN_MODES).map((m) => `<button class="mode-btn ${m === explainMode ? "active" : ""}" data-mode="${m}">${{ beginner: "👶 Beginner", kid: "🧒 Kid Mode", hindi: "🇮🇳 Hindi", teacher: "👩‍🏫 Teacher" }[m]}</button>`).join("")}
+      ${Object.keys(EXPLAIN_MODES).map((m) => `<button class="mode-btn ${m === explainMode ? "active" : ""}" data-mode="${m}">${t("ex." + m)}</button>`).join("")}
     </div><div id="explainBody"></div>`;
   out.querySelectorAll(".mode-btn").forEach((b) => b.onclick = () => {
     explainMode = b.dataset.mode;
@@ -561,23 +786,23 @@ async function runExplain() {
   const body = $("explainBody");
   const aiOn = getSettings().provider !== "offline";
   if (aiOn) {
-    loader(true, "Simplifying with AI…");
-    const prompt = `${EXPLAIN_MODES[explainMode]}. Summarize and explain the key ideas from these notes so they are easy to understand and remember for an exam. Use short bullet points.\n\n${truncForAI(state.text)}`;
+    loader(true, t("loader.working"));
+    const prompt = `${EXPLAIN_MODES[explainMode]}. Summarize and explain the key ideas from these notes so they are easy to understand and remember for an exam. Use short bullet points.${aiLangSuffix()}\n\n${truncForAI(state.text)}`;
     try {
       const res = await aiGenerate(prompt);
       loader(false);
       if (res) { body.innerHTML = mdLite(res); return; }
     } catch (e) { loader(false); }
   }
-  // Offline fallback
+  // Offline fallback (can't translate generated content without an API key)
   const points = rankSentences(state.text, 8);
   const defs = findDefinitions(state.text);
   let html = "";
-  if (explainMode === "hindi") {
-    html += `<p class="muted">ℹ️ Offline mode can't translate to Hindi. Add a free Gemini key in ⚙️ Settings for true Hindi explanations. Showing simplified key points for now:</p>`;
+  if (LANG !== "en") {
+    html += `<p class="muted">${t("ex.offlineNote", { lang: LANG_META[LANG].name })}</p>`;
   }
   html += `<ul>${points.map((p) => `<li>${escapeHtml(simplify(p))}</li>`).join("")}</ul>`;
-  if (defs.length) html += `<div class="section-block"><h4>Glossary</h4><ul>${defs.map((d) => `<li><strong>${escapeHtml(d.term)}</strong>: ${escapeHtml(d.def)}</li>`).join("")}</ul></div>`;
+  if (defs.length) html += `<div class="section-block"><h4>${t("ex.glossary")}</h4><ul>${defs.map((d) => `<li><strong>${escapeHtml(d.term)}</strong>: ${escapeHtml(d.def)}</li>`).join("")}</ul></div>`;
   body.innerHTML = html;
 }
 function simplify(s) {
@@ -598,20 +823,20 @@ function buildRevisionText() {
 }
 function renderVoice() {
   if (!("speechSynthesis" in window)) {
-    out.innerHTML = `<p class="muted center">Your browser doesn't support speech synthesis.</p>`; return;
+    out.innerHTML = `<p class="muted center">${t("voice.unsupported")}</p>`; return;
   }
   voiceState.sentences = buildRevisionText();
   voiceState.idx = 0;
-  out.innerHTML = `<h3>🔊 Voice Revision</h3>
+  out.innerHTML = `<h3>${t("voice.title")}</h3>
     <div class="voice-panel">
-      <button class="btn primary" id="vPlay">▶️ Play</button>
-      <button class="btn ghost" id="vPause">⏸ Pause</button>
-      <button class="btn ghost" id="vResume">⏵ Resume</button>
-      <button class="btn ghost" id="vStop">⏹ Stop</button>
-      <label>Speed <input type="range" id="vRate" min="0.6" max="1.6" step="0.1" value="1"></label>
+      <button class="btn primary" id="vPlay">${t("voice.play")}</button>
+      <button class="btn ghost" id="vPause">${t("voice.pause")}</button>
+      <button class="btn ghost" id="vResume">${t("voice.resume")}</button>
+      <button class="btn ghost" id="vStop">${t("voice.stop")}</button>
+      <label>${t("voice.speed")} <input type="range" id="vRate" min="0.6" max="1.6" step="0.1" value="1"></label>
     </div>
     <div class="voice-text">${voiceState.sentences.map((s, i) => `<span id="v-s-${i}">${escapeHtml(s)} </span>`).join("")}</div>
-    <p class="muted">Great for revising while walking, in the gym, or travelling. 🎧</p>`;
+    <p class="muted">${t("voice.note")}</p>`;
   $("vRate").oninput = (e) => { voiceState.rate = parseFloat(e.target.value); };
   $("vPlay").onclick = () => speakFrom(0);
   $("vPause").onclick = () => window.speechSynthesis.pause();
@@ -629,6 +854,7 @@ function speakNext() {
   }
   const u = new SpeechSynthesisUtterance(voiceState.sentences[voiceState.idx]);
   u.rate = voiceState.rate;
+  u.lang = LANG_META[LANG].voice;
   u.onstart = () => highlightVoice(voiceState.idx);
   u.onend = () => { if (voiceState.playing) { voiceState.idx++; speakNext(); } };
   window.speechSynthesis.speak(u);
@@ -645,16 +871,16 @@ function clearVoiceHighlight() {
 /* ---------------- Shareable revision card (PNG) ---------------- */
 function renderShare() {
   const points = rankSentences(state.text, 12).filter((p) => p.length < 220);
-  if (!points.length) { out.innerHTML = `<p class="muted center">Not enough content for a share card.</p>`; return; }
+  if (!points.length) { out.innerHTML = `<p class="muted center">${t("share.none")}</p>`; return; }
   let idx = 0;
-  out.innerHTML = `<h3>📸 Shareable Revision Card</h3><div class="share-wrap">
+  out.innerHTML = `<h3>${t("share.title")}</h3><div class="share-wrap">
     <canvas id="shareCanvas" width="1080" height="1080"></canvas>
     <div class="share-controls">
-      <button class="btn ghost" id="prevCard">‹ Prev</button>
-      <button class="btn ghost" id="nextCard">Next ›</button>
-      <button class="btn primary" id="dlCard">⬇️ Download PNG</button>
+      <button class="btn ghost" id="prevCard">${t("share.prev")}</button>
+      <button class="btn ghost" id="nextCard">${t("share.next")}</button>
+      <button class="btn primary" id="dlCard">${t("share.download")}</button>
     </div>
-    <p class="muted">Post it to your story — instant revision + free marketing. 🚀</p></div>`;
+    <p class="muted">${t("share.note")}</p></div>`;
   const draw = () => drawCard(points[idx]);
   $("prevCard").onclick = () => { idx = (idx - 1 + points.length) % points.length; draw(); };
   $("nextCard").onclick = () => { idx = (idx + 1) % points.length; draw(); };
@@ -704,7 +930,7 @@ function wrapText(ctx, text, maxW) {
 function wrapTrim(s, n) { return s.length > n ? s.slice(0, n - 1) + "…" : s; }
 
 function renderSource() {
-  out.innerHTML = `<h3>📄 Extracted Source Text</h3><pre style="white-space:pre-wrap;font-size:13px;line-height:1.5;color:var(--muted)">${escapeHtml(state.text)}</pre>`;
+  out.innerHTML = `<h3>${t("src.title")}</h3><pre style="white-space:pre-wrap;font-size:13px;line-height:1.5;color:var(--muted)">${escapeHtml(state.text)}</pre>`;
 }
 
 /* ---------------- PDF export ---------------- */
@@ -756,6 +982,5 @@ function mdLite(md) {
 
 /* ---------------- Init ---------------- */
 applyTheme(localStorage.getItem("reviseai.theme") || "dark");
-renderRecent();
-renderDue();
+applyLang(LANG);
 renderFiles();

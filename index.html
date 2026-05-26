@@ -14,12 +14,18 @@
       <span class="logo">📚</span>
       <div>
         <h1>Revise<span>AI</span></h1>
-        <p class="tag">Smart exam notes compressor</p>
+        <p class="tag" data-i18n="tagline">Smart exam notes compressor</p>
       </div>
     </div>
     <nav class="actions">
-      <button id="navHome" class="navbtn active">Dashboard</button>
-      <button id="navStudy" class="navbtn">Study</button>
+      <button id="navHome" class="navbtn active" data-i18n="nav.dashboard">Dashboard</button>
+      <button id="navStudy" class="navbtn" data-i18n="nav.study">Study</button>
+      <select id="langSelect" class="langsel" title="Language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="ur">اردو</option>
+        <option value="pa">ਪੰਜਾਬੀ</option>
+      </select>
       <button id="themeBtn" class="iconbtn" title="Toggle light/dark theme">🌗</button>
       <button id="settingsBtn" class="iconbtn" title="API key settings">⚙️</button>
     </nav>
@@ -29,36 +35,36 @@
     <!-- DASHBOARD -->
     <section id="dashboard" class="view active">
       <div class="hero">
-        <h2>Turn 100 pages into a 1-page revision sheet.</h2>
-        <p>Upload your notes, and ReviseAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.</p>
+        <h2 data-i18n="hero.title">Turn 100 pages into a 1-page revision sheet.</h2>
+        <p data-i18n="hero.sub">Upload your notes, and ReviseAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.</p>
       </div>
 
       <div id="dueSection" class="due-section"></div>
 
       <div class="grid">
         <div class="card upload-card">
-          <h3>📤 Upload notes</h3>
+          <h3 data-i18n="upload.title">📤 Upload notes</h3>
           <div class="field">
-            <label for="subjectName">Subject</label>
-            <input id="subjectName" type="text" placeholder="e.g. Physics — Chapter 4" />
+            <label for="subjectName" data-i18n="upload.subject">Subject</label>
+            <input id="subjectName" type="text" data-i18n-ph="upload.subjectPh" placeholder="e.g. Physics — Chapter 4" />
           </div>
           <div class="field">
-            <label for="examDate">Exam date (optional)</label>
+            <label for="examDate" data-i18n="upload.examDate">Exam date (optional)</label>
             <input id="examDate" type="date" />
           </div>
           <div id="dropzone" class="dropzone">
             <input id="fileInput" type="file" accept="application/pdf,image/*,text/plain" multiple hidden />
-            <p>📎 Drag & drop <strong>PDF / images / .txt</strong> here</p>
-            <button id="browseBtn" class="btn ghost">Browse files</button>
-            <p class="hint">PDFs &amp; text read instantly. Images are OCR-scanned.</p>
+            <p data-i18n="upload.drop">📎 Drag & drop PDF / images / .txt here</p>
+            <button id="browseBtn" class="btn ghost" data-i18n="upload.browse">Browse files</button>
+            <p class="hint" data-i18n="upload.hint">PDFs &amp; text read instantly. Images are OCR-scanned.</p>
           </div>
           <div id="fileList" class="filelist"></div>
-          <button id="processBtn" class="btn primary block" disabled>Process notes →</button>
+          <button id="processBtn" class="btn primary block" disabled data-i18n="upload.process">Process notes →</button>
           <div id="processStatus" class="status"></div>
         </div>
 
         <div class="card">
-          <h3>📈 Recent subjects</h3>
+          <h3 data-i18n="upload.recent">📈 Recent subjects</h3>
           <div id="recentList" class="recent"></div>
         </div>
       </div>
@@ -68,27 +74,27 @@
     <section id="study" class="view">
       <div class="study-head">
         <div>
-          <h2 id="studyTitle">No notes loaded</h2>
+          <h2 id="studyTitle" data-i18n="study.empty">No notes loaded</h2>
           <p id="studyMeta" class="muted"></p>
         </div>
         <div id="countdown" class="countdown"></div>
       </div>
 
       <div class="toolbar">
-        <button class="tool" data-tool="summary">📝 Compress Notes</button>
-        <button class="tool" data-tool="flashcards">🃏 Flashcards</button>
-        <button class="tool" data-tool="quiz">❓ Quiz</button>
-        <button class="tool" data-tool="mindmap">🧠 Mindmap</button>
-        <button class="tool" data-tool="explain">✨ Explain Simply</button>
-        <button class="tool" data-tool="voice">🔊 Voice Revision</button>
-        <button class="tool" data-tool="lastnight">🌙 Last-Night Mode</button>
-        <button class="tool" data-tool="share">📸 Share Card</button>
-        <button class="tool" data-tool="source">📄 Source Text</button>
-        <button id="downloadBtn" class="tool accent">⬇️ Download PDF</button>
+        <button class="tool" data-tool="summary" data-i18n="tool.summary">📝 Compress Notes</button>
+        <button class="tool" data-tool="flashcards" data-i18n="tool.flashcards">🃏 Flashcards</button>
+        <button class="tool" data-tool="quiz" data-i18n="tool.quiz">❓ Quiz</button>
+        <button class="tool" data-tool="mindmap" data-i18n="tool.mindmap">🧠 Mindmap</button>
+        <button class="tool" data-tool="explain" data-i18n="tool.explain">✨ Explain Simply</button>
+        <button class="tool" data-tool="voice" data-i18n="tool.voice">🔊 Voice Revision</button>
+        <button class="tool" data-tool="lastnight" data-i18n="tool.lastnight">🌙 Last-Night Mode</button>
+        <button class="tool" data-tool="share" data-i18n="tool.share">📸 Share Card</button>
+        <button class="tool" data-tool="source" data-i18n="tool.source">📄 Source Text</button>
+        <button id="downloadBtn" class="tool accent" data-i18n="tool.download">⬇️ Download PDF</button>
       </div>
 
       <div id="output" class="output">
-        <p class="muted center">Pick a tool above to generate your study materials.</p>
+        <p class="muted center" data-i18n="study.pickTool">Pick a tool above to generate your study materials.</p>
       </div>
     </section>
   </main>
@@ -96,23 +102,23 @@
   <!-- SETTINGS MODAL -->
   <div id="settingsModal" class="modal hidden">
     <div class="modal-box">
-      <h3>⚙️ AI Settings</h3>
-      <p class="muted">ReviseAI works fully <strong>free &amp; offline</strong>. For higher-quality, rewritten AI summaries you can optionally add your own API key. It is stored only in <strong>your browser</strong> and never uploaded anywhere except the provider you choose.</p>
+      <h3 data-i18n="settings.title">⚙️ AI Settings</h3>
+      <p class="muted" data-i18n="settings.desc">ReviseAI works fully free &amp; offline. For higher-quality, rewritten AI summaries you can optionally add your own API key. It is stored only in your browser and never uploaded anywhere except the provider you choose.</p>
       <div class="field">
-        <label for="aiProvider">Provider</label>
+        <label for="aiProvider" data-i18n="settings.provider">Provider</label>
         <select id="aiProvider">
-          <option value="offline">Offline (free, no key)</option>
+          <option value="offline" data-i18n="settings.providerOffline">Offline (free, no key)</option>
           <option value="gemini">Google Gemini (free tier)</option>
           <option value="openai">OpenAI</option>
         </select>
       </div>
       <div class="field">
-        <label for="apiKey">API key</label>
-        <input id="apiKey" type="password" placeholder="Paste key (only needed for Gemini/OpenAI)" />
+        <label for="apiKey" data-i18n="settings.key">API key</label>
+        <input id="apiKey" type="password" data-i18n-ph="settings.keyPh" placeholder="Paste key (only needed for Gemini/OpenAI)" />
       </div>
       <div class="modal-actions">
-        <button id="saveSettings" class="btn primary">Save</button>
-        <button id="closeSettings" class="btn ghost">Close</button>
+        <button id="saveSettings" class="btn primary" data-i18n="settings.save">Save</button>
+        <button id="closeSettings" class="btn ghost" data-i18n="settings.close">Close</button>
       </div>
     </div>
   </div>
@@ -120,7 +126,7 @@
   <div id="loader" class="loader hidden"><div class="spinner"></div><p id="loaderText">Working…</p></div>
 
   <footer class="footer">
-    <p>Built with ReviseAI · Runs 100% in your browser · <a href="https://github.com/aashishbharti04/ReviseAI" id="repoLink" target="_blank" rel="noopener">Source on GitHub</a></p>
+    <p><span data-i18n="footer.text">Built with ReviseAI · Runs 100% in your browser</span> · <a href="https://github.com/aashishbharti04/ReviseAI" id="repoLink" target="_blank" rel="noopener" data-i18n="footer.source">Source on GitHub</a></p>
   </footer>
 
   <!-- Libraries via CDN -->
