@@ -11,14 +11,17 @@ Turn 100-page PDFs and messy notes into **compressed exam notes, flashcards, qui
 - **🃏 Flashcards** — auto-generated, flip to reveal answers
 - **❓ Quiz** — fill-in-the-blank MCQs with live scoring
 - **🧠 Mindmap** — visual topic tree built from your notes
-- **✨ Explain Simply** — Beginner / Kid / Hindi / Teacher modes
-- **🔊 Voice Revision** — reads notes aloud with speed control & live highlighting (great for the gym/commute)
+- **✨ Explain Simply** — Beginner / Kid / Teacher modes, in any supported language
+- **🔊 Voice Revision** — reads notes aloud with a language selector (English/Hindi/Urdu/Punjabi), speed control & live highlighting
 - **🌙 Last-Night Mode** — must-know concepts, formulas only, top probable questions
 - **📸 Shareable Cards** — Instagram-style revision cards exported as PNG
 - **🔁 Spaced Repetition** — "due for revision" reminders that schedule themselves
 - **⚠️ Weakness Detection** — topics you miss in quizzes are saved per subject
+- **🎓 Class / Grade** — Nursery to Class 12, saved per subject
+- **📚 Library** — links to free, official study resources (NCERT, Khan Academy, OpenStax, CK-12, DIKSHA) by grade
+- **📖 Guide** — built-in how-to-use walkthrough
 - **🌐 Multilanguage UI** — English, हिन्दी, اردو (right-to-left), ਪੰਜਾਬੀ; AI explanations & voice follow the chosen language
-- **⬇️ Download PDF** — export a clean revision sheet
+- **⬇️ Download PDF** — clean revision sheet with an embedded **mindmap diagram** and a **top-topics chart**
 - **⏰ Exam countdown**, recent subjects & **🌗 light/dark theme** (saved in your browser)
 
 ## 🧠 How the "AI" works
