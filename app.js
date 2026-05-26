@@ -864,7 +864,7 @@ function simplify(s) {
 }
 
 /* ---------------- Voice revision (Web Speech API) ---------------- */
-const voiceState = { sentences: [], idx: 0, playing: false, rate: 1 };
+const voiceState = { sentences: [], baseSentences: [], cache: {}, idx: 0, playing: false, rate: 1, voiceLang: "en-US" };
 function stopVoice() {
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   voiceState.playing = false;
@@ -886,7 +886,9 @@ function renderVoice() {
   if (!("speechSynthesis" in window)) {
     out.innerHTML = `<p class="muted center">${t("voice.unsupported")}</p>`; return;
   }
-  voiceState.sentences = buildRevisionText();
+  voiceState.baseSentences = buildRevisionText();
+  voiceState.sentences = voiceState.baseSentences;
+  voiceState.cache = {};
   voiceState.idx = 0;
   voiceState.voiceLang = LANG_META[LANG].voice;
   out.innerHTML = `<h3>${t("voice.title")}</h3>
@@ -908,12 +910,43 @@ function renderVoice() {
     <div class="voice-text">${voiceState.sentences.map((s, i) => `<span id="v-s-${i}">${escapeHtml(s)} </span>`).join("")}</div>
     <p class="muted">${t("voice.note")}</p>`;
   $("vLang").value = voiceState.voiceLang;
-  $("vLang").onchange = (e) => { voiceState.voiceLang = e.target.value; if (voiceState.playing) speakFrom(voiceState.idx); };
+  $("vLang").onchange = async (e) => {
+    stopVoice(); clearVoiceHighlight();
+    voiceState.voiceLang = e.target.value;
+    await ensureVoiceLanguage();
+  };
   $("vRate").oninput = (e) => { voiceState.rate = parseFloat(e.target.value); };
-  $("vPlay").onclick = () => speakFrom(0);
+  $("vPlay").onclick = async () => { await ensureVoiceLanguage(); speakFrom(0); };
   $("vPause").onclick = () => window.speechSynthesis.pause();
   $("vResume").onclick = () => window.speechSynthesis.resume();
   $("vStop").onclick = () => { stopVoice(); clearVoiceHighlight(); };
+  // Warm up the voice list (some browsers load it asynchronously).
+  if (window.speechSynthesis.getVoices().length === 0) window.speechSynthesis.onvoiceschanged = () => {};
+}
+// Translate the revision text into the chosen voice language so it is actually
+// SPOKEN in that language (not just pronounced by a different engine).
+async function ensureVoiceLanguage() {
+  const code = (voiceState.voiceLang || "en-US").slice(0, 2);
+  if (code === "en") { voiceState.sentences = voiceState.baseSentences; updateVoiceText(); return; }
+  if (voiceState.cache[code]) { voiceState.sentences = voiceState.cache[code]; updateVoiceText(); return; }
+  loader(true, t("translate.working"));
+  try {
+    const translated = await googleTranslate(voiceState.baseSentences.join("\n\n"), code);
+    const arr = translated.split(/\n{2,}/);
+    voiceState.sentences = arr.length === voiceState.baseSentences.length ? arr : translated.split(/\n+/).filter(Boolean);
+    voiceState.cache[code] = voiceState.sentences;
+  } catch (e) {
+    voiceState.sentences = voiceState.baseSentences; // fall back to original
+  }
+  loader(false);
+  updateVoiceText();
+}
+function updateVoiceText() {
+  const box = out.querySelector(".voice-text");
+  if (!box) return;
+  const code = (voiceState.voiceLang || "en-US").slice(0, 2);
+  box.dir = (code === "ur" || code === "ar") ? "rtl" : "auto";
+  box.innerHTML = voiceState.sentences.map((s, i) => `<span id="v-s-${i}">${escapeHtml(s)} </span>`).join("");
 }
 function speakFrom(i) {
   window.speechSynthesis.cancel();
