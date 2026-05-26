@@ -47,6 +47,15 @@ $("saveSettings").onclick = () => {
   $("settingsModal").classList.add("hidden");
 };
 
+/* ---------------- Theme ---------------- */
+function applyTheme(t) {
+  document.body.dataset.theme = t;
+  localStorage.setItem("reviseai.theme", t);
+  $("themeBtn").textContent = t === "light" ? "🌙" : "🌞";
+}
+$("themeBtn").onclick = () =>
+  applyTheme(document.body.dataset.theme === "light" ? "dark" : "light");
+
 /* ---------------- File handling ---------------- */
 const dropzone = $("dropzone");
 $("browseBtn").onclick = () => $("fileInput").click();
@@ -146,6 +155,9 @@ function getSubjects() {
 }
 function setSubjects(list) { localStorage.setItem(STORE_KEY, JSON.stringify(list)); }
 
+// Spaced-repetition intervals (days) after each successful review.
+const SR_INTERVALS = [1, 3, 7, 16, 35];
+
 function saveSubject() {
   const list = getSubjects();
   const record = {
@@ -154,11 +166,55 @@ function saveSubject() {
     examDate: state.examDate,
     text: state.text,
     created: new Date().toISOString(),
+    srStage: 0,
+    nextReview: addDays(new Date(), SR_INTERVALS[0]).toISOString(),
+    weakTerms: [],
   };
   list.unshift(record);
   setSubjects(list.slice(0, 25)); // keep storage bounded
   renderRecent();
+  renderDue();
   return record;
+}
+
+function updateSubject(id, patch) {
+  const list = getSubjects();
+  const i = list.findIndex((r) => r.id === id);
+  if (i < 0) return;
+  list[i] = { ...list[i], ...patch };
+  setSubjects(list);
+  if (state.current && state.current.id === id) state.current = list[i];
+  renderRecent();
+  renderDue();
+}
+
+function addDays(date, n) { return new Date(date.getTime() + n * 86400000); }
+
+/* ---------------- Spaced repetition (due for revision) ---------------- */
+function renderDue() {
+  const el = $("dueSection");
+  const now = new Date();
+  const due = getSubjects().filter((r) => r.nextReview && new Date(r.nextReview) <= now);
+  if (!due.length) { el.innerHTML = ""; return; }
+  el.innerHTML = `<div class="due-banner"><h3>🔁 Due for revision today (${due.length})</h3>
+    <div class="due-list">${due.map((r) => `
+      <div class="due-chip" data-id="${r.id}">
+        <span class="dc-title">${escapeHtml(r.subject)}</span>
+        <span style="font-size:12px">stage ${r.srStage + 1} · ${r.weakTerms?.length ? r.weakTerms.length + " weak topics" : "on track"}</span>
+        <div style="display:flex;gap:6px">
+          <button class="open">Study</button>
+          <button class="revised">✓ Revised</button>
+        </div>
+      </div>`).join("")}</div></div>`;
+  el.querySelectorAll(".due-chip").forEach((chip) => {
+    const id = chip.dataset.id;
+    const rec = getSubjects().find((r) => r.id === id);
+    chip.querySelector(".open").onclick = () => { loadSubject(rec); show("study"); };
+    chip.querySelector(".revised").onclick = () => {
+      const stage = Math.min((rec.srStage || 0) + 1, SR_INTERVALS.length - 1);
+      updateSubject(id, { srStage: stage, nextReview: addDays(new Date(), SR_INTERVALS[stage]).toISOString() });
+    };
+  });
 }
 
 function renderRecent() {
@@ -287,6 +343,7 @@ const out = $("output");
 document.querySelectorAll(".tool[data-tool]").forEach((btn) => {
   btn.onclick = async () => {
     if (!state.text) { out.innerHTML = `<p class="muted center">Upload and process notes first.</p>`; return; }
+    stopVoice();
     document.querySelectorAll(".tool[data-tool]").forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     const tool = btn.dataset.tool;
@@ -294,7 +351,11 @@ document.querySelectorAll(".tool[data-tool]").forEach((btn) => {
       if (tool === "summary") await renderSummary();
       else if (tool === "flashcards") await renderFlashcards();
       else if (tool === "quiz") renderQuiz();
+      else if (tool === "mindmap") renderMindmap();
+      else if (tool === "explain") await renderExplain();
+      else if (tool === "voice") renderVoice();
       else if (tool === "lastnight") await renderLastNight();
+      else if (tool === "share") renderShare();
       else if (tool === "source") renderSource();
     } catch (err) {
       loader(false);
@@ -356,7 +417,8 @@ function buildFlashcards() {
 function renderQuiz() {
   const qs = buildQuiz();
   if (!qs.length) { out.innerHTML = `<p class="muted center">Not enough content to build a quiz.</p>`; return; }
-  let html = `<h3>❓ Quiz <span class="muted">(${qs.length} questions)</span></h3><div id="quizScore" class="quiz-score"></div>`;
+  let html = weaknessBanner();
+  html += `<h3>❓ Quiz <span class="muted">(${qs.length} questions)</span></h3><div id="quizScore" class="quiz-score"></div>`;
   qs.forEach((q, qi) => {
     html += `<div class="quiz-q"><div class="qtext">${qi + 1}. ${escapeHtml(q.question)}</div>`;
     q.options.forEach((opt, oi) => {
@@ -366,22 +428,31 @@ function renderQuiz() {
   });
   out.innerHTML = html;
   let answered = 0, correct = 0;
+  const wrongTerms = new Set();
   out.querySelectorAll(".quiz-opt").forEach((b) => {
     b.onclick = () => {
-      const q = b.dataset.q;
-      const group = out.querySelectorAll(`.quiz-opt[data-q="${q}"]`);
+      const qi = b.dataset.q;
+      const group = out.querySelectorAll(`.quiz-opt[data-q="${qi}"]`);
       if ([...group].some((x) => x.classList.contains("correct") || x.classList.contains("wrong"))) return;
       const isCorrect = b.dataset.correct === "true";
       group.forEach((x) => { if (x.dataset.correct === "true") x.classList.add("correct"); });
-      if (!isCorrect) b.classList.add("wrong");
+      if (!isCorrect) { b.classList.add("wrong"); if (qs[qi].term) wrongTerms.add(qs[qi].term); }
       answered++; if (isCorrect) correct++;
       $("quizScore").textContent = `Score: ${correct} / ${answered}`;
+      // Persist weak topics once the whole quiz is answered.
+      if (answered === qs.length && state.current) {
+        const prev = new Set(state.current.weakTerms || []);
+        wrongTerms.forEach((t) => prev.add(t));
+        updateSubject(state.current.id, { weakTerms: [...prev].slice(0, 20) });
+        $("quizScore").textContent += wrongTerms.size
+          ? ` · Saved ${wrongTerms.size} weak topic(s) for revision`
+          : " · 🎉 No weak topics!";
+      }
     };
   });
 }
 function buildQuiz() {
   const keys = topKeywords(state.text, 24);
-  const sents = sentences(state.text);
   const quiz = [];
   for (const s of rankSentences(state.text, 18)) {
     if (quiz.length >= 8) break;
@@ -391,9 +462,15 @@ function buildQuiz() {
     if (distractors.length < 3) continue;
     const question = s.replace(new RegExp(`\\b${target}\\b`, "i"), "_____");
     const options = [target, ...distractors].sort(() => Math.random() - 0.5);
-    quiz.push({ question: "Fill the blank: " + question, options, answer: options.indexOf(target) });
+    quiz.push({ question: "Fill the blank: " + question, options, answer: options.indexOf(target), term: target });
   }
   return quiz;
+}
+function weaknessBanner() {
+  const weak = state.current?.weakTerms || [];
+  if (!weak.length) return "";
+  return `<div class="weak-box"><h4>⚠️ Your weak topics (from past quizzes)</h4>
+    <div>${weak.map((t) => `<span class="pill">${escapeHtml(t)}</span>`).join("")}</div></div>`;
 }
 
 async function renderLastNight() {
@@ -426,6 +503,205 @@ function buildProbableQuestions() {
   keys.forEach((k) => { if (qs.length < 10) qs.push(`Write short notes on "${k}".`); });
   return qs.slice(0, 10);
 }
+
+/* ---------------- Mindmap (SVG radial) ---------------- */
+function renderMindmap() {
+  const subject = state.subject || "Notes";
+  const keys = topKeywords(state.text, 7);
+  const sents = sentences(state.text);
+  if (!keys.length) { out.innerHTML = `<p class="muted center">Not enough content to build a mindmap.</p>`; return; }
+  const W = 820, H = 600, cx = W / 2, cy = H / 2, R = 160, R2 = 270;
+  const trunc = (s, n) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
+  let lines = "", nodes = "";
+  keys.forEach((k, i) => {
+    const a = (i / keys.length) * Math.PI * 2 - Math.PI / 2;
+    const bx = cx + R * Math.cos(a), by = cy + R * Math.sin(a);
+    lines += `<line class="mm-line" x1="${cx}" y1="${cy}" x2="${bx}" y2="${by}" />`;
+    const snip = sents.find((s) => new RegExp(`\\b${k}\\b`, "i").test(s));
+    if (snip) {
+      const lx = cx + R2 * Math.cos(a), ly = cy + R2 * Math.sin(a);
+      lines += `<line class="mm-line" x1="${bx}" y1="${by}" x2="${lx}" y2="${ly}" />`;
+      nodes += mmNode(lx, ly, trunc(snip.split(/\s+/).slice(0, 5).join(" "), 24), "mm-leaf", 150, 40, snip);
+    }
+    nodes += mmNode(bx, by, trunc(k, 16), "mm-branch", 120, 38);
+  });
+  nodes += mmNode(cx, cy, trunc(subject, 18), "mm-center", 150, 46);
+  out.innerHTML = `<h3>🧠 Mindmap</h3><div class="mindmap-wrap">
+    <svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${lines}${nodes}</svg></div>
+    <p class="muted center">Auto-built from your most important topics. Hover a node for the full text.</p>`;
+}
+function mmNode(x, y, label, cls, w, h, title) {
+  return `<g class="mm-node ${cls}" transform="translate(${x},${y})">
+    <rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="10" />
+    <text x="0" y="4" text-anchor="middle">${escapeHtml(label)}</text>
+    <title>${escapeHtml(title || label)}</title></g>`;
+}
+
+/* ---------------- Explain Simply ---------------- */
+let explainMode = "beginner";
+const EXPLAIN_MODES = {
+  beginner: "Explain like I'm a beginner, in plain simple English with short sentences",
+  kid: "Explain like I'm 10 years old, using fun simple analogies",
+  hindi: "Explain in simple Hindi (Devanagari script)",
+  teacher: "Explain like an exam teacher giving clear, structured points students can write in an exam",
+};
+async function renderExplain() {
+  out.innerHTML = `<h3>✨ Explain Simply</h3>
+    <div class="mode-row">
+      ${Object.keys(EXPLAIN_MODES).map((m) => `<button class="mode-btn ${m === explainMode ? "active" : ""}" data-mode="${m}">${{ beginner: "👶 Beginner", kid: "🧒 Kid Mode", hindi: "🇮🇳 Hindi", teacher: "👩‍🏫 Teacher" }[m]}</button>`).join("")}
+    </div><div id="explainBody"></div>`;
+  out.querySelectorAll(".mode-btn").forEach((b) => b.onclick = () => {
+    explainMode = b.dataset.mode;
+    out.querySelectorAll(".mode-btn").forEach((x) => x.classList.toggle("active", x === b));
+    runExplain();
+  });
+  await runExplain();
+}
+async function runExplain() {
+  const body = $("explainBody");
+  const aiOn = getSettings().provider !== "offline";
+  if (aiOn) {
+    loader(true, "Simplifying with AI…");
+    const prompt = `${EXPLAIN_MODES[explainMode]}. Summarize and explain the key ideas from these notes so they are easy to understand and remember for an exam. Use short bullet points.\n\n${truncForAI(state.text)}`;
+    try {
+      const res = await aiGenerate(prompt);
+      loader(false);
+      if (res) { body.innerHTML = mdLite(res); return; }
+    } catch (e) { loader(false); }
+  }
+  // Offline fallback
+  const points = rankSentences(state.text, 8);
+  const defs = findDefinitions(state.text);
+  let html = "";
+  if (explainMode === "hindi") {
+    html += `<p class="muted">ℹ️ Offline mode can't translate to Hindi. Add a free Gemini key in ⚙️ Settings for true Hindi explanations. Showing simplified key points for now:</p>`;
+  }
+  html += `<ul>${points.map((p) => `<li>${escapeHtml(simplify(p))}</li>`).join("")}</ul>`;
+  if (defs.length) html += `<div class="section-block"><h4>Glossary</h4><ul>${defs.map((d) => `<li><strong>${escapeHtml(d.term)}</strong>: ${escapeHtml(d.def)}</li>`).join("")}</ul></div>`;
+  body.innerHTML = html;
+}
+function simplify(s) {
+  // Offline "simplify": keep the first clause, trim filler.
+  return s.split(/[,;:]/)[0].replace(/\b(therefore|however|moreover|consequently|furthermore)\b/gi, "").trim() + (s.includes(",") ? "." : "");
+}
+
+/* ---------------- Voice revision (Web Speech API) ---------------- */
+const voiceState = { sentences: [], idx: 0, playing: false, rate: 1 };
+function stopVoice() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  voiceState.playing = false;
+}
+function buildRevisionText() {
+  const pts = rankSentences(state.text, 14);
+  const defs = findDefinitions(state.text).map((d) => d.def);
+  return [...pts, ...defs];
+}
+function renderVoice() {
+  if (!("speechSynthesis" in window)) {
+    out.innerHTML = `<p class="muted center">Your browser doesn't support speech synthesis.</p>`; return;
+  }
+  voiceState.sentences = buildRevisionText();
+  voiceState.idx = 0;
+  out.innerHTML = `<h3>🔊 Voice Revision</h3>
+    <div class="voice-panel">
+      <button class="btn primary" id="vPlay">▶️ Play</button>
+      <button class="btn ghost" id="vPause">⏸ Pause</button>
+      <button class="btn ghost" id="vResume">⏵ Resume</button>
+      <button class="btn ghost" id="vStop">⏹ Stop</button>
+      <label>Speed <input type="range" id="vRate" min="0.6" max="1.6" step="0.1" value="1"></label>
+    </div>
+    <div class="voice-text">${voiceState.sentences.map((s, i) => `<span id="v-s-${i}">${escapeHtml(s)} </span>`).join("")}</div>
+    <p class="muted">Great for revising while walking, in the gym, or travelling. 🎧</p>`;
+  $("vRate").oninput = (e) => { voiceState.rate = parseFloat(e.target.value); };
+  $("vPlay").onclick = () => speakFrom(0);
+  $("vPause").onclick = () => window.speechSynthesis.pause();
+  $("vResume").onclick = () => window.speechSynthesis.resume();
+  $("vStop").onclick = () => { stopVoice(); clearVoiceHighlight(); };
+}
+function speakFrom(i) {
+  window.speechSynthesis.cancel();
+  voiceState.idx = i; voiceState.playing = true;
+  speakNext();
+}
+function speakNext() {
+  if (!voiceState.playing || voiceState.idx >= voiceState.sentences.length) {
+    voiceState.playing = false; clearVoiceHighlight(); return;
+  }
+  const u = new SpeechSynthesisUtterance(voiceState.sentences[voiceState.idx]);
+  u.rate = voiceState.rate;
+  u.onstart = () => highlightVoice(voiceState.idx);
+  u.onend = () => { if (voiceState.playing) { voiceState.idx++; speakNext(); } };
+  window.speechSynthesis.speak(u);
+}
+function highlightVoice(i) {
+  clearVoiceHighlight();
+  const el = $(`v-s-${i}`);
+  if (el) { el.classList.add("speaking"); el.scrollIntoView({ block: "center", behavior: "smooth" }); }
+}
+function clearVoiceHighlight() {
+  document.querySelectorAll(".voice-text .speaking").forEach((e) => e.classList.remove("speaking"));
+}
+
+/* ---------------- Shareable revision card (PNG) ---------------- */
+function renderShare() {
+  const points = rankSentences(state.text, 12).filter((p) => p.length < 220);
+  if (!points.length) { out.innerHTML = `<p class="muted center">Not enough content for a share card.</p>`; return; }
+  let idx = 0;
+  out.innerHTML = `<h3>📸 Shareable Revision Card</h3><div class="share-wrap">
+    <canvas id="shareCanvas" width="1080" height="1080"></canvas>
+    <div class="share-controls">
+      <button class="btn ghost" id="prevCard">‹ Prev</button>
+      <button class="btn ghost" id="nextCard">Next ›</button>
+      <button class="btn primary" id="dlCard">⬇️ Download PNG</button>
+    </div>
+    <p class="muted">Post it to your story — instant revision + free marketing. 🚀</p></div>`;
+  const draw = () => drawCard(points[idx]);
+  $("prevCard").onclick = () => { idx = (idx - 1 + points.length) % points.length; draw(); };
+  $("nextCard").onclick = () => { idx = (idx + 1) % points.length; draw(); };
+  $("dlCard").onclick = () => {
+    const a = document.createElement("a");
+    a.download = `ReviseAI_card_${idx + 1}.png`;
+    a.href = $("shareCanvas").toDataURL("image/png");
+    a.click();
+  };
+  draw();
+}
+function drawCard(point) {
+  const c = $("shareCanvas"), ctx = c.getContext("2d");
+  const g = ctx.createLinearGradient(0, 0, 1080, 1080);
+  g.addColorStop(0, "#6c5ce7"); g.addColorStop(1, "#00b3a4");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1080);
+  ctx.fillStyle = "rgba(255,255,255,0.10)"; roundRect(ctx, 70, 70, 940, 940, 40); ctx.fill();
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 46px Segoe UI, sans-serif";
+  ctx.fillText("📚 ReviseAI", 110, 170);
+  ctx.font = "600 34px Segoe UI, sans-serif";
+  ctx.fillStyle = "rgba(255,255,255,0.85)";
+  ctx.fillText(wrapTrim(state.subject || "Revision", 32), 110, 240);
+  // main point, wrapped + vertically centered
+  ctx.font = "bold 54px Segoe UI, sans-serif"; ctx.fillStyle = "#fff";
+  const lines = wrapText(ctx, point, 860);
+  const startY = 540 - (lines.length - 1) * 35;
+  lines.forEach((ln, i) => ctx.fillText(ln, 110, startY + i * 70));
+  ctx.font = "500 28px Segoe UI, sans-serif"; ctx.fillStyle = "rgba(255,255,255,0.75)";
+  ctx.fillText("Made with ReviseAI · revise smarter", 110, 960);
+}
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath(); ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+}
+function wrapText(ctx, text, maxW) {
+  const words = text.split(/\s+/), lines = []; let line = "";
+  for (const w of words) {
+    const test = line ? line + " " + w : w;
+    if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; }
+    else line = test;
+  }
+  if (line) lines.push(line);
+  return lines.slice(0, 9);
+}
+function wrapTrim(s, n) { return s.length > n ? s.slice(0, n - 1) + "…" : s; }
 
 function renderSource() {
   out.innerHTML = `<h3>📄 Extracted Source Text</h3><pre style="white-space:pre-wrap;font-size:13px;line-height:1.5;color:var(--muted)">${escapeHtml(state.text)}</pre>`;
@@ -479,5 +755,7 @@ function mdLite(md) {
 }
 
 /* ---------------- Init ---------------- */
+applyTheme(localStorage.getItem("reviseai.theme") || "dark");
 renderRecent();
+renderDue();
 renderFiles();

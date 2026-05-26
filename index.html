@@ -20,6 +20,7 @@
     <nav class="actions">
       <button id="navHome" class="navbtn active">Dashboard</button>
       <button id="navStudy" class="navbtn">Study</button>
+      <button id="themeBtn" class="iconbtn" title="Toggle light/dark theme">🌗</button>
       <button id="settingsBtn" class="iconbtn" title="API key settings">⚙️</button>
     </nav>
   </header>
@@ -31,6 +32,8 @@
         <h2>Turn 100 pages into a 1-page revision sheet.</h2>
         <p>Upload your notes, and ReviseAI builds compressed notes, flashcards, quizzes and a last-night cheat sheet — right in your browser.</p>
       </div>
+
+      <div id="dueSection" class="due-section"></div>
 
       <div class="grid">
         <div class="card upload-card">
@@ -75,7 +78,11 @@
         <button class="tool" data-tool="summary">📝 Compress Notes</button>
         <button class="tool" data-tool="flashcards">🃏 Flashcards</button>
         <button class="tool" data-tool="quiz">❓ Quiz</button>
+        <button class="tool" data-tool="mindmap">🧠 Mindmap</button>
+        <button class="tool" data-tool="explain">✨ Explain Simply</button>
+        <button class="tool" data-tool="voice">🔊 Voice Revision</button>
         <button class="tool" data-tool="lastnight">🌙 Last-Night Mode</button>
+        <button class="tool" data-tool="share">📸 Share Card</button>
         <button class="tool" data-tool="source">📄 Source Text</button>
         <button id="downloadBtn" class="tool accent">⬇️ Download PDF</button>
       </div>
