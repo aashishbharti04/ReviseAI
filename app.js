@@ -21,7 +21,7 @@ const I18N = {
     "tagline": "AI study companion · notes · quiz · mindmap · voice · translate", "nav.dashboard": "Dashboard", "nav.study": "Study",
     "nav.library": "Library", "nav.guide": "Guide", "upload.grade": "Class / Grade", "voice.lang": "Voice language",
     "tool.translate": "🌍 Translate", "translate.target": "Translate to", "translate.btn": "Translate",
-    "translate.downloadTxt": "⬇️ Download .txt", "translate.savePdf": "🖨️ Save as PDF", "translate.working": "Translating…",
+    "translate.downloadTxt": "⬇️ Download .txt", "translate.downloadPdf": "⬇️ Download PDF", "translate.downloadDoc": "⬇️ Download Word", "translate.working": "Translating…",
     "translate.note": "Your text and paragraphs are kept. For Hindi/Urdu/Tamil and other scripts, use 'Save as PDF' so your browser renders them correctly.",
     "lib.title": "📚 Free Study Library — Nursery to Class 12",
     "lib.sub": "Hand-picked free & official learning resources. Open any book, then bring it back to PgluAI to make notes, flashcards and quizzes.",
@@ -77,7 +77,7 @@ const I18N = {
     "tagline": "AI अध्ययन साथी · नोट्स · क्विज़ · माइंडमैप · वॉइस · अनुवाद", "nav.dashboard": "डैशबोर्ड", "nav.study": "अध्ययन",
     "nav.library": "लाइब्रेरी", "nav.guide": "गाइड", "upload.grade": "कक्षा / ग्रेड", "voice.lang": "वॉइस भाषा",
     "tool.translate": "🌍 अनुवाद", "translate.target": "इसमें अनुवाद करें", "translate.btn": "अनुवाद करें",
-    "translate.downloadTxt": "⬇️ .txt डाउनलोड", "translate.savePdf": "🖨️ PDF के रूप में सेव करें", "translate.working": "अनुवाद हो रहा है…",
+    "translate.downloadTxt": "⬇️ .txt डाउनलोड", "translate.downloadPdf": "⬇️ PDF डाउनलोड", "translate.downloadDoc": "⬇️ Word डाउनलोड", "translate.working": "अनुवाद हो रहा है…",
     "translate.note": "आपका टेक्स्ट और पैराग्राफ बने रहते हैं। हिंदी/उर्दू/तमिल आदि लिपियों के लिए 'PDF के रूप में सेव करें' का उपयोग करें ताकि ब्राउज़र उन्हें सही दिखाए।",
     "lib.title": "📚 मुफ़्त अध्ययन लाइब्रेरी — नर्सरी से कक्षा 12",
     "lib.sub": "चुनिंदा मुफ़्त और आधिकारिक संसाधन। कोई भी किताब खोलें, फिर PgluAI में लाकर नोट्स, फ्लैशकार्ड और क्विज़ बनाएँ।",
@@ -133,7 +133,7 @@ const I18N = {
     "tagline": "AI مطالعہ ساتھی · نوٹس · کوئز · مائنڈ میپ · آواز · ترجمہ", "nav.dashboard": "ڈیش بورڈ", "nav.study": "مطالعہ",
     "nav.library": "لائبریری", "nav.guide": "گائیڈ", "upload.grade": "کلاس / گریڈ", "voice.lang": "صوتی زبان",
     "tool.translate": "🌍 ترجمہ", "translate.target": "اس میں ترجمہ کریں", "translate.btn": "ترجمہ کریں",
-    "translate.downloadTxt": "⬇️ .txt ڈاؤن لوڈ", "translate.savePdf": "🖨️ PDF کے طور پر محفوظ کریں", "translate.working": "ترجمہ ہو رہا ہے…",
+    "translate.downloadTxt": "⬇️ .txt ڈاؤن لوڈ", "translate.downloadPdf": "⬇️ PDF ڈاؤن لوڈ", "translate.downloadDoc": "⬇️ Word ڈاؤن لوڈ", "translate.working": "ترجمہ ہو رہا ہے…",
     "translate.note": "آپ کا متن اور پیراگراف برقرار رہتے ہیں۔ ہندی/اردو/تامل وغیرہ رسم الخط کے لیے 'PDF کے طور پر محفوظ کریں' استعمال کریں تاکہ براؤزر انہیں درست دکھائے۔",
     "lib.title": "📚 مفت مطالعہ لائبریری — نرسری سے کلاس 12",
     "lib.sub": "منتخب مفت اور سرکاری وسائل۔ کوئی بھی کتاب کھولیں، پھر PgluAI میں لا کر نوٹس، فلیش کارڈز اور کوئز بنائیں۔",
@@ -189,7 +189,7 @@ const I18N = {
     "tagline": "AI ਅਧਿਐਨ ਸਾਥੀ · ਨੋਟਸ · ਕਵਿਜ਼ · ਮਾਈਂਡਮੈਪ · ਵੌਇਸ · ਅਨੁਵਾਦ", "nav.dashboard": "ਡੈਸ਼ਬੋਰਡ", "nav.study": "ਅਧਿਐਨ",
     "nav.library": "ਲਾਇਬ੍ਰੇਰੀ", "nav.guide": "ਗਾਈਡ", "upload.grade": "ਕਲਾਸ / ਗ੍ਰੇਡ", "voice.lang": "ਵੌਇਸ ਭਾਸ਼ਾ",
     "tool.translate": "🌍 ਅਨੁਵਾਦ", "translate.target": "ਇਸ ਵਿੱਚ ਅਨੁਵਾਦ ਕਰੋ", "translate.btn": "ਅਨੁਵਾਦ ਕਰੋ",
-    "translate.downloadTxt": "⬇️ .txt ਡਾਊਨਲੋਡ", "translate.savePdf": "🖨️ PDF ਵਜੋਂ ਸੰਭਾਲੋ", "translate.working": "ਅਨੁਵਾਦ ਹੋ ਰਿਹਾ ਹੈ…",
+    "translate.downloadTxt": "⬇️ .txt ਡਾਊਨਲੋਡ", "translate.downloadPdf": "⬇️ PDF ਡਾਊਨਲੋਡ", "translate.downloadDoc": "⬇️ Word ਡਾਊਨਲੋਡ", "translate.working": "ਅਨੁਵਾਦ ਹੋ ਰਿਹਾ ਹੈ…",
     "translate.note": "ਤੁਹਾਡਾ ਟੈਕਸਟ ਅਤੇ ਪੈਰੇ ਬਰਕਰਾਰ ਰਹਿੰਦੇ ਹਨ। ਹਿੰਦੀ/ਉਰਦੂ/ਤਮਿਲ ਆਦਿ ਲਿਪੀਆਂ ਲਈ 'PDF ਵਜੋਂ ਸੰਭਾਲੋ' ਵਰਤੋ ਤਾਂ ਜੋ ਬ੍ਰਾਊਜ਼ਰ ਉਨ੍ਹਾਂ ਨੂੰ ਸਹੀ ਦਿਖਾਏ।",
     "lib.title": "📚 ਮੁਫ਼ਤ ਅਧਿਐਨ ਲਾਇਬ੍ਰੇਰੀ — ਨਰਸਰੀ ਤੋਂ ਕਲਾਸ 12",
     "lib.sub": "ਚੁਣੇ ਹੋਏ ਮੁਫ਼ਤ ਅਤੇ ਸਰਕਾਰੀ ਸਰੋਤ। ਕੋਈ ਵੀ ਕਿਤਾਬ ਖੋਲ੍ਹੋ, ਫਿਰ PgluAI ਵਿੱਚ ਲਿਆ ਕੇ ਨੋਟਸ, ਫਲੈਸ਼ਕਾਰਡ ਅਤੇ ਕਵਿਜ਼ ਬਣਾਓ।",
@@ -1012,13 +1012,15 @@ async function doTranslate() {
   const rtl = target === "ur" || target === "ar";
   $("trOut").innerHTML = `
     <div class="share-controls" style="justify-content:flex-start;margin-bottom:12px">
+      <button class="btn primary" id="trPdf">${t("translate.downloadPdf")}</button>
+      <button class="btn ghost" id="trDoc">${t("translate.downloadDoc")}</button>
       <button class="btn ghost" id="trTxt">${t("translate.downloadTxt")}</button>
-      <button class="btn primary" id="trPdf">${t("translate.savePdf")}</button>
     </div>
     <div class="voice-text" dir="${rtl ? "rtl" : "auto"}" style="white-space:pre-wrap">${escapeHtml(translated)}</div>
     <p class="muted">${t("translate.note")}</p>`;
+  $("trPdf").onclick = () => downloadTranslatedPdf(translated, target, state.subject);
+  $("trDoc").onclick = () => downloadTranslatedDoc(translated, target, state.subject);
   $("trTxt").onclick = () => downloadText(translated, `${state.subject}_${target}.txt`);
-  $("trPdf").onclick = () => printAsPdf(translated, target);
 }
 async function translateText(text, target, langName) {
   try {
@@ -1069,18 +1071,64 @@ function downloadText(text, filename) {
   a.click();
   URL.revokeObjectURL(a.href);
 }
-function printAsPdf(text, code) {
+// Direct PDF download. Text is drawn onto canvas pages (the browser renders any
+// script — Hindi/Urdu/Tamil — correctly), then embedded into the PDF.
+function downloadTranslatedPdf(text, code, subject) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "pt", format: "a4" });
+  const pageW = doc.internal.pageSize.getWidth(), pageH = doc.internal.pageSize.getHeight();
+  const margin = 42, S = 2, fontPx = 15, lineH = 23;
   const rtl = code === "ur" || code === "ar";
-  const w = window.open("", "_blank");
-  if (!w) { alert("Please allow pop-ups to save as PDF."); return; }
+  const family = "'Segoe UI','Nirmala UI','Noto Sans',sans-serif";
+  const meas = document.createElement("canvas").getContext("2d");
+  meas.font = `${fontPx * S}px ${family}`;
+  const maxW = (pageW - margin * 2) * S;
+  const wrap = (para) => {
+    if (!para.trim()) return [""];
+    const words = para.split(/\s+/), lines = []; let line = "";
+    for (const w of words) {
+      const test = line ? line + " " + w : w;
+      if (meas.measureText(test).width > maxW && line) { lines.push(line); line = w; }
+      else line = test;
+    }
+    if (line) lines.push(line);
+    return lines;
+  };
+  const all = [{ text: subject || "PgluAI", title: true }, { text: "", title: false }];
+  text.split(/\n{2,}/).forEach((p) => { wrap(p).forEach((l) => all.push({ text: l, title: false })); all.push({ text: "", title: false }); });
+  const perPage = Math.floor((pageH - margin * 2) / lineH);
+  for (let i = 0; i < all.length; i += perPage) {
+    if (i > 0) doc.addPage();
+    const c = document.createElement("canvas"); c.width = pageW * S; c.height = pageH * S;
+    const ctx = c.getContext("2d"); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, c.width, c.height);
+    ctx.textBaseline = "top";
+    ctx.direction = rtl ? "rtl" : "ltr"; ctx.textAlign = rtl ? "right" : "left";
+    const x = rtl ? (pageW - margin) * S : margin * S;
+    let y = margin * S;
+    all.slice(i, i + perPage).forEach((ln) => {
+      if (ln.title) { ctx.fillStyle = "#6c5ce7"; ctx.font = `bold ${20 * S}px ${family}`; }
+      else { ctx.fillStyle = "#111"; ctx.font = `${fontPx * S}px ${family}`; }
+      ctx.fillText(ln.text, x, y);
+      y += lineH * S;
+    });
+    doc.addImage(c.toDataURL("image/jpeg", 0.85), "JPEG", 0, 0, pageW, pageH);
+  }
+  doc.save(`${(subject || "PgluAI")}_${code}.pdf`.replace(/[^\w.\-]+/g, "_"));
+}
+// Direct Word download via a Unicode HTML document Word opens as .doc.
+function downloadTranslatedDoc(text, code, subject) {
+  const rtl = code === "ur" || code === "ar";
   const body = text.split(/\n{2,}/).map((p) => `<p>${escapeHtml(p)}</p>`).join("");
-  w.document.write(`<!DOCTYPE html><html dir="${rtl ? "rtl" : "ltr"}"><head><meta charset="utf-8">
-    <title>${escapeHtml(state.subject || "PgluAI")}</title>
-    <style>body{font-family:'Segoe UI',system-ui,'Noto Sans','Nirmala UI',sans-serif;line-height:1.7;padding:48px;max-width:820px;margin:auto;color:#111}
-    h1{color:#6c5ce7;font-size:22px}p{margin:0 0 12px;white-space:pre-wrap}</style></head>
-    <body><h1>${escapeHtml(state.subject || "PgluAI")}</h1>${body}
-    <script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>`);
-  w.document.close();
+  const html = `<!DOCTYPE html><html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    <head><meta charset='utf-8'><title>${escapeHtml(subject || "PgluAI")}</title></head>
+    <body dir='${rtl ? "rtl" : "ltr"}' style="font-family:'Segoe UI','Nirmala UI',sans-serif;line-height:1.6">
+    <h1 style='color:#6c5ce7'>${escapeHtml(subject || "PgluAI")}</h1>${body}</body></html>`;
+  const blob = new Blob(["﻿", html], { type: "application/msword" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `${(subject || "PgluAI")}_${code}.doc`.replace(/[^\w.\-]+/g, "_");
+  a.click();
+  URL.revokeObjectURL(a.href);
 }
 
 /* ---------------- Shareable revision card (PNG) ---------------- */
