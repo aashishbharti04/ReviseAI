@@ -910,18 +910,26 @@ function renderVoice() {
     <div class="voice-text">${voiceState.sentences.map((s, i) => `<span id="v-s-${i}">${escapeHtml(s)} </span>`).join("")}</div>
     <p class="muted">${t("voice.note")}</p>`;
   $("vLang").value = voiceState.voiceLang;
+  // Translate up-front on language change so that pressing Play later can call
+  // speech synchronously (browsers block speak() if it runs after a network await).
   $("vLang").onchange = async (e) => {
     stopVoice(); clearVoiceHighlight();
     voiceState.voiceLang = e.target.value;
     await ensureVoiceLanguage();
   };
   $("vRate").oninput = (e) => { voiceState.rate = parseFloat(e.target.value); };
-  $("vPlay").onclick = async () => { await ensureVoiceLanguage(); speakFrom(0); };
+  $("vPlay").onclick = () => {
+    const code = (voiceState.voiceLang || "en-US").slice(0, 2);
+    if (code === "en") { voiceState.sentences = voiceState.baseSentences; speakFrom(0); }
+    else if (voiceState.cache[code]) { voiceState.sentences = voiceState.cache[code]; speakFrom(0); }
+    else { ensureVoiceLanguage().then(() => speakFrom(0)); } // first run for this language
+  };
   $("vPause").onclick = () => window.speechSynthesis.pause();
   $("vResume").onclick = () => window.speechSynthesis.resume();
   $("vStop").onclick = () => { stopVoice(); clearVoiceHighlight(); };
-  // Warm up the voice list (some browsers load it asynchronously).
+  // Warm up the voice list, and pre-translate if the default language isn't English.
   if (window.speechSynthesis.getVoices().length === 0) window.speechSynthesis.onvoiceschanged = () => {};
+  if ((voiceState.voiceLang || "en-US").slice(0, 2) !== "en") ensureVoiceLanguage();
 }
 // Translate the revision text into the chosen voice language so it is actually
 // SPOKEN in that language (not just pronounced by a different engine).
@@ -950,6 +958,7 @@ function updateVoiceText() {
 }
 function speakFrom(i) {
   window.speechSynthesis.cancel();
+  window.speechSynthesis.resume(); // clear any stuck "paused" state
   voiceState.idx = i; voiceState.playing = true;
   speakNext();
 }
