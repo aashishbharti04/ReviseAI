@@ -67,6 +67,7 @@ const I18N = {
     "voice.title": "🔊 Voice Revision", "voice.play": "▶️ Play", "voice.pause": "⏸ Pause", "voice.resume": "⏵ Resume", "voice.stop": "⏹ Stop", "voice.speed": "Speed",
     "voice.note": "Great for revising while walking, in the gym, or travelling. 🎧", "voice.unsupported": "Your browser doesn't support speech synthesis.",
     "voice.ready": "✓ {lang} voice is ready.", "voice.missing": "⚠️ No {lang} voice on this device — audio will play in English. Install a {lang} voice in your device's speech settings to hear it.",
+    "voice.online": "🔊 No installed {lang} voice — PgluAI will stream online {lang} audio (needs internet).",
     "ln.title": "🌙 Last-Night Revision Mode", "ln.sub": "Everything essential, nothing else.",
     "ln.must": "🔑 Must-know concepts", "ln.formulas": "🧮 Formulas only", "ln.probable": "🎯 Top probable questions",
     "ln.define": "Define / explain: {t}.", "ln.shortNotes": "Write short notes on \"{t}\".",
@@ -124,6 +125,7 @@ const I18N = {
     "voice.title": "🔊 वॉइस रिवीजन", "voice.play": "▶️ चलाएँ", "voice.pause": "⏸ रोकें", "voice.resume": "⏵ जारी रखें", "voice.stop": "⏹ बंद करें", "voice.speed": "गति",
     "voice.note": "चलते-फिरते, जिम में या यात्रा के दौरान रिवीजन के लिए बढ़िया। 🎧", "voice.unsupported": "आपका ब्राउज़र वॉइस सिंथेसिस का समर्थन नहीं करता।",
     "voice.ready": "✓ {lang} वॉइस तैयार है।", "voice.missing": "⚠️ इस डिवाइस पर {lang} वॉइस नहीं है — ऑडियो अंग्रेज़ी में चलेगा। {lang} सुनने के लिए डिवाइस की स्पीच सेटिंग्स में {lang} वॉइस इंस्टॉल करें।",
+    "voice.online": "🔊 {lang} वॉइस इंस्टॉल नहीं है — PgluAI ऑनलाइन {lang} ऑडियो चलाएगा (इंटरनेट ज़रूरी)।",
     "ln.title": "🌙 लास्ट-नाइट रिवीजन मोड", "ln.sub": "केवल ज़रूरी, और कुछ नहीं।",
     "ln.must": "🔑 ज़रूरी अवधारणाएँ", "ln.formulas": "🧮 केवल सूत्र", "ln.probable": "🎯 सबसे संभावित प्रश्न",
     "ln.define": "परिभाषित/समझाएँ: {t}।", "ln.shortNotes": "\"{t}\" पर संक्षिप्त नोट्स लिखें।",
@@ -181,6 +183,7 @@ const I18N = {
     "voice.title": "🔊 صوتی ریویژن", "voice.play": "▶️ چلائیں", "voice.pause": "⏸ روکیں", "voice.resume": "⏵ جاری رکھیں", "voice.stop": "⏹ بند کریں", "voice.speed": "رفتار",
     "voice.note": "چلتے پھرتے، جم میں یا سفر کے دوران ریویژن کے لیے بہترین۔ 🎧", "voice.unsupported": "آپ کا براؤزر صوتی ترکیب کی حمایت نہیں کرتا۔",
     "voice.ready": "✓ {lang} آواز تیار ہے۔", "voice.missing": "⚠️ اس ڈیوائس پر {lang} آواز نہیں ہے — آڈیو انگریزی میں چلے گا۔ {lang} سننے کے لیے ڈیوائس کی اسپیچ سیٹنگز میں {lang} آواز انسٹال کریں۔",
+    "voice.online": "🔊 {lang} آواز انسٹال نہیں ہے — PgluAI آن لائن {lang} آڈیو چلائے گا (انٹرنیٹ ضروری)۔",
     "ln.title": "🌙 لاسٹ نائٹ ریویژن موڈ", "ln.sub": "صرف ضروری، اور کچھ نہیں۔",
     "ln.must": "🔑 ضروری تصورات", "ln.formulas": "🧮 صرف فارمولے", "ln.probable": "🎯 سب سے ممکنہ سوالات",
     "ln.define": "تعریف/وضاحت کریں: {t}۔", "ln.shortNotes": "\"{t}\" پر مختصر نوٹس لکھیں۔",
@@ -238,6 +241,7 @@ const I18N = {
     "voice.title": "🔊 ਵੌਇਸ ਰਿਵੀਜ਼ਨ", "voice.play": "▶️ ਚਲਾਓ", "voice.pause": "⏸ ਰੋਕੋ", "voice.resume": "⏵ ਜਾਰੀ ਰੱਖੋ", "voice.stop": "⏹ ਬੰਦ ਕਰੋ", "voice.speed": "ਗਤੀ",
     "voice.note": "ਚੱਲਦੇ-ਫਿਰਦੇ, ਜਿਮ ਵਿੱਚ ਜਾਂ ਸਫ਼ਰ ਦੌਰਾਨ ਰਿਵੀਜ਼ਨ ਲਈ ਵਧੀਆ। 🎧", "voice.unsupported": "ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਸਪੀਚ ਸਿੰਥੇਸਿਸ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ।",
     "voice.ready": "✓ {lang} ਵੌਇਸ ਤਿਆਰ ਹੈ।", "voice.missing": "⚠️ ਇਸ ਡੀਵਾਈਸ ਉੱਤੇ {lang} ਵੌਇਸ ਨਹੀਂ ਹੈ — ਆਡੀਓ ਅੰਗਰੇਜ਼ੀ ਵਿੱਚ ਚੱਲੇਗਾ। {lang} ਸੁਣਨ ਲਈ ਡੀਵਾਈਸ ਦੀ ਸਪੀਚ ਸੈਟਿੰਗ ਵਿੱਚ {lang} ਵੌਇਸ ਇੰਸਟਾਲ ਕਰੋ।",
+    "voice.online": "🔊 {lang} ਵੌਇਸ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ — PgluAI ਆਨਲਾਈਨ {lang} ਆਡੀਓ ਚਲਾਏਗਾ (ਇੰਟਰਨੈੱਟ ਜ਼ਰੂਰੀ)।",
     "ln.title": "🌙 ਲਾਸਟ-ਨਾਈਟ ਰਿਵੀਜ਼ਨ ਮੋਡ", "ln.sub": "ਸਿਰਫ਼ ਜ਼ਰੂਰੀ, ਹੋਰ ਕੁਝ ਨਹੀਂ।",
     "ln.must": "🔑 ਜ਼ਰੂਰੀ ਸੰਕਲਪ", "ln.formulas": "🧮 ਸਿਰਫ਼ ਫਾਰਮੂਲੇ", "ln.probable": "🎯 ਸਭ ਤੋਂ ਸੰਭਾਵੀ ਸਵਾਲ",
     "ln.define": "ਪਰਿਭਾਸ਼ਿਤ/ਸਮਝਾਓ: {t}।", "ln.shortNotes": "\"{t}\" ਉੱਤੇ ਸੰਖੇਪ ਨੋਟਸ ਲਿਖੋ।",
@@ -868,9 +872,10 @@ function simplify(s) {
 }
 
 /* ---------------- Voice revision (Web Speech API) ---------------- */
-const voiceState = { sentences: [], baseSentences: [], cache: {}, idx: 0, playing: false, rate: 1, voiceLang: "en-US" };
+const voiceState = { sentences: [], baseSentences: [], cache: {}, idx: 0, playing: false, rate: 1, voiceLang: "en-US", mode: "speech", audio: null, queue: [], qIdx: 0 };
 function stopVoice() {
   if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (voiceState.audio) { try { voiceState.audio.pause(); } catch (e) {} voiceState.audio.onended = null; }
   voiceState.playing = false;
 }
 function pickVoice(langCode) {
@@ -923,15 +928,15 @@ function renderVoice() {
     await ensureVoiceLanguage();
     updateVoiceStatus();
   };
-  $("vRate").oninput = (e) => { voiceState.rate = parseFloat(e.target.value); };
+  $("vRate").oninput = (e) => { voiceState.rate = parseFloat(e.target.value); if (voiceState.audio) voiceState.audio.playbackRate = voiceState.rate; };
   $("vPlay").onclick = () => {
     const code = (voiceState.voiceLang || "en-US").slice(0, 2);
-    if (code === "en") { voiceState.sentences = voiceState.baseSentences; speakFrom(0); }
-    else if (voiceState.cache[code]) { voiceState.sentences = voiceState.cache[code]; speakFrom(0); }
-    else { ensureVoiceLanguage().then(() => speakFrom(0)); } // first run for this language
+    if (code === "en") { voiceState.sentences = voiceState.baseSentences; startVoicePlayback(); }
+    else if (voiceState.cache[code]) { voiceState.sentences = voiceState.cache[code]; startVoicePlayback(); }
+    else { ensureVoiceLanguage().then(startVoicePlayback); } // first run for this language
   };
-  $("vPause").onclick = () => window.speechSynthesis.pause();
-  $("vResume").onclick = () => window.speechSynthesis.resume();
+  $("vPause").onclick = () => { if (voiceState.mode === "cloud") { if (voiceState.audio) voiceState.audio.pause(); } else window.speechSynthesis.pause(); };
+  $("vResume").onclick = () => { if (voiceState.mode === "cloud") { if (voiceState.audio) voiceState.audio.play(); } else window.speechSynthesis.resume(); };
   $("vStop").onclick = () => { stopVoice(); clearVoiceHighlight(); };
   // Voice list loads asynchronously in some browsers; refresh status when it does.
   window.speechSynthesis.onvoiceschanged = updateVoiceStatus;
@@ -947,8 +952,53 @@ function updateVoiceStatus() {
   if (code === "en" || pickVoice(voiceState.voiceLang)) {
     el.innerHTML = `<span style="color:var(--accent)">${t("voice.ready", { lang: name })}</span>`;
   } else {
-    el.innerHTML = `<span style="color:var(--danger)">${t("voice.missing", { lang: name })}</span>`;
+    el.innerHTML = `<span style="color:var(--primary2)">${t("voice.online", { lang: name })}</span>`;
   }
+}
+// Choose local speech (if a voice exists) or stream online audio for the language.
+function startVoicePlayback() {
+  stopVoice();
+  const code = (voiceState.voiceLang || "en-US").slice(0, 2);
+  if (code === "en" || pickVoice(voiceState.voiceLang)) { voiceState.mode = "speech"; speakFrom(0); }
+  else { voiceState.mode = "cloud"; cloudSpeakFrom(0); }
+}
+function chunkForTTS(text, max) {
+  const words = text.split(/\s+/), out = []; let cur = "";
+  for (const w of words) { const test = cur ? cur + " " + w : w; if (test.length > max && cur) { out.push(cur); cur = w; } else cur = test; }
+  if (cur) out.push(cur);
+  return out.length ? out : [text.slice(0, max)];
+}
+function cloudSpeakFrom(startSi) {
+  voiceState.queue = [];
+  for (let si = startSi; si < voiceState.sentences.length; si++) {
+    chunkForTTS(voiceState.sentences[si], 190).forEach((txt) => voiceState.queue.push({ si, txt }));
+  }
+  voiceState.qIdx = 0; voiceState.playing = true;
+  if (!voiceState.audio) voiceState.audio = new Audio();
+  cloudPlayNext();
+}
+function cloudPlayNext() {
+  if (!voiceState.playing || voiceState.qIdx >= voiceState.queue.length) { voiceState.playing = false; clearVoiceHighlight(); return; }
+  const item = voiceState.queue[voiceState.qIdx];
+  highlightVoice(item.si);
+  const lang = (voiceState.voiceLang || "en").slice(0, 2);
+  const a = voiceState.audio;
+  a.src = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&client=tw-ob&q=${encodeURIComponent(item.txt)}`;
+  a.playbackRate = voiceState.rate;
+  a.onended = () => { if (voiceState.playing) { voiceState.qIdx++; cloudPlayNext(); } };
+  a.onerror = () => { if (voiceState.qIdx === 0) cloudFallback(); else if (voiceState.playing) { voiceState.qIdx++; cloudPlayNext(); } };
+  const p = a.play();
+  if (p && p.catch) p.catch(() => { if (voiceState.qIdx === 0) cloudFallback(); });
+}
+function cloudFallback() {
+  // Online audio unavailable (offline or blocked) -> read English original locally.
+  stopVoice();
+  voiceState.mode = "speech";
+  voiceState.sentences = voiceState.baseSentences;
+  updateVoiceText();
+  const el = $("vStatus");
+  if (el) el.innerHTML = `<span style="color:var(--danger)">${t("voice.missing", { lang: VOICE_NAMES[(voiceState.voiceLang || "").slice(0, 2)] || "" })}</span>`;
+  speakFrom(0);
 }
 // Translate the revision text into the chosen voice language so it is actually
 // SPOKEN in that language (not just pronounced by a different engine).
